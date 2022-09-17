@@ -1,7 +1,5 @@
 SHELL := /bin/bash
 
-include ../Tools/nanopb/extra/nanopb.mk
-
 MS3000_FLASH_BAUD=921600
 
 #linux
@@ -11,7 +9,7 @@ MS3000_PORT=/dev/tty.SLAB_USBtoUART
 #'autodetect'
 MS3000_PORT=`pio device list --json-output | python -c 'exec("""\nimport json,sys\n\nobj=json.load(sys.stdin)\nfor y in obj:\n if "10C4:EA60" in y["hwid"].upper():\n  print (y["port"])\n""") ' | head -1`
 
-all:	clean proto build flash monitor
+all:	clean build flash monitor
 
 CFLAGS += -I$(NANOPB_DIR) -DPB_FIELD_16BIT
 
