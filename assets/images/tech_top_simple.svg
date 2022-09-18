@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="TechShifterTop" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 840 316" style="enable-background:new 0 0 840 316;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;stroke:#010101;stroke-miterlimit:10;}
+	.st1{fill:url(#XMLID_21_);}
+	.st2{fill:#FFFFFF;stroke:#010101;stroke-width:0.5;stroke-miterlimit:10;}
+	.st3{stroke:#010101;stroke-miterlimit:10;}
+	.st4{font-family:'MyriadPro-Regular';}
+	.st5{font-size:12px;}
+	.st6{fill:#7FC342;}
+</style>
+<symbol  id="LED" viewBox="-59.5 -59.5 119 119">
+	<polygon class="st0" points="59,-59 -59,-59 -59,59 59,59 	"/>
+	<path class="st0" d="M42-53.5h-84h-2.7c-5.8,1.8-8.8,7.5-9.4,14.5v77c0,0,0,6.3,5,10C-45,51.2-39,52-39,52h76l5-5V-53.5z"/>
+	<polygon class="st0" points="-40.8,41.8 -43.8,38.5 -43.8,18.2 -40.8,15 -31.8,15 -31.8,41.8 	"/>
+	<polygon class="st0" points="-40.8,11.8 -43.8,8.5 -43.8,-11.8 -40.8,-15 -31.8,-15 -31.8,11.8 	"/>
+	<polygon class="st0" points="-40.8,-18.2 -43.8,-21.5 -43.8,-41.8 -40.8,-45 -31.8,-45 -31.8,-18.2 	"/>
+	<polygon class="st0" points="40.2,-45 42,-41.7 42,-21.5 40.2,-18.2 34.7,-18.2 34.7,-45 	"/>
+	<polygon class="st0" points="40.2,-15 42,-11.7 42,8.5 40.2,11.8 34.7,11.8 34.7,-15 	"/>
+	<polygon class="st0" points="40.2,15 42,18.3 42,38.5 40.2,41.8 34.7,41.8 34.7,15 	"/>
+	<polygon class="st0" points="16.8,-33.5 -12.8,-33.5 -12.8,-10.5 16.8,-10.5 	"/>
+</symbol>
+<g id="shifter">
+	<g id="XMLID_22_">
+	
+		<g id="XMLID_90_">
+			<radialGradient id="XMLID_21_" cx="68" cy="54" r="499.925" gradientUnits="userSpaceOnUse">
+				<stop  offset="0" style="stop-color:#FFFFFF"/>
+				<stop  offset="1" style="stop-color:#ACACAC"/>
+			</radialGradient>
+			<path id="XMLID_96_" class="st1" d="M797.4,233.5H55.9c-8.1,0-14.7-6.6-14.7-14.7V45.7c0-8.1,6.6-14.7,14.7-14.7h741.5
+				c8.1,0,14.7,6.6,14.7,14.7v173.2C812.1,226.9,805.5,233.5,797.4,233.5z"/>
+		</g>
+	</g>
+</g>
+<path id="hole" class="st2" d="M789.2,153.1H63.2c-2.7,0-4.9-2.2-4.9-4.9V112c0-2.7,2.2-4.9,4.9-4.9h726.1c2.7,0,4.9,2.2,4.9,4.9
+	v36.1C794.1,150.9,791.9,153.1,789.2,153.1z"/>
+<g id="LEDS">
+	
+		<use xlink:href="#LED"  width="119" height="119" id="XMLID_20_" x="-59.5" y="-59.5" transform="matrix(0.3204 0 0 -0.3204 725.7759 129.6348)" style="overflow:visible;"/>
+	
+		<use xlink:href="#LED"  width="119" height="119" id="XMLID_19_" x="-59.5" y="-59.5" transform="matrix(0.3204 0 0 -0.3204 679.7195 129.6348)" style="overflow:visible;"/>
+	
+		<use xlink:href="#LED"  width="119" height="119" id="XMLID_18_" x="-59.5" y="-59.5" transform="matrix(0.3204 0 0 -0.3204 633.663 129.6348)" style="overflow:visible;"/>
+	
+		<use xlink:href="#LED"  width="119" height="119" id="XMLID_17_" x="-59.5" y="-59.5" transform="matrix(0.3204 0 0 -0.3204 587.6066 129.6348)" style="overflow:visible;"/>
+	
+		<use xlink:href="#LED"  width="119" height="119" id="XMLID_16_" x="-59.5" y="-59.5" transform="matrix(0.3204 0 0 -0.3204 541.5502 129.6348)" style="overflow:visible;"/>
+	
+		<use xlink:href="#LED"  width="119" height="119" id="XMLID_15_" x="-59.5" y="-59.5" transform="matrix(0.3204 0 0 -0.3204 495.4938 129.6348)" style="overflow:visible;"/>
+	
+		<use xlink:href="#LED"  width="119" height="119" id="XMLID_14_" x="-59.5" y="-59.5" transform="matrix(0.3204 0 0 -0.3204 449.4374 129.6348)" style="overflow:visible;"/>
+	
+		<use xlink:href="#LED"  width="119" height="119" id="XMLID_13_" x="-59.5" y="-59.5" transform="matrix(0.3204 0 0 -0.3204 403.381 129.6348)" style="overflow:visible;"/>
+	
+		<use xlink:href="#LED"  width="119" height="119" id="XMLID_12_" x="-59.5" y="-59.5" transform="matrix(0.3204 0 0 -0.3204 357.3245 129.6348)" style="overflow:visible;"/>
+	
+		<use xlink:href="#LED"  width="119" height="119" id="XMLID_11_" x="-59.5" y="-59.5" transform="matrix(0.3204 0 0 -0.3204 311.2681 129.6348)" style="overflow:visible;"/>
+	
+		<use xlink:href="#LED"  width="119" height="119" id="XMLID_10_" x="-59.5" y="-59.5" transform="matrix(0.3204 0 0 -0.3204 265.2117 129.6348)" style="overflow:visible;"/>
+	
+		<use xlink:href="#LED"  width="119" height="119" id="XMLID_9_" x="-59.5" y="-59.5" transform="matrix(0.3204 0 0 -0.3204 219.1553 129.6348)" style="overflow:visible;"/>
+	
+		<use xlink:href="#LED"  width="119" height="119" id="XMLID_8_" x="-59.5" y="-59.5" transform="matrix(0.3204 0 0 -0.3204 173.0989 129.6348)" style="overflow:visible;"/>
+	
+		<use xlink:href="#LED"  width="119" height="119" id="XMLID_7_" x="-59.5" y="-59.5" transform="matrix(0.3204 0 0 -0.3204 127.0424 129.6348)" style="overflow:visible;"/>
+	
+		<use xlink:href="#LED"  width="119" height="119" id="XMLID_1_" x="-59.5" y="-59.5" transform="matrix(0.3204 0 0 -0.3204 80.986 129.6348)" style="overflow:visible;"/>
+	
+		<use xlink:href="#LED"  width="119" height="119" id="XMLID_6_" x="-59.5" y="-59.5" transform="matrix(0.3204 0 0 -0.3204 771.8323 129.6348)" style="overflow:visible;"/>
+</g>
+<g id="Buttons">
+	<rect id="XMLID_5_" x="341.5" y="236.9" class="st3" width="22.7" height="10.3"/>
+	<rect id="XMLID_4_" x="415.3" y="236.9" class="st3" width="22.7" height="10.3"/>
+	<rect id="XMLID_3_" x="489.2" y="236.9" class="st3" width="22.7" height="10.3"/>
+</g>
+<text id="XMLID_76_" transform="matrix(1 0 0 1 414 273.3333)" class="st4 st5">center</text>
+<text id="XMLID_77_" transform="matrix(1 0 0 1 493 273.3333)" class="st4 st5">up</text>
+<text id="XMLID_78_" transform="matrix(1 0 0 1 338 273.3333)" class="st4 st5">down</text>
+<rect id="LED1" x="752.7" y="112.3" class="st6" width="37.8" height="37.8"/>
+<rect id="LED2" x="706.7" y="112.3" class="st6" width="37.8" height="37.8"/>
+<rect id="LED3" x="660.7" y="112.3" class="st6" width="37.8" height="37.8"/>
+<rect id="LED4" x="614.7" y="112.3" class="st6" width="37.8" height="37.8"/>
+<rect id="LED5" x="568.7" y="112.3" class="st6" width="37.8" height="37.8"/>
+<rect id="LED6" x="522.7" y="112.3" class="st6" width="37.8" height="37.8"/>
+<rect id="LED7" x="476.7" y="112.3" class="st6" width="37.8" height="37.8"/>
+<rect id="LED8" x="430.7" y="112.3" class="st6" width="37.8" height="37.8"/>
+<rect id="LED9" x="384.7" y="112.3" class="st6" width="37.8" height="37.8"/>
+<rect id="LED10" x="338.7" y="112.3" class="st6" width="37.8" height="37.8"/>
+<rect id="LED11" x="292.7" y="112.3" class="st6" width="37.8" height="37.8"/>
+<rect id="LED12" x="246.7" y="112.3" class="st6" width="37.8" height="37.8"/>
+<rect id="LED13" x="200.7" y="112.3" class="st6" width="37.8" height="37.8"/>
+<rect id="LED14" x="154.7" y="112.3" class="st6" width="37.8" height="37.8"/>
+<rect id="LED15" x="108.7" y="112.3" class="st6" width="37.8" height="37.8"/>
+<rect id="LED16" x="62.7" y="112.3" class="st6" width="37.8" height="37.8"/>
+</svg>
