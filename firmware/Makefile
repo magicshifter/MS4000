@@ -17,9 +17,9 @@ CSRC += $(NANOPB_DIR)/pb_encode.c
 CSRC += $(NANOPB_DIR)/pb_decode.c
 CSRC += $(NANOPB_DIR)/pb_common.c
 
-PROTOC_OPTS += -I../Tools/nanopb/generator/proto
+PROTOC_OPTS += -I../tools/nanopb/generator/proto
 
-ESPOTA = ../Tools/ESP8266_ota/espota.py
+ESPOTA = ../tools/ESP8266_ota/espota.py
 
 pio-deps:
 	@echo "NOTE: installing platform dependencies with PlatformIO"
@@ -31,7 +31,7 @@ proto:  ../../MS3000.proto
 # protoc --proto_path=src --js_out=library=whizz/ponycopter,binary:build/gen src/foo.proto src/bar/baz.proto
 	@mkdir -p ./ms3000.proto.out
 	$(PROTOC) $(PROTOC_OPTS) --proto_path ../../ ../../MS3000.proto  -o ../../MS3000.pb --js_out=./ms3000.proto.out --nanopb_out=-v:.
-	python ../Tools/nanopb/generator/nanopb_generator.py ../../MS3000.pb
+	python ../tools/nanopb/generator/nanopb_generator.py ../../MS3000.pb
 	#$(PROTOC) $(PROTOC_OPTS) --nanopb_out=src/ --proto_path ../../ ../../MS3000.proto  -o../../MS3000.pb 
 	cp ../../MS3000.pb.? src/
 	cp src/MS3000.pb.? .
@@ -40,10 +40,10 @@ build:
 	platformio run --upload-port ${MS3000_PORT}
 
 flash:	.pio/build/ms3000/firmware.bin
-	pio run && ../Tools/esptool-ck/esptool -vv -cd ck -cb ${MS3000_FLASH_BAUD} -cp ${MS3000_PORT} -cf .pio/build/ms3000/firmware.bin
+	pio run && ../tools/esptool-ck/esptool -vv -cd ck -cb ${MS3000_FLASH_BAUD} -cp ${MS3000_PORT} -cf .pio/build/ms3000/firmware.bin
 
 uploadfs:
-	(pio run -t uploadfs -v || ../Tools/esptool-ck/esptool -vv -cd ck -cb 921600 -cp /dev/ttyUSB0 -ca 200000 -cf .pio/build/ms3000/littlefs.bin)
+	(pio run -t uploadfs -v || ../tools/esptool-ck/esptool -vv -cd ck -cb 921600 -cp /dev/ttyUSB0 -ca 200000 -cf .pio/build/ms3000/littlefs.bin)
 burn:
 	platformio run --target upload --upload-port ${MS3000_PORT}
 
@@ -72,4 +72,4 @@ clean:
 	# !J! Todo: BUILD_PRODUCT_DIR
 	#rm -rf .pioenvs
 	pio run -t clean
-	rm -rf src/MS3000.pb.c src/MS3000.pb.h
+	#rm -rf src/MS3000.pb.c src/MS3000.pb.h
