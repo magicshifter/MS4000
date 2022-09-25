@@ -672,7 +672,7 @@ def initMS3000bits():
     fonts = ["font10x16.magicFont", "font4x5.magicFont", "font6x8.magicFont", "font7x12.magicFont"]
     for font in fonts:
             sleep(delay)
-            issueUploadMS3000(ser, "../../assets/magicBitmaps/fonts/" + font, font)
+            issueUploadMS3000(ser, "../../assets/fonts/" + font, font)
 
     end = time.time()
     print("time elapsed: ", end - start)
@@ -689,7 +689,7 @@ def initMS3000web():
     #issueUploadMS3000(ser, "../../web/dist/bundled/index.html", "index.html")
     #sleep(delay)
     #issueUploadMS3000(ser, "../../web/dist/bundled/index.js.gz", "index.js.gz")
-    #sleep(delay)
+    #sleep(delay)f
     #issueUploadMS3000(ser, "../../web/dist/bundled/magicshifter.appcache", "magicshifter.appcache")
     # sleep(delay)
     issueUploadMS3000(ser, "../../assets/MS3000_defaultconfig/MagicShifter.html", "MagicShifter.html")
