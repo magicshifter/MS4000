@@ -1,15 +1,17 @@
 ## MS4000 - the return of MagicShifter (not -3000)!
 
-We now have a mono-repo, and are doing away with the submodules.  This Repository contains the Magicshifter OS, built with platformio, and includes assets and tooling to get a MagicShifter firmware built and installed.
+This is the source code for the MS4000 - the next-generation version of the MagicShifter Light Synthesizer!  (http://magicshifter.net/)
+
+This is a mono-repo.. This repository contains the Magicshifter OS, built with platformio, and includes assets and tooling to get a MagicShifter firmware built and installed.
 
 ## How to build?
  * [install platformio](http://platformio.org/#!/get-started) - you will need the command-line (pio) tooling, but may have success with the PlatformIO IDE
-
- * Build the firmware: `cd firmware && make`
+ * Developers: Edit the firmware in firmware/src, Build the firmware: `cd firmware && make` - see also other targets in firmware/Makefile (i.e. 'make flash', etc.)
+ * We are using protocol-buffers to synchronize state between the firmware and the web - the web interface is generated from the protobuf definition, which is included as .h/.c in the firmware.  'make proto' targets abound!
 
 ## Dependencies
  * remember to read the Makefile
- * `make pio-deps` can get you started...
+ * `make pio-deps` can get you started... don't forget to see the 'copy-libs' target, too: nanopb is generated from our MS3000.proto file
  * default make target copies libraries (copy-libs) that are auto-generated from the protobuffer target, into lib/nanopb
 
 ## Example set up for Ubuntu:
@@ -29,5 +31,11 @@ We now have a mono-repo, and are doing away with the submodules.  This Repositor
 	* build the MS3KOS:
 		`cd firmware/ && make`
 
-	
+## To Factory-flash your MagicShifter firmware:
+
+	In this current directory, type: `make factory`
+
+## Debugging Monitor:
+
+	make -C firmware monitor
 
