@@ -1,1 +1,7 @@
-These files copied from ../../../Tools/nanopb @ nanopb-0.3.9.2-MS3000
+These files should be copied from 
+
+		../../../tools/nanopb 
+	
+	with the "copy-libs" target in 
+
+		../../Makefile
