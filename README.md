@@ -1,10 +1,8 @@
 ## MS4000 - the return of MagicShifter (not -3000)!
 
-## We now have a mono-repo, and are doing away with the submodules.
+We now have a mono-repo, and are doing away with the submodules.  This Repository contains the Magicshifter OS, built with platformio, and includes assets and tooling to get a MagicShifter firmware built and installed.
 
-#This Repository contains the Magicshifter OS, built with platformio
-
-###How to build?
+## How to build?
  * [install platformio](http://platformio.org/#!/get-started) - you will need the command-line (pio) tooling, but may have success with the PlatformIO IDE
 
  * Build the firmware: `cd firmware && make`
