@@ -73,9 +73,19 @@ pio-deps-clean:
 
 test:    proto build flash monitor
     
+setupvenv:
+	rm -rf .venv_firmware
+	python3 -m venv .venv_firmware
+	
+ubuntu22:
+	sudo apt install python3.10-venv
+	make setupvenv
+	. .venv_firmware/bin/activate
+	pip install -r requirements.txt
 
 clean:
 	# !J! Todo: BUILD_PRODUCT_DIR
 	#rm -rf .pioenvs
 	pio run -t clean
+	rm -rf .venv_firmware
 	#rm -rf src/MS3000.pb.c src/MS3000.pb.h
