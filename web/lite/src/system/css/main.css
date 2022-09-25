@@ -1,0 +1,50 @@
+body, html {
+    height: 100%
+}
+body {
+    background: #ff0;
+    margin: 0;
+    padding: 0
+}
+body h1 {
+    color: #0ff
+}
+.pixel {
+    float: left;
+    width: 5.6vw;
+    height: auto;
+    border: 1px solid #333;
+}
+#colors, #container {
+}
+#container {
+    display: block;
+    position: relative;
+    background-image: url(../img/transparent.jpg);
+    background-size: 25%;
+    clear: both;
+}
+#container:hover {
+    cursor: url(../img/pen.png), auto
+}
+#colors {
+    position: absolute;
+    visibility: hidden
+}
+#colors:hover {
+    cursor: url(../img/tool.cur), auto
+}
+#palette {
+    height: 25px;
+    float: right;
+    clear: both
+}
+#toolbar {
+    display: block;
+    clear: both;
+    height: 30px;
+    padding: .3em
+}
+.clear {
+    clear:both;
+}
