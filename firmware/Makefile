@@ -17,7 +17,9 @@ CSRC += $(NANOPB_DIR)/pb_encode.c
 CSRC += $(NANOPB_DIR)/pb_decode.c
 CSRC += $(NANOPB_DIR)/pb_common.c
 
+PROTOC = ../tools/nanopb/generator/protoc
 PROTOC_OPTS += -I../tools/nanopb/generator/proto
+PROTOC_GEN_NANOPB=../tools/nanopb/generator/protoc-gen-nanopb
 
 ESPOTA = ../tools/ESP8266_ota/espota.py
 
@@ -25,16 +27,13 @@ pio-deps:
 	@echo "NOTE: installing platform dependencies with PlatformIO"
 	pio lib install 222 64 423 35 568 170 567 4271
 
-proto:  ../../MS3000.proto 
+proto:  ../MS3000.proto 
 	@echo "NANOPB_DIR = $(NANOPB_DIR)"
 	@echo "CFLAGS = $(CFLAGS)"
-# protoc --proto_path=src --js_out=library=whizz/ponycopter,binary:build/gen src/foo.proto src/bar/baz.proto
 	@mkdir -p ./ms3000.proto.out
-	$(PROTOC) $(PROTOC_OPTS) --proto_path ../../ ../../MS3000.proto  -o ../../MS3000.pb --js_out=./ms3000.proto.out --nanopb_out=-v:.
-	python ../tools/nanopb/generator/nanopb_generator.py ../../MS3000.pb
-	#$(PROTOC) $(PROTOC_OPTS) --nanopb_out=src/ --proto_path ../../ ../../MS3000.proto  -o../../MS3000.pb 
-	cp ../../MS3000.pb.? src/
-	cp src/MS3000.pb.? .
+	$(PROTOC) $(PROTOC_OPTS) --proto_path .. ../MS3000.proto  -o ../MS3000.pb --js_out=./ms3000.proto.out --nanopb_out=-v:.
+	python ../tools/nanopb/generator/nanopb_generator.py ../MS3000.pb
+	cp MS3000.pb.? src/
 
 build:
 	platformio run --upload-port ${MS3000_PORT}
@@ -61,6 +60,11 @@ ota: .pioenvs/ms3000/firmware.bin
 reset-device:
 	-@echo "^T^R" | pio device monitor --quiet -b 921600 --dtr 0 --rts 1 -p ${MS3000_PORT} 
 	@echo "(Inappropriate ioctl is actually appropriate for a reset.. everything is okay!)"
+
+copy-libs:
+	@cp -rfvp ../tools/nanopb/*.c lib/nanopb/
+	@cp -rfvp ../tools/nanopb/*.h lib/nanopb/
+	@ls -alF ../tools/nanopb/*.c lib/nanopb/*.c ../tools/nanopb/*.h lib/nanopb/*.h
 
 pio-deps-clean:
 	rm -rf .piolibdeps/
