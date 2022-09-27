@@ -1,0 +1,20 @@
+.PaletteItem {
+    padding: 0.2em;
+    border: solid 0.2em black;
+    min-width: 2em;
+    min-height: 2em;
+    display:inline-block
+}
+
+.SelectedPaletteItem {
+    padding: 0.2em;
+    border: solid 0.2em white;
+    min-width: 2em;
+    min-height: 2em;
+    display:inline-block
+}
+
+
+.PaletteItem:hover {
+    border: solid 0.2em gray;
+}

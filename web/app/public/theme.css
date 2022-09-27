@@ -1,0 +1,307 @@
+html, body {
+    background-color: #444444;
+    color: white;
+    /*width: 100%;*/
+    /*height: 100%;*/
+    margin: 0px;
+    padding: 0px;
+}
+
+select, option {
+    background-color: gray;
+    color: black;
+}
+
+input {
+    background-color: #222222;
+    color: white;
+}
+
+button {
+    background-color: #129FEA;
+    color: white;
+}
+
+#root {
+    /*width: 100%;*/
+    /*height: 100%;*/
+}
+
+
+
+#loading {
+    -webkit-animation: rotation 2s infinite linear;
+}
+/* Cutsom CSS for THEME*/
+.ms3000-main-container{
+  max-width: 800px;
+  margin: 0 auto;
+}
+.ms3000-control-container{
+  text-align: center;
+}
+.ms3000-input-radio{
+  text-align: center;
+  display: block;
+  clear: both;
+  margin-bottom: 1.5em;
+}
+
+.ms3000-input-radio>label{
+
+  display: block;
+  
+}
+.ms3000-input-radio>label>input{
+
+  display: block;
+  clear:both;
+
+}
+.ms3000-interface-headline{
+  font-size: 1.3em;
+  margin-bottom: 0.5em;
+  color: #ccc;
+}
+.ms3000-input-flow{
+  margin: 0 auto;
+  width: 2em;
+  display: block;
+}
+.ms3000-menu-burger{
+  float: right;
+  font-size: 2em;
+}
+.m3000-menu-list>li>a{
+        padding: 0.1em 0.5em;
+        color:#aaa;
+        text-decoration: none; 
+  }
+.m3000-menu-container{
+      display: block;
+    }
+h2{
+  color:#F77E11;
+}
+@-webkit-keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+    }
+}
+
+.button-sized {
+    width: 1em;
+    height: 1em;
+}
+
+@media screen and (min-width:320px){
+    body{ 
+      font-size: 20px 
+    }
+    .ms3000-menu-burger{
+      display: block;
+      position: relative;
+      z-index: 200;
+      padding: 0.4em;
+    }
+    .m3000-menu-list{
+      margin-top: 2.9em;
+      display: none;
+      position: absolute;
+      top:0;
+      background-color: #333;
+      z-index: 2000;
+      text-align: center;
+      padding:0;
+      width: 100%;
+    }
+    .m3000-menu-container{
+      width:100vw;
+      background-color: #333;
+      text-align: center;
+      clear: both;
+      display: block;
+      height: 3em;
+    }
+    .m3000-menu-list>li{
+      float: none;
+      display: block;
+      clear: both;
+      position: relative;
+      font-size: 2em;
+      padding: 0.5em 0;
+    }
+    .ms3000-menu-visible{
+      display: block !important;
+    }
+    .ms3000-menu-item-active{
+      background-color: #888;
+
+    }
+    .ms3000-menu-item-active>a{
+      color: #000;
+      
+    }
+}
+@media screen and (min-width:768px){
+   body{ 
+      font-size: 12px 
+    }
+    .pure-u-md-none{
+        width: auto;
+    }
+    .ms3000-menu-burger{
+      display: none;
+    }
+    .m3000-menu-list{
+      display: block;
+      position: relative;
+    }
+    .m3000-menu-list>li{
+       
+        font-size: 1.3em;
+        
+        display: inline-block;
+      }
+    
+}
+/*Big screens*/
+@media screen and (min-width:1200px){
+    .ms3000-u-none{
+        width:auto;
+        margin-left:1em;
+        margin-right:1em; 
+    }
+
+}
+/**/
+
+@keyframes click-wave {
+  0% {
+    height: 2.2em;
+    width: 2.2em;
+    opacity: 0.35;
+    position: relative;
+  }
+  100% {
+    height: 5em;
+    width: 5em;
+    margin-left: 2.2em;
+    margin-top: 2.2em;
+    opacity: 0;
+  }
+}
+
+.option-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative;
+  top: 0.1em;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2.2em;
+  width: 2.2em;
+  transition: all 0.15s ease-out 0s;
+  background: #cbd1d8;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0;
+  outline: none;
+  position: relative;
+  z-index: 100;
+  float: left;
+}
+.option-input:hover {
+  background: #9faab7;
+}
+.option-input:checked {
+  background: #40e0d0;
+}
+.option-input:checked::before {
+  height: 2.2em;
+  width: 2.2em;
+  content: '✔';
+  display: inline-block;
+  font-size: 2.8em;
+  text-align: center;
+  margin-left: -0.7em;
+  margin-top: -0.1em
+
+}
+/*
+.option-input:checked::after {
+  -webkit-animation: click-wave 0.65s;
+  -moz-animation: click-wave 0.65s;
+  animation: click-wave 0.65s;
+  background: #40e0d0;
+  content: '';
+  display: block;
+  position: relative;
+  z-index: 100;
+}*/
+.option-input.radio {
+  border-radius: 50%;
+}
+.option-input.radio::after {
+  border-radius: 50%;
+}
+
+
+.fat-ms-button {
+  backface-visibility: hidden;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+  background: linear-gradient(180deg,#fea 0%,#dc8 49%,#a95 51%,#dc8 100%);
+  border-radius: 5px;
+  border: 1px solid #ba6;
+  border-width: 1px 1px 1px 1px;
+  padding: 10px 20px 10px 20px;
+  box-shadow: inset 0px 1px 0px #ffffff,0px 1px 3px rgba(0,0,0,0.3);
+    color: #fff;
+  font-size: 16px;
+  font-family: Helvetica Neue;
+  font-weight: 900;
+  font-style: normal;
+  text-shadow: 0px -1px 0px rgba(0,0,0,0.4)
+  }
+  .fat-ms-button > div {
+    color: #999;
+  font-size: 10px;
+  font-family: Helvetica Neue;
+  font-weight: initial;
+  font-style: normal;
+  text-align: center;
+  margin: 0px 0px 0px 0px
+  }
+  .fat-ms-button > i {
+    font-size: 1em;
+  border-radius: 0px;
+  border: 0px solid transparent;
+  border-width: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  position: static
+  }
+  .fat-ms-button > .ld {
+    font-size: initial
+  }
+
+
+
+/*
+body div {
+}*/
+
+
+

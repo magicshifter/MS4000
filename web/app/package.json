@@ -1,0 +1,48 @@
+{
+  "name": "ms3000-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.0-14",
+    "@fortawesome/free-solid-svg-icons": "^5.1.0-11",
+    "@fortawesome/react-fontawesome": "0.1.0-11",
+    "ajv-keywords": "^3.2.0",
+    "color": "^3.0.0",
+    "dis-gui": "^2.1.0",
+    "file-saver": "^1.3.8",
+    "immutable": "^3.8.2",
+    "n-dimensional-flood-fill": "^1.0.0",
+    "object-path": "^0.11.4",
+    "object-path-immutable": "^3.0.0",
+    "prop-types": "^15.6.2",
+    "protobufjs": "^6.8.8",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
+    "react-scripts": "^1.1.4",
+    "redux": "^4.0.0",
+    "redux-act": "^0.4.0",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^0.16.0",
+    "redux-thunk": "^2.3.0",
+    "redux-undo": "^0.6.1",
+    "socket.io-client": "^2.1.1",
+    "upng-js": "^2.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "koa": "^2.5.2",
+    "koa-socket": "^4.4.0",
+    "socket.io": "^2.1.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "testServer": "./node_modules/.bin/babel-node src/testServer/index.js",
+    "proto": "mkdir -p ../../MS3000-WebInterface/ms3000-app/src/proto-generated; make -C ../../MS3000-Firmware/MS3KOS/ proto",
+    "protoDepr": "cp ../../MS3000.proto ./public",
+    "loc": "find ./src -name '*.*' | xargs wc -l"
+  }
+}
