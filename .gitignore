@@ -33,3 +33,5 @@
 
 **/.pio/*
 .pio/**
+
+**/node_modules/**
