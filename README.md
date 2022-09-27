@@ -28,6 +28,9 @@ This is a mono-repo.. This repository contains the Magicshifter OS, built with p
 	* set up nanopb:
 		`cd tools/nanopb/generator/proto && make && cd -`
 
+	* (recommended) set up a python venv and activate it:
+		`python3 -m venv .venv && . .venv/bin/activate`
+
 	* build the MS3KOS:
 		`cd firmware/ && make`
 
@@ -49,7 +52,7 @@ a driver to get the serial device for your system:
 	https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers
 
 On Linux, the device shows up as /dev/ttyUSB0, on MacOS, it might be something
-different - but either way, the command:
+different (e.g. "/dev/tty.SLAB_USBtoUART") - but either way, the command:
 
 		`pio device list`
 
