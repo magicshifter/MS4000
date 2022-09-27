@@ -31,6 +31,30 @@ This is a mono-repo.. This repository contains the Magicshifter OS, built with p
 	* build the MS3KOS:
 		`cd firmware/ && make`
 
+## You will need PlatformIO:
+
+	http://platformio.org
+
+	* MacOS:
+		`brew instal platformi` 
+
+	* Linux: Set up venv, install python 3.7 (or so..), then:
+		`pip install platformio`
+
+## Device for the MagicShifter
+
+Since we use the ESP8266, we have a nice UART available.  Perhaps you will need 
+a driver to get the serial device for your system:  
+
+	https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers
+
+On Linux, the device shows up as /dev/ttyUSB0, on MacOS, it might be something
+different - but either way, the command:
+
+		`pio device list`
+
+	.. will show you what your system sees, device-wise.
+
 ## To Factory-flash your MagicShifter firmware:
 
 	In this current directory, type: `make factory`
