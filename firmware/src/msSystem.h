@@ -989,7 +989,7 @@ void showBatteryStatus(bool shouldFadeIn) {
 		Serial.begin(921600);
 #endif
 
-		slogln(String("\r\nMagicShifter 3000 OS V" + String(MS3KOS_VERSION)));
+		slogln(String("\r\nMagicShifter 4000 OS V" + String(MS3KOS_VERSION)));
 
 		// wake up filesystem
 		slog("LittleFS:");

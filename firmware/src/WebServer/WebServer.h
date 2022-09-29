@@ -27,6 +27,7 @@ class MagicShifterWebServer {
 		}
 
 #ifdef USE_MDNS
+#warning "mDNS is turned on..."
 		// if (msSystem.msDNS.begin("magicshifter", WiFi.localIP())) {
 		APAuth apInfo;
 		bool gotAPConfig = msSystem.Settings.getAPConfig(&apInfo);
