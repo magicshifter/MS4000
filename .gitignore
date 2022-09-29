@@ -36,3 +36,6 @@
 
 **/node_modules/**
 **/.venv/*
+
+# build this yourself locally
+tools/esptool-ck/esptool
