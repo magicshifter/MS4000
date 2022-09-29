@@ -56,7 +56,7 @@ On Linux, the device shows up automatically as /dev/ttyUSB0, on MacOS, it might 
 
 		`pio device list`
 
-	.. will show you what your system sees, device-wise.
+.. will show you what your system sees, device-wise.
 	
 ## Development Environment
 
