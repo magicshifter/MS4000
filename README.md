@@ -20,19 +20,19 @@ This is a mono-repo.. This repository contains the Magicshifter OS, built with p
 		`apt install protobuf-compiler python-protobuf python3-pip git build-essential`
 
 	* (recommended) set up a python venv and activate it:
-		`python3 -m venv .venv && . .venv/bin/activate`
+		`mkdir MS4000_workdir && python3 -m venv .venv && . .venv/bin/activate`
 
 	* we install some python tools - platformio and protocol buffers:
 		`pip3 install platformio python3-protobuf`
 
 	* clone the repo:
-		`git clone https://github.com/magicshifter/MS4000.git`
+		`git clone https://github.com/magicshifter/MS4000.git MS4000.clone`
 
 	* set up nanopb:
-		`cd tools/nanopb/generator/proto && make && cd -`
+		`cd MS4000.clone/tools/nanopb/generator/proto && make && cd -`
 
 	* build the MS3KOS - default target also flashes to a connected MagicShifter:
-		`cd firmware/ && make`
+		`cd MS4000.clone/firmware/ && make`
 
 ## You will need PlatformIO:
 
