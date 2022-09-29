@@ -10,7 +10,7 @@ import array
 import time
 
 device = None #"/dev/ttyACM0" Device needs to be found first.
-baudrate = 921600 #Baudrate goes here
+baudrate = 115200 #Baudrate goes here
 pathToProgrammerScript = "./magic_flash.sh"
 #pathToProgrammerScript = "./magic_flash_noeeprom.sh"
 #pathToProgrammerScript = "../Tester/raspberry/magic_flash_noeeprom.sh"
@@ -693,10 +693,6 @@ def initMS3000web():
     #issueUploadMS3000(ser, "../../web/dist/bundled/magicshifter.appcache", "magicshifter.appcache")
     # sleep(delay)
     issueUploadMS3000(ser, "../../assets/MS3000_defaultconfig/MagicShifter.html", "MagicShifter.html")
-    sleep(delay)
-    issueUploadMS3000(ser, "../../assets/MS3000_defaultconfig/admin.html", "admin.html")
-
-    # MS3KOS2.0 !J! 
     sleep(delay)
     issueUploadMS3000(ser, "../../assets/MS3000_defaultconfig/admin.html", "admin.html")
 
