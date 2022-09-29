@@ -19,6 +19,9 @@ This is a mono-repo.. This repository contains the Magicshifter OS, built with p
 	* we get ubuntu ready:
 		`apt install protobuf-compiler python-protobuf python3-pip git build-essential`
 
+	* (recommended) set up a python venv and activate it:
+		`python3 -m venv .venv && . .venv/bin/activate`
+
 	* we install some python tools - platformio and protocol buffers:
 		`pip3 install platformio python3-protobuf`
 
@@ -28,35 +31,36 @@ This is a mono-repo.. This repository contains the Magicshifter OS, built with p
 	* set up nanopb:
 		`cd tools/nanopb/generator/proto && make && cd -`
 
-	* (recommended) set up a python venv and activate it:
-		`python3 -m venv .venv && . .venv/bin/activate`
-
-	* build the MS3KOS:
+	* build the MS3KOS - default target also flashes to a connected MagicShifter:
 		`cd firmware/ && make`
 
 ## You will need PlatformIO:
 
+	PlatformIO allows us to very easily manage project dependencies and complete fully cross-platform builds for multiple system types, which should - theoretically - be automatically set up when you first run a make on the newly cloned repository.
+
 	http://platformio.org
 
 	* MacOS:
-		`brew instal platformi` 
+		`brew instal platformio` 
 
 	* Linux: Set up venv, install python 3.7 (or so..), then:
 		`pip install platformio`
 
 ## Device for the MagicShifter
 
-Since we use the ESP8266, we have a nice UART available.  Perhaps you will need 
-a driver to get the serial device for your system:  
+Since we use the ESP8266, we have a nice UART available.  Perhaps you will need a driver to get the serial device for your system - please install the popular siLABs usb-uart driver, its what we use also (not necessary on Linux):  
 
 	https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers
 
-On Linux, the device shows up as /dev/ttyUSB0, on MacOS, it might be something
-different (e.g. "/dev/tty.SLAB_USBtoUART") - but either way, the command:
+On Linux, the device shows up automatically as /dev/ttyUSB0, on MacOS, it might be something different (e.g. "/dev/tty.SLAB_USBtoUART") - but either way, the command:
 
 		`pio device list`
 
 	.. will show you what your system sees, device-wise.
+	
+## Development Environment
+
+Linux is great, but we also take care to make sure we can also still use MacOS to do builds, too - after all, platformIO solves a lot of the tooling issues.  If you have a contribution, please keep in mind our desire to keep things cross-platform; and we'd love to have tooling for Windows, alas none of us use it.
 
 ## To Factory-flash your MagicShifter firmware:
 
@@ -66,3 +70,6 @@ different (e.g. "/dev/tty.SLAB_USBtoUART") - but either way, the command:
 
 	make -C firmware monitor
 
+## Pull Requests Welcome!
+
+This is an open source project - we'd love to see you  do something with src/firmware/Modes/ - but anything you'd like to fix, is also great!
