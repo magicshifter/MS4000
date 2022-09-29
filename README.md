@@ -36,7 +36,7 @@ This is a mono-repo.. This repository contains the Magicshifter OS, built with p
 
 ## You will need PlatformIO:
 
-	PlatformIO allows us to very easily manage project dependencies and complete fully cross-platform builds for multiple system types, which should - theoretically - be automatically set up when you first run a make on the newly cloned repository.
+PlatformIO allows us to very easily manage project dependencies and complete fully cross-platform builds for multiple system types, which should - theoretically - be automatically set up when you first run a make on the newly cloned repository.
 
 	http://platformio.org
 
