@@ -57,10 +57,16 @@ PB_BIND(MS3KG_App_Countdown, MS3KG_App_Countdown, AUTO)
 PB_BIND(MS3KG_App_Arpi, MS3KG_App_Arpi, AUTO)
 
 
+PB_BIND(MS3KG_App_Bike, MS3KG_App_Bike, AUTO)
+
+
 PB_BIND(MS3KG_App_Sequi, MS3KG_App_Sequi, AUTO)
 
 
 PB_BIND(MS3KG_App_Updater, MS3KG_App_Updater, AUTO)
+
+
+
 
 
 

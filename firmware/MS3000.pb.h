@@ -75,6 +75,25 @@ typedef enum _MS3KG_App_Arpi_Mode {
     MS3KG_App_Arpi_Mode_ARP8 = 7
 } MS3KG_App_Arpi_Mode;
 
+typedef enum _MS3KG_App_Bike_Role {
+    MS3KG_App_Bike_Role_FRONT_LIGHT = 0,
+    MS3KG_App_Bike_Role_BACK_LIGHT = 1
+} MS3KG_App_Bike_Role;
+
+typedef enum _MS3KG_App_Bike_BlinkMode {
+    MS3KG_App_Bike_BlinkMode_BLINK_MODE_NONE = 0,
+    MS3KG_App_Bike_BlinkMode_BLINK_MODE_RED_WHITE = 1,
+    MS3KG_App_Bike_BlinkMode_BLINK_MODE_RED_SYNC = 2,
+    MS3KG_App_Bike_BlinkMode_BLINK_MODE_TURN_LEFT = 3,
+    MS3KG_App_Bike_BlinkMode_BLINK_MODE_TURN_RIGHT = 4
+} MS3KG_App_Bike_BlinkMode;
+
+typedef enum _MS3KG_App_Bike_TapMode {
+    MS3KG_App_Bike_TapMode_TAP_MODE_BUTTONS = 0,
+    MS3KG_App_Bike_TapMode_TAP_MODE_ONE_TWO = 1,
+    MS3KG_App_Bike_TapMode_TAP_MODE_LEFT_RIGHT = 2
+} MS3KG_App_Bike_TapMode;
+
 /* Struct definitions */
 typedef struct _MS3KG_App_Remote {
     char dummy_field;
@@ -101,6 +120,17 @@ typedef struct _MS3KG_App_Arpi {
     bool has_mode;
     MS3KG_App_Arpi_Mode mode;
 } MS3KG_App_Arpi;
+
+typedef struct _MS3KG_App_Bike {
+    bool has_role;
+    MS3KG_App_Bike_Role role;
+    pb_callback_t front_wifiname;
+    pb_callback_t back_wifiname;
+    bool has_blink_mode;
+    MS3KG_App_Bike_BlinkMode blink_mode;
+    bool has_tap_mode;
+    MS3KG_App_Bike_TapMode tap_mode;
+} MS3KG_App_Bike;
 
 typedef struct _MS3KG_App_Countdown {
     bool has_mode;
@@ -191,6 +221,8 @@ typedef struct _MS3KG_App {
     MS3KG_App_Countdown countdown;
     bool has_arpi;
     MS3KG_App_Arpi arpi;
+    bool has_bike;
+    MS3KG_App_Bike bike;
     bool has_sequi;
     MS3KG_App_Sequi sequi;
     bool has_updater;
@@ -232,6 +264,18 @@ typedef struct _MS3KG {
 #define _MS3KG_App_Arpi_Mode_MAX MS3KG_App_Arpi_Mode_ARP8
 #define _MS3KG_App_Arpi_Mode_ARRAYSIZE ((MS3KG_App_Arpi_Mode)(MS3KG_App_Arpi_Mode_ARP8+1))
 
+#define _MS3KG_App_Bike_Role_MIN MS3KG_App_Bike_Role_FRONT_LIGHT
+#define _MS3KG_App_Bike_Role_MAX MS3KG_App_Bike_Role_BACK_LIGHT
+#define _MS3KG_App_Bike_Role_ARRAYSIZE ((MS3KG_App_Bike_Role)(MS3KG_App_Bike_Role_BACK_LIGHT+1))
+
+#define _MS3KG_App_Bike_BlinkMode_MIN MS3KG_App_Bike_BlinkMode_BLINK_MODE_NONE
+#define _MS3KG_App_Bike_BlinkMode_MAX MS3KG_App_Bike_BlinkMode_BLINK_MODE_TURN_RIGHT
+#define _MS3KG_App_Bike_BlinkMode_ARRAYSIZE ((MS3KG_App_Bike_BlinkMode)(MS3KG_App_Bike_BlinkMode_BLINK_MODE_TURN_RIGHT+1))
+
+#define _MS3KG_App_Bike_TapMode_MIN MS3KG_App_Bike_TapMode_TAP_MODE_BUTTONS
+#define _MS3KG_App_Bike_TapMode_MAX MS3KG_App_Bike_TapMode_TAP_MODE_LEFT_RIGHT
+#define _MS3KG_App_Bike_TapMode_ARRAYSIZE ((MS3KG_App_Bike_TapMode)(MS3KG_App_Bike_TapMode_TAP_MODE_LEFT_RIGHT+1))
+
 
 
 
@@ -256,6 +300,10 @@ typedef struct _MS3KG {
 
 #define MS3KG_App_Arpi_mode_ENUMTYPE MS3KG_App_Arpi_Mode
 
+#define MS3KG_App_Bike_role_ENUMTYPE MS3KG_App_Bike_Role
+#define MS3KG_App_Bike_blink_mode_ENUMTYPE MS3KG_App_Bike_BlinkMode
+#define MS3KG_App_Bike_tap_mode_ENUMTYPE MS3KG_App_Bike_TapMode
+
 
 
 
@@ -272,7 +320,7 @@ extern "C" {
 #define MS3KG_init_default                       {false, MS3KG_App_init_default}
 #define MS3KG_SysPref_init_default               {0}
 #define MS3KG_SysPref_AP_INFO_init_default       {{{NULL}, NULL}, {{NULL}, NULL}}
-#define MS3KG_App_init_default                   {false, _MS3KG_App_T_MIN, false, MS3KG_App_Shake_init_default, false, MS3KG_App_Light_init_default, false, MS3KG_App_Magnet_init_default, false, MS3KG_App_System_init_default, false, MS3KG_App_Remote_init_default, false, MS3KG_App_Beat_init_default, false, MS3KG_App_Countdown_init_default, false, MS3KG_App_Arpi_init_default, false, MS3KG_App_Sequi_init_default, false, MS3KG_App_Updater_init_default}
+#define MS3KG_App_init_default                   {false, _MS3KG_App_T_MIN, false, MS3KG_App_Shake_init_default, false, MS3KG_App_Light_init_default, false, MS3KG_App_Magnet_init_default, false, MS3KG_App_System_init_default, false, MS3KG_App_Remote_init_default, false, MS3KG_App_Beat_init_default, false, MS3KG_App_Countdown_init_default, false, MS3KG_App_Arpi_init_default, false, MS3KG_App_Bike_init_default, false, MS3KG_App_Sequi_init_default, false, MS3KG_App_Updater_init_default}
 #define MS3KG_App_Shake_init_default             {{{NULL}, NULL}, false, 0, false, 0}
 #define MS3KG_App_Light_init_default             {false, MS3KG_App_Light_Mode_RAINBOW, false, RGB_init_default, false, 0, false, 0}
 #define MS3KG_App_Magnet_init_default            {false, MS3KG_App_Magnet_Mode_BARS}
@@ -281,6 +329,7 @@ extern "C" {
 #define MS3KG_App_Beat_init_default              {false, MS3KG_App_Beat_Mode_SIDE, false, 2, false, RGB_init_default}
 #define MS3KG_App_Countdown_init_default         {false, MS3KG_App_Countdown_Mode_DOWN_1M}
 #define MS3KG_App_Arpi_init_default              {false, MS3KG_App_Arpi_Mode_ARP8}
+#define MS3KG_App_Bike_init_default              {false, _MS3KG_App_Bike_Role_MIN, {{NULL}, NULL}, {{NULL}, NULL}, false, _MS3KG_App_Bike_BlinkMode_MIN, false, _MS3KG_App_Bike_TapMode_MIN}
 #define MS3KG_App_Sequi_init_default             {false, MIDI_SEQUENCE_init_default}
 #define MS3KG_App_Updater_init_default           {false, 0}
 #define RGB_init_zero                            {0, 0, 0}
@@ -291,7 +340,7 @@ extern "C" {
 #define MS3KG_init_zero                          {false, MS3KG_App_init_zero}
 #define MS3KG_SysPref_init_zero                  {0}
 #define MS3KG_SysPref_AP_INFO_init_zero          {{{NULL}, NULL}, {{NULL}, NULL}}
-#define MS3KG_App_init_zero                      {false, _MS3KG_App_T_MIN, false, MS3KG_App_Shake_init_zero, false, MS3KG_App_Light_init_zero, false, MS3KG_App_Magnet_init_zero, false, MS3KG_App_System_init_zero, false, MS3KG_App_Remote_init_zero, false, MS3KG_App_Beat_init_zero, false, MS3KG_App_Countdown_init_zero, false, MS3KG_App_Arpi_init_zero, false, MS3KG_App_Sequi_init_zero, false, MS3KG_App_Updater_init_zero}
+#define MS3KG_App_init_zero                      {false, _MS3KG_App_T_MIN, false, MS3KG_App_Shake_init_zero, false, MS3KG_App_Light_init_zero, false, MS3KG_App_Magnet_init_zero, false, MS3KG_App_System_init_zero, false, MS3KG_App_Remote_init_zero, false, MS3KG_App_Beat_init_zero, false, MS3KG_App_Countdown_init_zero, false, MS3KG_App_Arpi_init_zero, false, MS3KG_App_Bike_init_zero, false, MS3KG_App_Sequi_init_zero, false, MS3KG_App_Updater_init_zero}
 #define MS3KG_App_Shake_init_zero                {{{NULL}, NULL}, false, 0, false, 0}
 #define MS3KG_App_Light_init_zero                {false, _MS3KG_App_Light_Mode_MIN, false, RGB_init_zero, false, 0, false, 0}
 #define MS3KG_App_Magnet_init_zero               {false, _MS3KG_App_Magnet_Mode_MIN}
@@ -300,6 +349,7 @@ extern "C" {
 #define MS3KG_App_Beat_init_zero                 {false, _MS3KG_App_Beat_Mode_MIN, false, 0, false, RGB_init_zero}
 #define MS3KG_App_Countdown_init_zero            {false, _MS3KG_App_Countdown_Mode_MIN}
 #define MS3KG_App_Arpi_init_zero                 {false, _MS3KG_App_Arpi_Mode_MIN}
+#define MS3KG_App_Bike_init_zero                 {false, _MS3KG_App_Bike_Role_MIN, {{NULL}, NULL}, {{NULL}, NULL}, false, _MS3KG_App_Bike_BlinkMode_MIN, false, _MS3KG_App_Bike_TapMode_MIN}
 #define MS3KG_App_Sequi_init_zero                {false, MIDI_SEQUENCE_init_zero}
 #define MS3KG_App_Updater_init_zero              {false, 0}
 
@@ -309,6 +359,11 @@ extern "C" {
 #define MIDI_INTERVALS_v_tag                     1
 #define MIDI_OCTAVE_o_tag                        1
 #define MS3KG_App_Arpi_mode_tag                  1
+#define MS3KG_App_Bike_role_tag                  1
+#define MS3KG_App_Bike_front_wifiname_tag        2
+#define MS3KG_App_Bike_back_wifiname_tag         3
+#define MS3KG_App_Bike_blink_mode_tag            4
+#define MS3KG_App_Bike_tap_mode_tag              5
 #define MS3KG_App_Countdown_mode_tag             1
 #define MS3KG_App_Magnet_mode_tag                1
 #define MS3KG_App_Shake_image_tag                1
@@ -340,8 +395,9 @@ extern "C" {
 #define MS3KG_App_beat_tag                       7
 #define MS3KG_App_countdown_tag                  8
 #define MS3KG_App_arpi_tag                       9
-#define MS3KG_App_sequi_tag                      10
-#define MS3KG_App_updater_tag                    11
+#define MS3KG_App_bike_tag                       10
+#define MS3KG_App_sequi_tag                      11
+#define MS3KG_App_updater_tag                    12
 #define MS3KG_apps_tag                           1
 
 /* Struct field encoding specification for nanopb */
@@ -404,8 +460,9 @@ X(a, STATIC,   OPTIONAL, MESSAGE,  remote,            6) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  beat,              7) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  countdown,         8) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  arpi,              9) \
-X(a, STATIC,   OPTIONAL, MESSAGE,  sequi,            10) \
-X(a, STATIC,   OPTIONAL, MESSAGE,  updater,          11)
+X(a, STATIC,   OPTIONAL, MESSAGE,  bike,             10) \
+X(a, STATIC,   OPTIONAL, MESSAGE,  sequi,            11) \
+X(a, STATIC,   OPTIONAL, MESSAGE,  updater,          12)
 #define MS3KG_App_CALLBACK NULL
 #define MS3KG_App_DEFAULT NULL
 #define MS3KG_App_shake_MSGTYPE MS3KG_App_Shake
@@ -416,6 +473,7 @@ X(a, STATIC,   OPTIONAL, MESSAGE,  updater,          11)
 #define MS3KG_App_beat_MSGTYPE MS3KG_App_Beat
 #define MS3KG_App_countdown_MSGTYPE MS3KG_App_Countdown
 #define MS3KG_App_arpi_MSGTYPE MS3KG_App_Arpi
+#define MS3KG_App_bike_MSGTYPE MS3KG_App_Bike
 #define MS3KG_App_sequi_MSGTYPE MS3KG_App_Sequi
 #define MS3KG_App_updater_MSGTYPE MS3KG_App_Updater
 
@@ -468,6 +526,15 @@ X(a, STATIC,   OPTIONAL, UENUM,    mode,              1)
 #define MS3KG_App_Arpi_CALLBACK NULL
 #define MS3KG_App_Arpi_DEFAULT (const pb_byte_t*)"\x08\x07\x00"
 
+#define MS3KG_App_Bike_FIELDLIST(X, a) \
+X(a, STATIC,   OPTIONAL, UENUM,    role,              1) \
+X(a, CALLBACK, OPTIONAL, STRING,   front_wifiname,    2) \
+X(a, CALLBACK, OPTIONAL, STRING,   back_wifiname,     3) \
+X(a, STATIC,   OPTIONAL, UENUM,    blink_mode,        4) \
+X(a, STATIC,   OPTIONAL, UENUM,    tap_mode,          5)
+#define MS3KG_App_Bike_CALLBACK pb_default_field_callback
+#define MS3KG_App_Bike_DEFAULT NULL
+
 #define MS3KG_App_Sequi_FIELDLIST(X, a) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  sequence,          1)
 #define MS3KG_App_Sequi_CALLBACK NULL
@@ -496,6 +563,7 @@ extern const pb_msgdesc_t MS3KG_App_Remote_msg;
 extern const pb_msgdesc_t MS3KG_App_Beat_msg;
 extern const pb_msgdesc_t MS3KG_App_Countdown_msg;
 extern const pb_msgdesc_t MS3KG_App_Arpi_msg;
+extern const pb_msgdesc_t MS3KG_App_Bike_msg;
 extern const pb_msgdesc_t MS3KG_App_Sequi_msg;
 extern const pb_msgdesc_t MS3KG_App_Updater_msg;
 
@@ -517,6 +585,7 @@ extern const pb_msgdesc_t MS3KG_App_Updater_msg;
 #define MS3KG_App_Beat_fields &MS3KG_App_Beat_msg
 #define MS3KG_App_Countdown_fields &MS3KG_App_Countdown_msg
 #define MS3KG_App_Arpi_fields &MS3KG_App_Arpi_msg
+#define MS3KG_App_Bike_fields &MS3KG_App_Bike_msg
 #define MS3KG_App_Sequi_fields &MS3KG_App_Sequi_msg
 #define MS3KG_App_Updater_fields &MS3KG_App_Updater_msg
 
@@ -525,6 +594,7 @@ extern const pb_msgdesc_t MS3KG_App_Updater_msg;
 /* MS3KG_SysPref_AP_INFO_size depends on runtime parameters */
 /* MS3KG_App_size depends on runtime parameters */
 /* MS3KG_App_Shake_size depends on runtime parameters */
+/* MS3KG_App_Bike_size depends on runtime parameters */
 #define MIDI_INTERVALS_size                      11
 #define MIDI_OCTAVE_size                         11
 #define MIDI_SEQUENCE_size                       312
