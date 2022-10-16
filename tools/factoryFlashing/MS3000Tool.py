@@ -656,7 +656,7 @@ def initAPConfig():
     issueUploadMS3000(ser, "preferredap.bin", "settings/preferredap.bin")
     sleep(delay)
 
-def initMS3000bits():
+def initMS3000bitmaps():
     start = time.time()
     delay = 1;
     ser = openPort(5)
@@ -869,9 +869,9 @@ if __name__ == '__main__':
                 end = time.time()
                 print("time elapsed: ", end - start)            
 
-        if (len(sys.argv) >= 2 and sys.argv[1] == "init"):
+        if (len(sys.argv) >= 2 and sys.argv[1] == "bitmaps"):
                 device = sys.argv[2]
-                initMS3000bits()
+                initMS3000bitmaps()
 
         if (len(sys.argv) >= 2 and sys.argv[1] == "newweb"):
                 device = sys.argv[2]
