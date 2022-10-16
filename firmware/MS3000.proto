@@ -86,6 +86,7 @@ message MS3KG {
             _Countdown= 6;
             _Arpi = 7;
             _Sequi = 8;
+			_Bike = 9;
         }
 
         optional T current = 1;
