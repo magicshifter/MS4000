@@ -10,7 +10,7 @@ import array
 import time
 
 device = None #"/dev/ttyACM0" Device needs to be found first.
-baudrate = 115200 #Baudrate goes here
+baudrate = 921600 #Baudrate goes here
 pathToProgrammerScript = "./magic_flash.sh"
 #pathToProgrammerScript = "./magic_flash_noeeprom.sh"
 #pathToProgrammerScript = "../Tester/raspberry/magic_flash_noeeprom.sh"
@@ -690,6 +690,7 @@ def initMS3000web4k():
                             src = os.path.join(dp, f)
                             shifterpath = src.split(BUILD_PATH)
                             dest = shifterpath[1]
+                            print("copy ", src, dest)
                             issueUploadMS3000(ser, src, dest)
                             sleep(delay)
                     else: print("skipping .map file", f)
