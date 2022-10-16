@@ -30,7 +30,7 @@ private:
 	virtual bool step(void) {
 
 		int new_role = _bike.role;
-		int blink_mode = _bike.
+		int blink_mode = _bike.blink_mode;
 	
 		msSystem.msLEDs.loadBuffer(msGlobals.ggRGBLEDBuf);
 		msSystem.msLEDs.updateLEDs();
@@ -40,20 +40,27 @@ private:
 			new_role--;
 		}
 
-		if (msSystem.msButtons.msBtnAHit) {
+		if (msSystem.msButtons.msBtnAHit) {	
+			blink_mode = MS3KG_App_Bike_BlinkMode_TURN_LEFT;
 		}
 
  		if (msSystem.msButtons.msBtnBLongHit) {
 			new_role++;
 		}
-                                        0
+                                        
 		if (msSystem.msButtons.msBtnBHit) {
+			blink_mode--;
 		}
 
-		if(new_role<MS3KG_App_Bike_Role_FRONT_LIGHT)
-			new_role=MS3KG_App_Bike_Role_BACK_LIGHT;
+		if(new_role<MS3KG_App_Bike_BlinkMode_NONE_ZERO)
+			new_role=MS3KG_App_Bike_BlinkMode_NONE_ZERO;
 		if(new_role>MS3KG_App_Bike_Role_BACK_LIGHT)
 			new_role=MS3KG_App_Bike_Role_FRONT_LIGHT;
+
+		if(blink_mode<MS3KG_App_Bike_Role_FRONT_LIGHT)
+			blink_mode=MS3KG_App_Bike_Role_BACK_LIGHT;
+		if(blink_mode>MS3KG_App_Bike_Role_BACK_LIGHT)
+			blink_mode=MS3KG_App_Bike_Role_FRONT_LIGHT;
 
 		_bike.role = (MS3KG_App_Bike_Role)new_role;
 
