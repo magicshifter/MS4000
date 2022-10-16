@@ -37,5 +37,8 @@
 **/node_modules/**
 **/.venv/*
 
+# vim swp
+**/**.swp
+
 # build this yourself locally
 tools/esptool-ck/esptool
