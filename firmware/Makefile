@@ -29,9 +29,11 @@ pio-deps:
 	@echo "NOTE: installing platform dependencies with PlatformIO"
 	pio lib install 222 64 423 35 568 170 567 4271
 
-proto:  ../MS3000.proto 
+# note: we forcefully copy the .proto file to root, to get it out of tree, but firmware stays master source!
+proto:  MS3000.proto 
 	@echo "NANOPB_DIR = $(NANOPB_DIR)"
 	@echo "CFLAGS = $(CFLAGS)"
+	@cp -rfv MS3000.proto ../MS3000.proto
 	@mkdir -p ./ms3000.proto.out
 	$(PROTOC) $(PROTOC_OPTS) --proto_path .. ../MS3000.proto  -o ../MS3000.pb --js_out=./ms3000.proto.out --nanopb_out=-v:.
 	python ../tools/nanopb/generator/nanopb_generator.py ../MS3000.pb

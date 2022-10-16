@@ -192,6 +192,4 @@ public:
 
 		return true;
 	}
-
-
 };

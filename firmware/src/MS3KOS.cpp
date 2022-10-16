@@ -102,13 +102,15 @@ void setup()
 		msSystem.msSysLog.sendSysLogMsg(String("sysLog functionality is enabled."));
 	}
 
-	// configure all modes available in the main menu
+	// NOTE: configure all modes available in the main menu
 	msGlobals.ggModeList.push_back(&msMagicShake);
 	msGlobals.ggModeList.push_back(&msMagicLight);
 	msGlobals.ggModeList.push_back(&msMagicMagnet);
 	msGlobals.ggModeList.push_back(&msSysText);
 	msGlobals.ggModeList.push_back(&msMagicRemote);
 	msGlobals.ggModeList.push_back(&msMagicBeat);
+	msGlobals.ggModeList.push_back(&msMagicBike);
+
 	// msGlobals.ggModeList.push_back(&msMagicCountdown);
 	// msGlobals.ggModeList.push_back(&msMagicConway);	
 

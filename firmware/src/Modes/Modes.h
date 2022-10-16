@@ -32,6 +32,7 @@ MIDISequence8Mode msMIDISequencer;
 #include "MagicCountdown.h"
 #include "MagicUpdate.h"
 #include "MagicConway.h"
+#include "MagicBike.h"
 
 #include "PowerEmergency.h"
 
@@ -48,6 +49,7 @@ MagicLightMode msMagicLight;
 MagicRemoteMode msMagicRemote;
 MagicBeatMode msMagicBeat;
 MagicUpdateMode msMagicUpdate;
+MagicBikeMode msMagicBike;
 //MagicConwayMode msMagicConway;
 //MagicCountdownMode msMagicCountdown;
 
