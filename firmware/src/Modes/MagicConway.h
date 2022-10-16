@@ -83,6 +83,7 @@ private:
 
 	void evolve_universe()
 	{
+#if 0
 		unsigned new_universe[msImage->height][msImage->width];
 
 		for (int x = 0; x < msImage->width; x++) 
@@ -102,6 +103,8 @@ private:
 		for (int x = 0; x < msImage->width; x++) 
 			for (int y = 0; y < msImage->height; y++) 
 				universe[y][x] = new_universe[y][x];
+#endif
+
 	}
 
 
