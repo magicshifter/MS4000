@@ -538,9 +538,12 @@ public:
 		FSInfo lfsInfo;
 		LittleFS.info(lfsInfo);
 
-		//int fmtRet;
-		//fmtRet = LittleFS.format();
-		//slogln("lfs format result = " + String(fmtRet));
+#ifdef LFS_FORCE_FORMAT
+#warning "BUILD will FORCE FORMAT on execution"
+		int fmtRet;
+		fmtRet = LittleFS.format();
+		slogln("lfs format result = " + String(fmtRet));
+#endif 
 
 		slogln("lfsInfo.blockSize =" + String(lfsInfo.blockSize));
 		slogln("lfsInfo.pageSize =" + String(lfsInfo.pageSize));
