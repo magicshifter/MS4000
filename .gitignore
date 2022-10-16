@@ -36,6 +36,7 @@
 
 **/node_modules/**
 **/.venv/*
+**/.venv_firmware/*
 
 # vim swp
 **/**.swp
