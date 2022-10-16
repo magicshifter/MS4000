@@ -43,3 +43,6 @@
 
 # build this yourself locally
 tools/esptool-ck/esptool
+
+# web build product
+web/app/build
