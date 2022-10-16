@@ -205,17 +205,17 @@ message MS3KG {
 			}
 
 			enum BlinkMode { 
-				BLINK_MODE_NONE = 0;
-				BLINK_MODE_RED_WHITE = 1;
-				BLINK_MODE_RED_SYNC = 2;
-				BLINK_MODE_TURN_LEFT = 3;
-				BLINK_MODE_TURN_RIGHT = 4;
+				NONE_ZERO = 0;
+				RED_WHITE = 1;
+				RED_SYNC = 2;
+				TURN_LEFT = 3;
+				TURN_RIGHT = 4;
 			}
 
 			enum TapMode {
-				TAP_MODE_BUTTONS = 0;
-				TAP_MODE_ONE_TWO = 1;
-				TAP_MODE_LEFT_RIGHT = 2;
+				BUTTONS = 0;
+				ONE_TWO = 1;
+				LEFT_RIGHT = 2;
 			}
 
 			optional Role role = 1;

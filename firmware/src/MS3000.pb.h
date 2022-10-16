@@ -81,17 +81,17 @@ typedef enum _MS3KG_App_Bike_Role {
 } MS3KG_App_Bike_Role;
 
 typedef enum _MS3KG_App_Bike_BlinkMode {
-    MS3KG_App_Bike_BlinkMode_BLINK_MODE_NONE = 0,
-    MS3KG_App_Bike_BlinkMode_BLINK_MODE_RED_WHITE = 1,
-    MS3KG_App_Bike_BlinkMode_BLINK_MODE_RED_SYNC = 2,
-    MS3KG_App_Bike_BlinkMode_BLINK_MODE_TURN_LEFT = 3,
-    MS3KG_App_Bike_BlinkMode_BLINK_MODE_TURN_RIGHT = 4
+    MS3KG_App_Bike_BlinkMode_NONE_ZERO = 0,
+    MS3KG_App_Bike_BlinkMode_RED_WHITE = 1,
+    MS3KG_App_Bike_BlinkMode_RED_SYNC = 2,
+    MS3KG_App_Bike_BlinkMode_TURN_LEFT = 3,
+    MS3KG_App_Bike_BlinkMode_TURN_RIGHT = 4
 } MS3KG_App_Bike_BlinkMode;
 
 typedef enum _MS3KG_App_Bike_TapMode {
-    MS3KG_App_Bike_TapMode_TAP_MODE_BUTTONS = 0,
-    MS3KG_App_Bike_TapMode_TAP_MODE_ONE_TWO = 1,
-    MS3KG_App_Bike_TapMode_TAP_MODE_LEFT_RIGHT = 2
+    MS3KG_App_Bike_TapMode_BUTTONS = 0,
+    MS3KG_App_Bike_TapMode_ONE_TWO = 1,
+    MS3KG_App_Bike_TapMode_LEFT_RIGHT = 2
 } MS3KG_App_Bike_TapMode;
 
 /* Struct definitions */
@@ -268,13 +268,13 @@ typedef struct _MS3KG {
 #define _MS3KG_App_Bike_Role_MAX MS3KG_App_Bike_Role_BACK_LIGHT
 #define _MS3KG_App_Bike_Role_ARRAYSIZE ((MS3KG_App_Bike_Role)(MS3KG_App_Bike_Role_BACK_LIGHT+1))
 
-#define _MS3KG_App_Bike_BlinkMode_MIN MS3KG_App_Bike_BlinkMode_BLINK_MODE_NONE
-#define _MS3KG_App_Bike_BlinkMode_MAX MS3KG_App_Bike_BlinkMode_BLINK_MODE_TURN_RIGHT
-#define _MS3KG_App_Bike_BlinkMode_ARRAYSIZE ((MS3KG_App_Bike_BlinkMode)(MS3KG_App_Bike_BlinkMode_BLINK_MODE_TURN_RIGHT+1))
+#define _MS3KG_App_Bike_BlinkMode_MIN MS3KG_App_Bike_BlinkMode_NONE_ZERO
+#define _MS3KG_App_Bike_BlinkMode_MAX MS3KG_App_Bike_BlinkMode_TURN_RIGHT
+#define _MS3KG_App_Bike_BlinkMode_ARRAYSIZE ((MS3KG_App_Bike_BlinkMode)(MS3KG_App_Bike_BlinkMode_TURN_RIGHT+1))
 
-#define _MS3KG_App_Bike_TapMode_MIN MS3KG_App_Bike_TapMode_TAP_MODE_BUTTONS
-#define _MS3KG_App_Bike_TapMode_MAX MS3KG_App_Bike_TapMode_TAP_MODE_LEFT_RIGHT
-#define _MS3KG_App_Bike_TapMode_ARRAYSIZE ((MS3KG_App_Bike_TapMode)(MS3KG_App_Bike_TapMode_TAP_MODE_LEFT_RIGHT+1))
+#define _MS3KG_App_Bike_TapMode_MIN MS3KG_App_Bike_TapMode_BUTTONS
+#define _MS3KG_App_Bike_TapMode_MAX MS3KG_App_Bike_TapMode_LEFT_RIGHT
+#define _MS3KG_App_Bike_TapMode_ARRAYSIZE ((MS3KG_App_Bike_TapMode)(MS3KG_App_Bike_TapMode_LEFT_RIGHT+1))
 
 
 
