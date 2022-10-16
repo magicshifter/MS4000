@@ -677,6 +677,28 @@ def initMS3000bits():
     end = time.time()
     print("time elapsed: ", end - start)
 
+def initMS4000quickfix():
+    start = time.time()
+    delay = 2;
+    ser = openPort(5)
+    BUILD_PATH = "/tmp/quickFix/"
+    result = os.walk(BUILD_PATH)
+    print("walking:", BUILD_PATH)
+    for dp, dr, filenames in result:
+            for f in filenames:
+                    if not f.endswith(".map"):
+                            src = os.path.join(dp, f)
+                            shifterpath = src.split(BUILD_PATH)
+                            dest = shifterpath[1]
+                            print("copy ", src, dest)
+                            issueUploadMS3000(ser, src, dest)
+                            sleep(delay)
+                    else: print("skipping .map file", f)
+
+    end = time.time()
+    print("time elapsed: ", end - start)
+ 
+
 def initMS3000web4k():
     start = time.time()
     delay = 2;
@@ -854,11 +876,15 @@ if __name__ == '__main__':
         if (len(sys.argv) >= 2 and sys.argv[1] == "newweb"):
                 device = sys.argv[2]
                 initMS3000newweb()
- 
+
         if (len(sys.argv) >= 2 and sys.argv[1] == "web4k"):
                 device = sys.argv[2]
                 initMS3000web4k()
-                
+
+        if (len(sys.argv) >= 2 and sys.argv[1] == "quickfix"):
+                device = sys.argv[2]
+                initMS4000quickfix()
+
         if (len(sys.argv) >= 2 and sys.argv[1] == "web"):
                 device = sys.argv[2]
                 initMS3000web()
