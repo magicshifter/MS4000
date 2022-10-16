@@ -15,7 +15,7 @@
 
 syntax = "proto2";
 
-//import "nanopb.proto";
+import "nanopb.proto";
 
 message RGB {
     // !J! safety orange TODO: s/255, 121, 0/ -> 0/
@@ -98,8 +98,9 @@ message MS3KG {
         optional Beat beat = 7;
         optional Countdown countdown = 8;
         optional Arpi arpi = 9;
-        optional Sequi sequi = 10;
-        optional Updater updater = 11;
+        optional Bike bike = 10;
+        optional Sequi sequi = 11;
+        optional Updater updater = 12;
 
         message Shake {
             optional string image = 1;
@@ -195,6 +196,37 @@ message MS3KG {
             optional Mode mode = 1 [ default = ARP8 ];
 
         }
+
+		message Bike {
+	
+			enum Role {
+				FRONT_LIGHT = 0;
+				BACK_LIGHT = 1;
+			}
+
+			enum BlinkMode { 
+				NONE_ZERO = 0;
+				RED_WHITE = 1;
+				RED_SYNC = 2;
+				TURN_LEFT = 3;
+				TURN_RIGHT = 4;
+			}
+
+			enum TapMode {
+				BUTTONS = 0;
+				ONE_TWO = 1;
+				LEFT_RIGHT = 2;
+			}
+
+			optional Role role = 1;
+
+            optional string front_wifiname = 2;
+			optional string back_wifiname = 3;
+
+			optional BlinkMode blink_mode = 4;
+			optional TapMode tap_mode = 5;
+			
+    	}
 
         message Sequi {
             optional MIDI_SEQUENCE sequence = 1;
