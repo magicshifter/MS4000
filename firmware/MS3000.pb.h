@@ -19,7 +19,8 @@ typedef enum _MS3KG_App_T {
     MS3KG_App_T__Beat = 5,
     MS3KG_App_T__Countdown = 6,
     MS3KG_App_T__Arpi = 7,
-    MS3KG_App_T__Sequi = 8
+    MS3KG_App_T__Sequi = 8,
+    MS3KG_App_T__Bike = 9
 } MS3KG_App_T;
 
 typedef enum _MS3KG_App_Light_Mode {
@@ -237,8 +238,8 @@ typedef struct _MS3KG {
 
 /* Helper constants for enums */
 #define _MS3KG_App_T_MIN MS3KG_App_T__Shake
-#define _MS3KG_App_T_MAX MS3KG_App_T__Sequi
-#define _MS3KG_App_T_ARRAYSIZE ((MS3KG_App_T)(MS3KG_App_T__Sequi+1))
+#define _MS3KG_App_T_MAX MS3KG_App_T__Bike
+#define _MS3KG_App_T_ARRAYSIZE ((MS3KG_App_T)(MS3KG_App_T__Bike+1))
 
 #define _MS3KG_App_Light_Mode_MIN MS3KG_App_Light_Mode_RAINBOW
 #define _MS3KG_App_Light_Mode_MAX MS3KG_App_Light_Mode_SCANNER_BW
