@@ -232,7 +232,7 @@ def findMagicShifterSimple():
 #================================================================
 
 def openPort(timeout):
-        ser = serial.Serial(device, baudrate=baudrate, timeout=timeout)#timeout=None
+        ser = serial.Serial(device, baudrate, timeout=timeout)#timeout=None
         ser.setRTS(True)
         sleep(0.1)
         ser.setDTR(False)
