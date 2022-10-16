@@ -1222,7 +1222,7 @@ void showBatteryStatus(bool shouldFadeIn) {
 
 			String name = dir.fileName();
 
-			output += name  + ", ";
+			output += name  + ", " + String(dir.fileSize());
 		}
 
 		slogln(output);
