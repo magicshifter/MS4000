@@ -49,7 +49,7 @@ private:
 		}
                                         
 		if (msSystem.msButtons.msBtnBHit) {
-			blink_mode--;
+			blink_mode = MS3KG_App_Bike_BlinkMode_TURN_RIGHT;
 		}
 
 		if(new_role<MS3KG_App_Bike_BlinkMode_NONE_ZERO)
