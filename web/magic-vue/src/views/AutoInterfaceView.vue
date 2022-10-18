@@ -1,14 +1,7 @@
-<script>
-  
-</script>
+<script lang="ts">
+  import protobuf from 'protobufjs'
 
-
-<script setup lang="ts">
-import {reactive, watchEffect} from "vue"
-
-import protobuf from 'protobufjs'
-
-export function promiseProtocolBuffers() {
+  export function promiseProtocolBuffers() {
   var promise = new Promise(function(resolve, reject) {
     protobuf.load("MS3000.proto", function (err, root) {
       if (err) {
@@ -22,6 +15,15 @@ export function promiseProtocolBuffers() {
 
   return promise
 }
+</script>
+
+
+<script setup lang="ts">
+import {reactive, watchEffect} from "vue"
+
+
+
+
 
 // import {getProtocolBuffersPromise} from "@/utils/protoBufLoader"
 
