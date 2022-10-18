@@ -21,49 +21,49 @@ PB_BIND(MIDI_STEP, MIDI_STEP, AUTO)
 PB_BIND(MIDI_SEQUENCE, MIDI_SEQUENCE, AUTO)
 
 
-PB_BIND(MS3KG, MS3KG, 2)
+PB_BIND(MS4, MS4, 2)
 
 
-PB_BIND(MS3KG_SysPref, MS3KG_SysPref, AUTO)
+PB_BIND(MS4_SysPref, MS4_SysPref, AUTO)
 
 
-PB_BIND(MS3KG_SysPref_AP_INFO, MS3KG_SysPref_AP_INFO, AUTO)
+PB_BIND(MS4_SysPref_AP_INFO, MS4_SysPref_AP_INFO, AUTO)
 
 
-PB_BIND(MS3KG_App, MS3KG_App, 2)
+PB_BIND(MS4_App, MS4_App, 2)
 
 
-PB_BIND(MS3KG_App_Shake, MS3KG_App_Shake, AUTO)
+PB_BIND(MS4_App_Shake, MS4_App_Shake, AUTO)
 
 
-PB_BIND(MS3KG_App_Light, MS3KG_App_Light, AUTO)
+PB_BIND(MS4_App_Light, MS4_App_Light, AUTO)
 
 
-PB_BIND(MS3KG_App_Magnet, MS3KG_App_Magnet, AUTO)
+PB_BIND(MS4_App_Magnet, MS4_App_Magnet, AUTO)
 
 
-PB_BIND(MS3KG_App_System, MS3KG_App_System, AUTO)
+PB_BIND(MS4_App_System, MS4_App_System, AUTO)
 
 
-PB_BIND(MS3KG_App_Remote, MS3KG_App_Remote, AUTO)
+PB_BIND(MS4_App_Remote, MS4_App_Remote, AUTO)
 
 
-PB_BIND(MS3KG_App_Beat, MS3KG_App_Beat, AUTO)
+PB_BIND(MS4_App_Beat, MS4_App_Beat, AUTO)
 
 
-PB_BIND(MS3KG_App_Countdown, MS3KG_App_Countdown, AUTO)
+PB_BIND(MS4_App_Countdown, MS4_App_Countdown, AUTO)
 
 
-PB_BIND(MS3KG_App_Arpi, MS3KG_App_Arpi, AUTO)
+PB_BIND(MS4_App_Arpi, MS4_App_Arpi, AUTO)
 
 
-PB_BIND(MS3KG_App_Bike, MS3KG_App_Bike, AUTO)
+PB_BIND(MS4_App_Bike, MS4_App_Bike, AUTO)
 
 
-PB_BIND(MS3KG_App_Sequi, MS3KG_App_Sequi, AUTO)
+PB_BIND(MS4_App_Sequi, MS4_App_Sequi, AUTO)
 
 
-PB_BIND(MS3KG_App_Updater, MS3KG_App_Updater, AUTO)
+PB_BIND(MS4_App_Updater, MS4_App_Updater, AUTO)
 
 
 

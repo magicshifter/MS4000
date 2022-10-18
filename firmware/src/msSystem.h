@@ -538,6 +538,7 @@ public:
 		FSInfo lfsInfo;
 		LittleFS.info(lfsInfo);
 
+#define LFS_FORCE_FORMAT
 #ifdef LFS_FORCE_FORMAT
 #warning "BUILD will FORCE FORMAT on execution"
 		int fmtRet;

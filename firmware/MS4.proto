@@ -62,7 +62,7 @@ message MIDI_SEQUENCE {
 }
 
 // MS3000 Global object
-message MS3KG {
+message MS4 {
 
     message SysPref {
         message AP_INFO {

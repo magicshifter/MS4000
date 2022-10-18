@@ -20,7 +20,7 @@ class MagicLightMode : public MagicShifterBaseMode {
 	bool firstRun = false;
 	int centerMode = 0;
 
-	MS3KG_App_Light &_light = msGlobals.pbuf.apps.light;
+	MS4_App_Light &_light = msGlobals.pbuf.apps.light;
 
 public:
 
@@ -65,16 +65,16 @@ public:
 		}
 
 
-		if (new_light_mode < _MS3KG_App_Light_Mode_MIN)
-			new_light_mode = _MS3KG_App_Light_Mode_MAX;
+		if (new_light_mode < _MS4_App_Light_Mode_MIN)
+			new_light_mode = _MS4_App_Light_Mode_MAX;
 
-		if (new_light_mode > _MS3KG_App_Light_Mode_MAX)
-			new_light_mode = _MS3KG_App_Light_Mode_MIN;
+		if (new_light_mode > _MS4_App_Light_Mode_MAX)
+			new_light_mode = _MS4_App_Light_Mode_MIN;
 
 
 		if (new_light_mode != old_light_mode) {
 
-			_light.mode = (MS3KG_App_Light_Mode)new_light_mode;
+			_light.mode = (MS4_App_Light_Mode)new_light_mode;
 
 			msSystem.slog("_light.mode: ");
 			msSystem.slogln(String(_light.mode));
@@ -110,7 +110,7 @@ public:
 		lightSubModeSelector();
 
 		// rainbow
-		if (_light.mode == MS3KG_App_Light_Mode_RAINBOW) {
+		if (_light.mode == MS4_App_Light_Mode_RAINBOW) {
 			if (frame % pDelay == 0) {
 				msSystem.msLEDs.fillLEDs(0, 0, 0, msGlobals.ggBrightness);
 				msSystem.msLEDs.setLED((xx + 0 * 3) & MAX_LEDS, 255, 0, 0, msGlobals.ggBrightness);
@@ -138,7 +138,7 @@ public:
 		}
 
 		// normal
-		if (_light.mode == MS3KG_App_Light_Mode_NORMAL) {
+		if (_light.mode == MS4_App_Light_Mode_NORMAL) {
 			int r=0,g=0,b=0;
 
 			int ii = _light.colorIndex+1;
@@ -156,7 +156,7 @@ public:
 			}
 		}
 
-		if (_light.mode == MS3KG_App_Light_Mode_SCANNER_BW) {
+		if (_light.mode == MS4_App_Light_Mode_SCANNER_BW) {
 
 			if (centerMode) {
 				centerMode = 0;
@@ -183,7 +183,7 @@ public:
 		}
 
 		// scanner 
-		if (_light.mode == MS3KG_App_Light_Mode_SCANNER_RGB) {
+		if (_light.mode == MS4_App_Light_Mode_SCANNER_RGB) {
 			if (dir)
 			{
 				start = 0;
@@ -198,13 +198,13 @@ public:
 			if (centerMode > 0) {
 				centerMode--;
 	
-				if (_light.mode == MS3KG_App_Light_Mode_SCANNER_RGB)
+				if (_light.mode == MS4_App_Light_Mode_SCANNER_RGB)
 				{
 					for (int index = 0; index < 3; index++) {
 						startToEndChannel(start, end, d, lookup[lookupindex][index], 255);
 					}
 				}
-				else if (_light.mode == MS3KG_App_Light_Mode_SCANNER_BW)
+				else if (_light.mode == MS4_App_Light_Mode_SCANNER_BW)
 				{
 					startToEndZigZag(start, end, 1, 255, 255, 255);
 				}
@@ -212,7 +212,7 @@ public:
 				lookupindex = (lookupindex + 1) % 6;
 				dir = (dir + 1) % 2;
 			}
-			else { // MS3KG_App_Light_Mode_SCANNER_RGB_BW
+			else { // MS4_App_Light_Mode_SCANNER_RGB_BW
 				msSystem.msLEDs.fillLEDs(0, 0, 0, msGlobals.ggBrightness);
 				msSystem.msLEDs.setLED(start, 255, 255, 255, msGlobals.ggBrightness);
 				msSystem.msLEDs.updateLEDs();

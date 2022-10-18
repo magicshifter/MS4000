@@ -12,7 +12,7 @@
 class MagicBikeMode : public MagicShifterBaseMode {
 
 private:
-	MS3KG_App_Bike &_bike = msGlobals.pbuf.apps.bike;
+	MS4_App_Bike &_bike = msGlobals.pbuf.apps.bike;
 
   public:
   	MagicBikeMode() {
@@ -41,7 +41,7 @@ private:
 		}
 
 		if (msSystem.msButtons.msBtnAHit) {	
-			blink_mode = MS3KG_App_Bike_BlinkMode_TURN_LEFT;
+			blink_mode = MS4_App_Bike_BlinkMode_TURN_LEFT;
 		}
 
  		if (msSystem.msButtons.msBtnBLongHit) {
@@ -49,22 +49,22 @@ private:
 		}
                                         
 		if (msSystem.msButtons.msBtnBHit) {
-			blink_mode = MS3KG_App_Bike_BlinkMode_TURN_RIGHT;
+			blink_mode = MS4_App_Bike_BlinkMode_TURN_RIGHT;
 		}
 
-		if(new_role<MS3KG_App_Bike_BlinkMode_NONE_ZERO)
-			new_role=MS3KG_App_Bike_BlinkMode_NONE_ZERO;
-		if(new_role>MS3KG_App_Bike_Role_BACK_LIGHT)
-			new_role=MS3KG_App_Bike_Role_FRONT_LIGHT;
+		if(new_role<MS4_App_Bike_BlinkMode_NONE_ZERO)
+			new_role=MS4_App_Bike_BlinkMode_NONE_ZERO;
+		if(new_role>MS4_App_Bike_Role_BACK_LIGHT)
+			new_role=MS4_App_Bike_Role_FRONT_LIGHT;
 
-		if(blink_mode<MS3KG_App_Bike_Role_FRONT_LIGHT)
-			blink_mode=MS3KG_App_Bike_Role_BACK_LIGHT;
-		if(blink_mode>MS3KG_App_Bike_Role_BACK_LIGHT)
-			blink_mode=MS3KG_App_Bike_Role_FRONT_LIGHT;
+		if(blink_mode<MS4_App_Bike_Role_FRONT_LIGHT)
+			blink_mode=MS4_App_Bike_Role_BACK_LIGHT;
+		if(blink_mode>MS4_App_Bike_Role_BACK_LIGHT)
+			blink_mode=MS4_App_Bike_Role_FRONT_LIGHT;
 
-		_bike.role = (MS3KG_App_Bike_Role)new_role;
+		_bike.role = (MS4_App_Bike_Role)new_role;
 
- 		if (_bike.role == MS3KG_App_Bike_Role_FRONT_LIGHT) {
+ 		if (_bike.role == MS4_App_Bike_Role_FRONT_LIGHT) {
 
 			for(int i=0;i<RGB_BUFFER_SIZE;i+=4) {
    	 			msGlobals.ggRGBLEDBuf[i] = msGlobals.ggBrightness | 0xe0;
@@ -74,7 +74,7 @@ private:
 			}
 		}
 
-  		if (_bike.role == MS3KG_App_Bike_Role_BACK_LIGHT) {
+  		if (_bike.role == MS4_App_Bike_Role_BACK_LIGHT) {
 
 			for(int i=0;i<RGB_BUFFER_SIZE;i+=4) {
    	 			msGlobals.ggRGBLEDBuf[i] = msGlobals.ggBrightness | 0xe0;

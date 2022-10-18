@@ -48,11 +48,11 @@ class MagicMagnetMode:public MagicShifterBaseMode {
 
 		// msSystem.slog(modeName + " a: ");
 
-		if (magnet_submode < _MS3KG_App_Magnet_Mode_MIN)
-			magnet_submode = _MS3KG_App_Magnet_Mode_MAX;
+		if (magnet_submode < _MS4_App_Magnet_Mode_MIN)
+			magnet_submode = _MS4_App_Magnet_Mode_MAX;
 		
-		if (magnet_submode > _MS3KG_App_Magnet_Mode_MAX)
-			magnet_submode = _MS3KG_App_Magnet_Mode_MIN;
+		if (magnet_submode > _MS4_App_Magnet_Mode_MAX)
+			magnet_submode = _MS4_App_Magnet_Mode_MIN;
 
 		msSystem.msSensor.readMagnetometerData(msGlobals.ggMagnet);
 
@@ -95,7 +95,7 @@ class MagicMagnetMode:public MagicShifterBaseMode {
 
 		// msSystem.slog(modeName + " f: ");
 
-		if (magnet_submode <= MS3KG_App_Magnet_Mode_BARS_DOT) {
+		if (magnet_submode <= MS4_App_Magnet_Mode_BARS_DOT) {
 			for (int lC = 0; lC < lednr; lC++)
 				msSystem.msLEDs.setLED(lC, 0, 255, 0, msGlobals.ggBrightness);	// !J! hack
 
@@ -105,23 +105,23 @@ class MagicMagnetMode:public MagicShifterBaseMode {
 
 		// msSystem.slog(modeName + " g: ");
 
-		if ((magnet_submode == MS3KG_App_Magnet_Mode_BARS) || 
-			(magnet_submode == MS3KG_App_Magnet_Mode_DOTS))
+		if ((magnet_submode == MS4_App_Magnet_Mode_BARS) || 
+			(magnet_submode == MS4_App_Magnet_Mode_DOTS))
 			msSystem.msLEDs.setLED(lednr, 0, 255, 0,
 								   msGlobals.ggBrightness);
 
-		if (magnet_submode == MS3KG_App_Magnet_Mode_BARS_DOT)
+		if (magnet_submode == MS4_App_Magnet_Mode_BARS_DOT)
 			msSystem.msLEDs.setLED(lednr, 0, 0, 255,
 								   msGlobals.ggBrightness);
 
-		if (magnet_submode == MS3KG_App_Magnet_Mode_OTHER) {		
+		if (magnet_submode == MS4_App_Magnet_Mode_OTHER) {		
 			msSystem.msLEDs.setLED(ledSouth, 0, 255, 0, msGlobals.ggBrightness);
 			msSystem.msLEDs.setLED(ledNorth, 255, 0, 0, msGlobals.ggBrightness);
 		}
 
 		// msSystem.slog(modeName + " h: " + String(magnet_submode));
 
- 		msGlobals.pbuf.apps.magnet.mode = (MS3KG_App_Magnet_Mode)magnet_submode;
+ 		msGlobals.pbuf.apps.magnet.mode = (MS4_App_Magnet_Mode)magnet_submode;
 
 		msSystem.msLEDs.updateLEDs();
 

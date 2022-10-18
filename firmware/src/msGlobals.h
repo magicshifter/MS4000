@@ -65,7 +65,7 @@ class MagicShifterGlobals {
 		NOT_OK = 3
 	};
 
-	MS3KG pbuf = MS3KG_init_default;
+	MS4 pbuf = MS4_init_default;
 
 };
 
