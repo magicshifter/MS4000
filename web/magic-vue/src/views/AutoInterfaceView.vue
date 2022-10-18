@@ -8,7 +8,7 @@
         reject(new Error(err));
       }
       else {
-        resolve(root, root.lookupType("MS3KG"));
+        resolve(root);
       }
     })
   });
@@ -28,13 +28,18 @@ import {reactive, watchEffect} from "vue"
 // import {getProtocolBuffersPromise} from "@/utils/protoBufLoader"
 
 const state = reactive({ 
-  count: 0,
+  modes: [],
 
 })
 
 const promise = promiseProtocolBuffers()
-promise.then((root, ms4) => {
-  console.log("the proto", ms4, root)
+promise.then((root) => {
+  console.log("the proto", root)
+
+  state.modes = Object.keys(root).map((name) => ({
+    name,
+    t: root[name]
+  }))
 })
 
 </script>
@@ -42,5 +47,8 @@ promise.then((root, ms4) => {
 <template>
   <div>
     Hello Auto World!
+    <div v-for="mode in state.modes">
+      {{mode.name}}
+    </div>
   </div>
 </template>
