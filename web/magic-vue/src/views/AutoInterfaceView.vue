@@ -3,7 +3,7 @@
 
   export function promiseProtocolBuffers() {
   var promise = new Promise(function(resolve, reject) {
-    protobuf.load("MS3000.proto", function (err, root) {
+    protobuf.load("MS4.proto", function (err, root) {
       if (err) {
         reject(new Error(err));
       }
@@ -30,7 +30,7 @@ const promise = promiseProtocolBuffers()
 promise.then((root) => {
   console.log("the proto", root)
 
-  const rootType = root["MS3KG"]["App"]
+  const rootType = root["MS4"]["App"]
 
   state.modes = Object.keys(rootType).map((name) => ({
     name,
