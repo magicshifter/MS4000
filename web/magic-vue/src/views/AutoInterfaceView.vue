@@ -21,12 +21,6 @@
 <script setup lang="ts">
 import {reactive, watchEffect} from "vue"
 
-
-
-
-
-// import {getProtocolBuffersPromise} from "@/utils/protoBufLoader"
-
 const state = reactive({ 
   modes: [],
 
@@ -36,9 +30,11 @@ const promise = promiseProtocolBuffers()
 promise.then((root) => {
   console.log("the proto", root)
 
-  state.modes = Object.keys(root).map((name) => ({
+  const rootType = root["MS3KG"]["App"]
+
+  state.modes = Object.keys(rootType).map((name) => ({
     name,
-    t: root[name]
+    t: rootType[name]
   }))
 })
 
@@ -46,7 +42,7 @@ promise.then((root) => {
 
 <template>
   <div>
-    Hello Auto World!
+    <h1>MS4 Auto Interface</h1>
     <div v-for="mode in state.modes">
       {{mode.name}}
     </div>
