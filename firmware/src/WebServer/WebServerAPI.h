@@ -459,11 +459,11 @@ void handleGETProtoBufferBase64(void)
 
 	msSystem.slogln("handleGETProtoBufferBase64");
 
-	msGlobals.pbuf.apps.current = (MS3KG_App_T)msGlobals.ui.currentMode;
+	msGlobals.pbuf.apps.current = (MS4_App_T)msGlobals.ui.currentMode;
 
 
 	pb_ostream_t stream = pb_ostream_from_buffer(pbufOutput, sizeof(pbufOutput));
-	encoderStatus = pb_encode(&stream, MS3KG_fields, &msGlobals.pbuf);
+	encoderStatus = pb_encode(&stream, MS4_fields, &msGlobals.pbuf);
 
 	if (!encoderStatus)
 	{
@@ -528,7 +528,7 @@ void handlePOSTpbufBase64(void)
 		pb_istream_t stream = pb_istream_from_buffer(decoderOutput, decodedDataLen);
 
         /* Now we are ready to decode the message. */
-		decodeStatus = pb_decode(&stream, MS3KG_fields, &msGlobals.pbuf); // TODO: !J! msGlobals.pbuf??
+		decodeStatus = pb_decode(&stream, MS4_fields, &msGlobals.pbuf); // TODO: !J! msGlobals.pbuf??
 
 		// printf("handlePPBB64: encodedInputStrLen is %d!\n", encodedInputStrLen);
 		printf("handlePPBB64: decodedDataLen is %d!\n", decodedDataLen);

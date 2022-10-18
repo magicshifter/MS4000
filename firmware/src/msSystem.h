@@ -539,10 +539,10 @@ public:
 		LittleFS.info(lfsInfo);
 
 #ifdef LFS_FORCE_FORMAT
-#warning "BUILD will FORCE FORMAT on execution"
-		int fmtRet;
-		fmtRet = LittleFS.format();
-		slogln("lfs format result = " + String(fmtRet));
+#warning "BUILD configuraion will FORCE FORMAT on execution - disabled, come and un-comment it..."
+//		int fmtRet;
+//		fmtRet = LittleFS.format();
+//		slogln("lfs format result = " + String(fmtRet));
 #endif 
 
 		slogln("lfsInfo.blockSize =" + String(lfsInfo.blockSize));

@@ -26,7 +26,7 @@ private:
 	MagicPOVMode lPOVMode;
 	MagicShifterImage lLocalImage;
 
-	MS3KG_App_Shake &_shake = msGlobals.pbuf.apps.shake;
+	MS4_App_Shake &_shake = msGlobals.pbuf.apps.shake;
 
 	// the number of files discovered onboard during the scan for POV images..
 	int numFiles = 0;

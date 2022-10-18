@@ -4,7 +4,7 @@ class MIDISequence8Mode : public MagicShifterBaseMode {
 private:
 	static int sync_count;
 
-	MS3KG_App_Sequi &_sequi = msGlobals.pbuf.apps.sequi;
+	MS4_App_Sequi &_sequi = msGlobals.pbuf.apps.sequi;
 
 public:
 	MIDISequence8Mode() {

@@ -5,7 +5,7 @@ private:
 	float avgZ;
 	int colorIndex;
 
-	MS3KG_App_Beat &_beat = msGlobals.pbuf.apps.beat;
+	MS4_App_Beat &_beat = msGlobals.pbuf.apps.beat;
 
 
 public:
@@ -22,7 +22,7 @@ public:
 	
 		_beat.color.B = 255;
 		_beat.sensitivity = 1;
-		_beat.mode = MS3KG_App_Beat_Mode_CENTER;
+		_beat.mode = MS4_App_Beat_Mode_CENTER;
 
 		_beat.has_color = 1;
         _beat.has_mode = 1;
@@ -64,7 +64,7 @@ public:
 					_beat.color.B);
 #endif
 
-		if (_beat.mode == MS3KG_App_Beat_Mode_SIDE) {
+		if (_beat.mode == MS4_App_Beat_Mode_SIDE) {
 			if (xPos < 0)
 				xPos = -xPos;
 
@@ -72,13 +72,13 @@ public:
 			if (xPos > MAX_LEDS)
 				xPos = MAX_LEDS;
 		}
-		else if (_beat.mode == MS3KG_App_Beat_Mode_CENTER) {
+		else if (_beat.mode == MS4_App_Beat_Mode_CENTER) {
 			xPos += 7.5; //(MAX_LEDS - 1) / 2.0f;
 		}
 
 		msSystem.msLEDs.fillLEDs(0, 0, 0, msGlobals.ggBrightness);
 
-		if (_beat.mode == MS3KG_App_Beat_Mode_SIDE) {
+		if (_beat.mode == MS4_App_Beat_Mode_SIDE) {
 			for (int i = 0; i < xPos; i++)
 				msSystem.msLEDs.setLED((MAX_LEDS-1) - i, 
 					_beat.color.R, 
@@ -86,7 +86,7 @@ public:
 					_beat.color.B, 
 					msGlobals.ggBrightness);
 		}
-		else if (_beat.mode == MS3KG_App_Beat_Mode_CENTER) {
+		else if (_beat.mode == MS4_App_Beat_Mode_CENTER) {
 			int xPosInt = (int)(xPos);
 			float xPosRem = 1 - (xPos - xPosInt);			
 			
@@ -117,11 +117,11 @@ public:
 			msSystem.msButtons.msBtnALongHit = false;
 			msSystem.msButtons.msBtnBLongHit = false;
 
-			if (_beat.mode == MS3KG_App_Beat_Mode_CENTER) {
-				_beat.mode = MS3KG_App_Beat_Mode_SIDE;
+			if (_beat.mode == MS4_App_Beat_Mode_CENTER) {
+				_beat.mode = MS4_App_Beat_Mode_SIDE;
 			}
 			else {
-				_beat.mode = MS3KG_App_Beat_Mode_CENTER;
+				_beat.mode = MS4_App_Beat_Mode_CENTER;
 			}
 
 		}
