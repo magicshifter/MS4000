@@ -34,7 +34,9 @@ const props = defineProps<{
 
 
 const state = reactive({
-    value: undefined
+    type: undefined,
+    value: undefined,
+    def: undefined
 })
 
 watchEffect(() => {
@@ -112,23 +114,33 @@ watchEffect(() => {
     //         </div>)
     //     }
         default:
-            controls.push(<span key="u">!!! {field.name} has unknown type {field.type}</span>)
+            def = {
+                id: "!!!unlnown type: " + type + " in field:" + name,
+                key: "ukn",
+                value,
+                controlType: type, // we could override it but we know what it is because we are in case
+                // TODO: not happy with any here but I need to sleep soon
+                onChange: (newValue: any) => {
+                    console.log("logging AutoControl onChange for uknwn type: " + type + " control", newValue, field, type, props)
+                }
             }
             break;
     }
-    if (!noLabel) {
-      controls.unshift(<div className="pure-u-1-1 pure-u-1-2"><label id="lbl" className="ms3000-interface-headline" htmlFor={field.name}>{field.name}:&nbsp;</label></div>)
-    }
-
-    return (
-      <span>
-        { controls }
-      </span>
-    )
+    // if (!noLabel) {
+    //   controls.unshift(<div className="pure-u-1-1 pure-u-1-2"><label id="lbl" className="ms3000-interface-headline" htmlFor={field.name}>{field.name}:&nbsp;</label></div>)
+    // }
   }
+  state.def = def
+  state.type = type
+  state.value = value
 })
 
-
-
-
 </script>
+
+<template>
+      <h1 class="green">{{ props.name }}</h1>
+      <div>
+        type: {{props.type}}
+        | value: {{props.value}}
+      </div>
+  </template>
