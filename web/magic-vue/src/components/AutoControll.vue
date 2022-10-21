@@ -38,7 +38,9 @@ const props = defineProps<{
 const state = reactive({
     type: undefined,
     value: undefined,
-    def: undefined
+    def: undefined,
+    isEnum: undefined,
+    isType: undefined,
 })
 
 watchEffect(() => {
@@ -135,6 +137,8 @@ watchEffect(() => {
   state.def = def
   state.type = type
   state.value = value
+  state.isEnum = isEnum
+  state.isType = isType
 })
 
 </script>
@@ -144,6 +148,8 @@ watchEffect(() => {
       <div>
         type: {{state.type}} <br/>
         value: {{props.value}} <br />
-        def: {{state.def}}
+        def: {{state.def}} <br />
+        isType: {{state.isType}} <br/>
+        isEnum: {{state.isEnum}} <br/>
       </div>
   </template>
