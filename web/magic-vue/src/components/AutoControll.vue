@@ -7,6 +7,8 @@
 import { tsNeverKeyword } from '@babel/types'
 import protobuf from 'protobufjs'
 
+import {reactive, watchEffect} from "vue"
+
 enum ControlType {
     Unknown = "!unknown type!",
     String = "string",
@@ -28,7 +30,7 @@ interface ControlDefinition<T = any> {
 const props = defineProps<{
     field: any,
     value: any,
-    onChange: 
+    onChange: any,
 }>()
 
 
