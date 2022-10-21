@@ -140,9 +140,10 @@ watchEffect(() => {
 </script>
 
 <template>
-      <h1 class="green">{{ props.name }}</h1>
+      <h1 class="green">{{ state.name }}</h1>
       <div>
-        type: {{props.type}}
-        | value: {{props.value}}
+        type: {{state.type}} <br/>
+        value: {{props.value}} <br />
+        def: {{state.def}}
       </div>
   </template>
