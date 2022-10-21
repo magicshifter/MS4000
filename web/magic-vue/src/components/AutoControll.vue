@@ -8,6 +8,7 @@ import { tsNeverKeyword } from '@babel/types'
 import protobuf from 'protobufjs'
 
 import {reactive, watchEffect} from "vue"
+import AutoContainer from "./AutoContainer.vue"
 
 enum ControlType {
     Unknown = "!unknown type!",
@@ -151,5 +152,10 @@ watchEffect(() => {
         def: {{state.def}} <br />
         isType: {{state.isType}} <br/>
         isEnum: {{state.isEnum}} <br/>
+        <div>
+
+        <!-- </div> v-if="state.isType">  -->
+            <AutoContainer :field="props.field" :value="props.value" />
+        </div>
       </div>
   </template>
