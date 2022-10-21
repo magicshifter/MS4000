@@ -23,6 +23,7 @@
 
 <script setup lang="ts">
 import {reactive, watchEffect, ref} from "vue"
+import AutoControll from "../components/AutoControll.vue"
 
 const state = reactive({ 
 
@@ -41,7 +42,7 @@ promise.then((root) => {
   state.root = root
   state.modes = Object.keys(rootType.fields).map((name) => ({
     id: name,
-    t: rootType.fields[name]
+    t: rootType.fields[name],
   }))
   
 })
@@ -53,6 +54,7 @@ promise.then((root) => {
     <h1>MS4 Auto Interface</h1>
     <div v-for="mode in state.modes">
       <AutoMode :mode="mode" :root="theRoot"/>
+      <AutoControll :field="mode.t" value="hello value world" />
     </div>
   </div>
 </template>
