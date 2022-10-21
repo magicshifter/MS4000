@@ -131,7 +131,7 @@ watchEffect(() => {
     // if (!noLabel) {
     //   controls.unshift(<div className="pure-u-1-1 pure-u-1-2"><label id="lbl" className="ms3000-interface-headline" htmlFor={field.name}>{field.name}:&nbsp;</label></div>)
     // }
-  }
+  
   state.def = def
   state.type = type
   state.value = value
