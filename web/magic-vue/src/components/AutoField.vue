@@ -44,6 +44,10 @@ const isType = lookup instanceof protobuf.Type
 values = lookup?.values
 const valueIndex = values ? Object.keys(values) : []
 
+if (!isEnum && !isType) {
+    console.log("not an enum not a type what is it??", name, field)
+}
+
 
 
 
@@ -62,7 +66,7 @@ const valueIndex = values ? Object.keys(values) : []
 
 <template>
   <div>
-    <h3>field: {{name}} | {{isEnum ? "isEnum" : ""}} {{isType ? "isType" : ""}}</h3>
+    <h3>field: {{name}} {{isEnum ? " | isEnum" : ""}} {{isType ? " | isType" : ""}}</h3>
     <!-- <div>field: {{field}}</div>
     <div>type: {{type}}</div> -->
     
