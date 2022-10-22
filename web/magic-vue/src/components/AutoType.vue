@@ -14,10 +14,12 @@ const props = defineProps<{
 //   modes: []
 // })
 
-const { type, value, onChange } = props
-const { name } = type
+console.log("AutoType :)")
 
-const root = type.root
+const { type, value, onChange } = props
+const name = type?.name
+
+const root = type?.root
 
 
 const fields = type?.fields
@@ -26,24 +28,15 @@ const fieldIndex = fields ? Object.keys(fields).map((name) => fields[name]) : []
 </script>
 
 <template>
-  <div class="type">
-    <h2>type: {{name}}</h2>
-    <div>
-        <div v-for="f in fieldIndex" class="field">
-            <AutoField :field="f" />
+    <div v-if="root" class="type">
+        <h2>type: {{name}}</h2>
+        <div>
+            <div v-for="f in fieldIndex" class="field">
+                <AutoField :field="f" />
+            </div>
         </div>
     </div>
-    
-
-    <!-- <div>Type: {{type}}</div>
-    <div>Fields: {{fields ?  fields : "none"}}</div>
-    <div>
-        <div v-for="f in fieldIndex">
-            field: {{f}}
-            <AutoField :field="f" />
-        </div>
-    </div> -->
-  </div>
+    <div v-if="!root">NO ROOT!!!!!!!!11</div>
 </template>
 
 <style scoped>

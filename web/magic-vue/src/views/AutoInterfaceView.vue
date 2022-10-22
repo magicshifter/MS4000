@@ -56,11 +56,7 @@ promise.then((root) => {
   <div>
     <h1>MS4 Auto Interface</h1>
     <div>
-      <AutoType :type="state.rootType" value="???" />
+      <AutoType v-if="state.rootType" :type="state.rootType" value="???" />
     </div>
-    <!-- <div v-for="mode in state.modes">
-      <AutoMode :mode="mode" :root="theRoot"/>
-      <AutoControll :field="mode.t" value="hello value world" />
-    </div> -->
   </div>
 </template>

@@ -44,35 +44,21 @@ const isType = lookup instanceof protobuf.Type
 values = lookup?.values
 const valueIndex = values ? Object.keys(values) : []
 
+let isNativeType = false
 if (!isEnum && !isType) {
+    isNativeType = true
     console.log("not an enum not a type what is it??", name, field)
 }
-
-
-
-
-
-
-// const rootType = props.field
-
-
-// const fields = rootType?.fields
-// // const modes = Object.keys(rootType.fields).map((name) => ({
-// //     id: name,
-// //     t: rootType.fields[name],
-// //   }))
-
 </script>
 
 <template>
   <div>
-    <h3>field: {{name}} {{isEnum ? " | isEnum" : ""}} {{isType ? " | isType" : ""}}</h3>
-    <!-- <div>field: {{field}}</div>
-    <div>type: {{type}}</div> -->
-    
+    <h3>field: {{name}} {{isEnum ? " | isEnum" : ""}} {{isType ? " | isType" : ""}} | typeof({{type}}) | native?{{isNativeType}}</h3>
     <div v-if="lookup != undefined" class="type">
         <div v-for="valueName in valueIndex">{{valueName}} : {{values[valueName]}}</div>
+        
         <AutoType  v-if="typeLookup != undefined"  :type="typeLookup" />
+        
     </div>
   </div>
 </template>
