@@ -15,6 +15,7 @@ const props = defineProps<{
 // })
 
 const { type, value, onChange } = props
+const { name } = type
 
 const root = type.root
 
@@ -26,7 +27,7 @@ const fieldIndex = fields ? Object.keys(fields).map((name) => fields[name]) : []
 
 <template>
   <div>
-    <h1>Auto Type</h1>
+    <h1>Type: {{name}}</h1>
     <div>Type: {{type}}</div>
     <div>Fields: {{fields ?  fields : "none"}}</div>
     <div>

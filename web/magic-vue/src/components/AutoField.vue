@@ -38,7 +38,7 @@ catch (ex) {
 
 <template>
   <div>
-    <h2>Auto Field</h2>
+    <h2>field: {{name}}</h2>
     <div>field: {{field}}</div>
     <div>type: {{type}}</div>
     <!-- rio {{root}}ot: -->
