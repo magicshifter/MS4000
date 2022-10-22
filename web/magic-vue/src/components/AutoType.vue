@@ -27,7 +27,7 @@ const fieldIndex = fields ? Object.keys(fields).map((name) => fields[name]) : []
 
 <template>
   <div class="type">
-    <h1>type: {{name}}</h1>
+    <h2>type: {{name}}</h2>
     <div>
         <div v-for="f in fieldIndex" class="field">
             <AutoField :field="f" />
@@ -53,5 +53,6 @@ const fieldIndex = fields ? Object.keys(fields).map((name) => fields[name]) : []
 
 .type {
     border: 2px solid gray;
+    padding: 1em;
 }
 </style>

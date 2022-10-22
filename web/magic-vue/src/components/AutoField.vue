@@ -38,7 +38,7 @@ catch (ex) {
 
 <template>
   <div>
-    <h2>field: {{name}}</h2>
+    <h3>field: {{name}}</h3>
     <!-- <div>field: {{field}}</div>
     <div>type: {{type}}</div> -->
     <div v-if="t != undefined" class="type">
