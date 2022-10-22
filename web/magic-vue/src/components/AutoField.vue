@@ -1,3 +1,7 @@
+<script lang="ts">
+  import protobuf from 'protobufjs'
+</script>
+
 
 <script setup lang="ts">
 import {reactive, watchEffect, ref} from "vue"
@@ -18,13 +22,33 @@ const {field, value} = props
 const {type, root, name } = field
 
 
-let t = undefined
+let typeLookup: any = undefined
+let values = []
 try {
-    t = root.lookupType(type)
+    typeLookup = root.lookupType(type)
+    values = typeLookup.values
 }
 catch (ex) {
     console.warn("could not lookup Type " + type + " in:", field)
 }
+
+
+
+
+const lookup = root.lookup(type) //field.type)
+
+console.log("AutoField", typeLookup == lookup, lookup)
+const isEnum = lookup instanceof protobuf.Enum
+const isType = lookup instanceof protobuf.Type
+
+values = lookup?.values
+const valueIndex = values ? Object.keys(values) : []
+
+
+
+
+
+
 // const rootType = props.field
 
 
@@ -38,11 +62,13 @@ catch (ex) {
 
 <template>
   <div>
-    <h3>field: {{name}}</h3>
+    <h3>field: {{name}} | {{isEnum ? "isEnum" : ""}} {{isType ? "isType" : ""}}</h3>
     <!-- <div>field: {{field}}</div>
     <div>type: {{type}}</div> -->
-    <div v-if="t != undefined" class="type">
-        <AutoType :type="t" />
+    
+    <div v-if="lookup != undefined" class="type">
+        <div v-for="valueName in valueIndex">{{valueName}} : {{values[valueName]}}</div>
+        <AutoType  v-if="typeLookup != undefined"  :type="typeLookup" />
     </div>
   </div>
 </template>
