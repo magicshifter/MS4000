@@ -2,7 +2,7 @@
 
 <script lang="ts">
   import protobuf from 'protobufjs'
-  import AutoMode from "@/components/AutoMode.vue"
+
 
   export function promiseProtocolBuffers() {
   var promise = new Promise(function(resolve, reject) {
@@ -23,7 +23,9 @@
 
 <script setup lang="ts">
 import {reactive, watchEffect, ref} from "vue"
-import AutoControll from "../components/AutoControll.vue"
+import AutoControll from "@/components/AutoControll.vue"
+import AutoMode from "@/components/AutoMode.vue"
+  import AutoType from "@/components/AutoType.vue"
 
 const state = reactive({ 
 
@@ -39,6 +41,7 @@ promise.then((root) => {
 
   const rootType = root["MS4"]["App"]
 
+  state.rootType = rootType
   state.root = root
   state.modes = Object.keys(rootType.fields).map((name) => ({
     id: name,
@@ -52,9 +55,12 @@ promise.then((root) => {
 <template>
   <div>
     <h1>MS4 Auto Interface</h1>
-    <div v-for="mode in state.modes">
+    <div>
+      <AutoType :type="state.rootType" value="???" />
+    </div>
+    <!-- <div v-for="mode in state.modes">
       <AutoMode :mode="mode" :root="theRoot"/>
       <AutoControll :field="mode.t" value="hello value world" />
-    </div>
+    </div> -->
   </div>
 </template>
