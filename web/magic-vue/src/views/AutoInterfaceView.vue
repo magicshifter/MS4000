@@ -39,7 +39,7 @@ promise.then((root) => {
 
   theRoot.value = root
 
-  const rootType = root["MS4"]["App"]
+  const rootType = root["MS4"]
 
   state.rootType = rootType
   state.root = root

@@ -26,18 +26,32 @@ const fieldIndex = fields ? Object.keys(fields).map((name) => fields[name]) : []
 </script>
 
 <template>
-  <div>
-    <h1>Type: {{name}}</h1>
-    <div>Type: {{type}}</div>
+  <div class="type">
+    <h1>type: {{name}}</h1>
+    <div>
+        <div v-for="f in fieldIndex" class="field">
+            <AutoField :field="f" />
+        </div>
+    </div>
+    
+
+    <!-- <div>Type: {{type}}</div>
     <div>Fields: {{fields ?  fields : "none"}}</div>
     <div>
         <div v-for="f in fieldIndex">
             field: {{f}}
             <AutoField :field="f" />
         </div>
-    </div>
-    <!-- <div v-for="mode in modes">
-      <AutoMode :mode="mode" :root="root"/>
     </div> -->
   </div>
 </template>
+
+<style scoped>
+.field {
+  padding: 1em;
+}
+
+.type {
+    border: 2px solid gray;
+}
+</style>

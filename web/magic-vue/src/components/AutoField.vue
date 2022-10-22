@@ -39,9 +39,17 @@ catch (ex) {
 <template>
   <div>
     <h2>field: {{name}}</h2>
-    <div>field: {{field}}</div>
-    <div>type: {{type}}</div>
-    <!-- rio {{root}}ot: -->
-    <AutoType :type="t" v-if="t != undefined"/>
+    <!-- <div>field: {{field}}</div>
+    <div>type: {{type}}</div> -->
+    <div v-if="t != undefined" class="type">
+        <AutoType :type="t" />
+    </div>
   </div>
 </template>
+
+
+<style scoped>
+.type {
+  padding: 1em;
+}
+</style>
