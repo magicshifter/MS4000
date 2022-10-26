@@ -2,6 +2,9 @@
 defineProps<{
   msg: string
 }>()
+
+
+
 </script>
 
 <template>

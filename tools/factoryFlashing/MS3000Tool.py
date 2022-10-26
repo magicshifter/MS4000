@@ -703,7 +703,7 @@ def initMS3000web4k():
     start = time.time()
     delay = 2;
     ser = openPort(5)
-    BUILD_PATH = "../../web/app/build/"
+    BUILD_PATH = "../../web/magic-vue/dist/"
     result = os.walk(BUILD_PATH)
     print("walking:", BUILD_PATH)
     for dp, dr, filenames in result:
