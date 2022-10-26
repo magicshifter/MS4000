@@ -8,7 +8,6 @@ import { tsNeverKeyword } from '@babel/types'
 import protobuf from 'protobufjs'
 
 import {reactive, watchEffect} from "vue"
-import AutoContainer from "./AutoContainer.vue"
 
 enum ControlType {
     Unknown = "!unknown type!",
