@@ -23,9 +23,7 @@
 
 <script setup lang="ts">
 import {reactive, watchEffect, ref} from "vue"
-import AutoControll from "@/components/AutoControll.vue"
-import AutoMode from "@/components/AutoMode.vue"
-  import AutoType from "@/components/AutoType.vue"
+import AutoType from "@/components/AutoType.vue"
 
 const state = reactive({ 
 
@@ -44,8 +42,11 @@ promise.then((root) => {
 
 
   // const testDataBase64 = "ChIIADoOCAEQARoICP8BEHkY/wE="
-  const testDataBase64 = "ChIIBDoOCAEQARoICP8BEHkY/wE=" // current = 4
+  // const testDataBase64 = "ChIIBDoOCAEQARoICP8BEHkY/wE=" // current = 4
   // const testDataBase64 = "ChIIAToOCAEQARoICP8BEHkY/wE=" // current = 1
+  const testDataBase64 = "ChIIADoOCAEQARoICP8BEHkY/wE=" // current = 1
+
+
 
   const decodedObj = decodeBase64(testDataBase64, rootType)
   console.log("decoded MS4", decodedObj)
