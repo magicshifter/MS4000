@@ -10,7 +10,10 @@ import array
 import time
 
 device = None #"/dev/ttyACM0" Device needs to be found first.
+#baudrate = 57600 #Baudrate goes here
+#baudrate = 115200 #Baudrate goes here
 baudrate = 921600 #Baudrate goes here
+
 pathToProgrammerScript = "./magic_flash.sh"
 #pathToProgrammerScript = "./magic_flash_noeeprom.sh"
 #pathToProgrammerScript = "../Tester/raspberry/magic_flash_noeeprom.sh"
@@ -232,7 +235,7 @@ def findMagicShifterSimple():
 #================================================================
 
 def openPort(timeout):
-        ser = serial.Serial(device, baudrate, timeout=timeout)#timeout=None
+        ser = serial.Serial(device, baudrate=baudrate, timeout=timeout)#timeout=None
         ser.setRTS(True)
         sleep(0.1)
         ser.setDTR(False)
