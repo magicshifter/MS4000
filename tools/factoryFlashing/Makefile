@@ -1,5 +1,7 @@
 
-all:
-	make -C ../../firmware
+factory:
 	./MS3000Tool.py init /dev/ttyUSB0
 	./MS3000Tool.py web /dev/ttyUSB0
+
+build:
+	make -C ../../firmware
