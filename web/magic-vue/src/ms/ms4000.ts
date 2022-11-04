@@ -1,5 +1,6 @@
 
-function setBase64LED(data: number[]) {
+function setBase64LED(data: Uint8Array) {
+    var base64String = btoa(String.fromCharCode.apply(null, new Uint8Array(arrayBuffer)));
     // // const host = ""
 
   // fetch(host + '/protobuf')

@@ -13,6 +13,20 @@ interface RGBA {
 
 const LEDS = 100
 
+function rgbaArrayToPlainArray(ledValues: RGBA[]): number[] {
+  const result = []
+
+  const l = ledValues.length
+  for (let i = 0; i < l; i++) {
+    const led = ledValues[i]
+    result.push(led.a)
+    result.push(led.r)
+    result.push(led.g)
+    result.push(led.b)
+  }
+  return result
+}
+
 
 const state = reactive({ 
   // ledValues: new Array(LEDS * 4),
