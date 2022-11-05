@@ -23,7 +23,7 @@ This is a mono-repo.. This repository contains the Magicshifter OS, built with p
 		`mkdir MS4000_workdir && python3 -m venv .venv && . .venv/bin/activate`
 
 	* we install some python tools - platformio and protocol buffers:
-		`pip3 install platformio python3-protobuf`
+		`pip3 install platformio python3-protobuf grpcio_tools`
 
 	* clone the repo:
 		`git clone https://github.com/magicshifter/MS4000.git MS4000.clone`
@@ -36,6 +36,15 @@ This is a mono-repo.. This repository contains the Magicshifter OS, built with p
 
 	* you may need to give yourself access to the callout group, where USERNAME is of course your own user name:
 		`sudo adduser USERNAME dialout`
+
+	* Note: the firmware uses protocol buffers to communicate between firmware and web instances.  To buid proto:
+
+		`make proto`
+
+		Or:
+
+		`PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python make proto # may be necessary`
+
 
 ## You will need PlatformIO:
 
