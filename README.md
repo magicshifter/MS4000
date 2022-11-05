@@ -23,7 +23,7 @@ This is a mono-repo.. This repository contains the Magicshifter OS, built with p
 		`mkdir MS4000_workdir && python3 -m venv .venv && . .venv/bin/activate`
 
 	* we install some python tools - platformio and protocol buffers:
-		`pip3 install platformio python3-protobuf`
+		`pip3 install platformio python3-protobuf grpcio_tools`
 
 	* clone the repo:
 		`git clone https://github.com/magicshifter/MS4000.git MS4000.clone`
