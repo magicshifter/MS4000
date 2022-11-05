@@ -43,7 +43,7 @@ This is a mono-repo.. This repository contains the Magicshifter OS, built with p
 
 		Or:
 
-		`ROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python make proto # may be necessary`
+		`PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python make proto # may be necessary`
 
 
 ## You will need PlatformIO:
