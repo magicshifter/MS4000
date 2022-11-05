@@ -37,7 +37,7 @@ function createRGBA(r: number = 0, g: number = 0, b: number = 0, a: number = 255
 
 const state = reactive({ 
   // ledValues: new Array(LEDS * 4),
-  ledValues: [{r:255, g:110, b:0, a: 23}, {r:255, g:255, b:0, a: 0}, {r:255, g:0, b:255, a: 100}, {r:0, g:0, b:255, a: 255}, {r:255, g:255, b:0, a: 255}],
+  ledValues: [{r:255, g:110, b:0, a: 23}],
   base64: "hello world!",
 })
 
@@ -45,25 +45,25 @@ const lV = []
 for (let i = 0; i < LEDS; i++) {
   lV.push(createRGBA())
 }
-
 state.ledValues = lV
 
 watchEffect(()=> {
   state.base64 = bytesToBase64(rgbaArrayToPlainArray(state.ledValues))
 })
 
-function onClickUpdateLeds() {
-  const url = 'http://192.168.4.1/leds?b=' + state.base64
-  fetch(url)
-}
+let i = 0
 
-// function setPixel(i, [r, g, b, a]) {
-//   const idx = i * 4
-//   state.ledValues[idx] = r
-//   state.ledValues[idx] = r
-//   state.ledValues[idx] = r
-//   state.ledValues[idx] = r
-// }
+function onClickUpdateLeds() {
+  let url = "http://192.168.4.1/leds?b=/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAA=="
+
+  if (i % 2 == 0) url = 'http://192.168.4.1/leds?b=' + state.base64
+
+  i++
+
+  fetch(url)
+
+  // requestAnimationFrame(onClickUpdateLeds)
+}
 
 </script>
 
