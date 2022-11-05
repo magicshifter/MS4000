@@ -35,7 +35,7 @@ proto:  MS4.proto
 	@echo "CFLAGS = $(CFLAGS)"
 	@cp -rfv MS4.proto ../MS4.proto
 	@mkdir -p ./ms3000.proto.out
-	$(PROTOC) $(PROTOC_OPTS) --proto_path .. ../MS4.proto  -o ../MS4.pb --js_out=./ms3000.proto.out --nanopb_out=-v:.
+	$(PROTOC) $(PROTOC_OPTS) --proto_path .. ../MS4.proto  -o ../MS4.pb --nanopb_out=-v:.
 	python ../tools/nanopb/generator/nanopb_generator.py ../MS4.pb
 	cp MS4.pb.? src/
 
