@@ -2,6 +2,8 @@
 
 <script lang="ts">
   import protobuf from 'protobufjs'
+import { configUpload, decodeBase64 } from "@/ms/ms4000";
+import {smartStringify} from "@/utils/json"
 
 
   export function promiseProtocolBuffers() {
@@ -30,12 +32,39 @@ import AutoType from "@/components/AutoType.vue"
 
 const baseUrl = "http://192.168.4.1"
 
+const templateProtoText = `
+{
+    "apps": {
+        "current": 1,
+        "shake": {
+            "colorIndex": 1,
+            "bounce": 3
+        },
+        "light": {
+            "mode": 1,
+            "triggerSpeed": 1000,
+            "colorIndex": 1
+        },
+        "beat": {
+            "mode": 1,
+            "sensitivity": 1,
+            "color": {
+                "R": 255,
+                "G": 121,
+                "B": 0
+            }
+        }
+    }
+}
+`
+
 
 
 const state = reactive({ 
-  protoText: "{}",
+  protoText: templateProtoText.trim(),
   protoObj: {},
   errorText: "OK",
+  undefined: undefined,
 
 })
 
@@ -96,48 +125,49 @@ function onClickLoadFromShifter() {
       const protoObj = decodeBase64(text, state.rootType)
       console.log("proto obj:", protoObj)
 
-      state.protoText = JSON.stringify(protoObj)
+      state.protoText = smartStringify(protoObj)
     })
   })
-
-  // requestAnimationFrame(onClickUpdateLeds)
 }
 
-
-function stringToArray(bufferString) {
-  var array = new Uint8Array(new ArrayBuffer(bufferString.length));
-
-  for (var i = 0; i < bufferString.length; i++) {
-    array[i] = bufferString.charCodeAt(i);
-  }
-  return array
+function onClickUploadToShifter() {
+  configUpload(state.protoObj, state.rootType)
 }
 
-function decodeBase64(text, pbType) {
-  var decoded = atob(text)
-    console.log("b64 decoded", decoded)
-    var u8a = stringToArray(decoded);
-    //dumpU8(u8a)
-    console.log("u8", u8a)
+// function stringToArray(bufferString) {
+//   var array = new Uint8Array(new ArrayBuffer(bufferString.length));
 
-    try {
-      const shifterState = pbType.decode(u8a);
-      console.log("shifterState decoded MS4", shifterState)
+//   for (var i = 0; i < bufferString.length; i++) {
+//     array[i] = bufferString.charCodeAt(i);
+//   }
+//   return array
+// }
 
-      var object = pbType.toObject(shifterState, {
-        longs: undefined,
-        enums: undefined,
-        bytes: undefined,
-      });
+// function decodeBase64(text, pbType) {
+//   var decoded = atob(text)
+//     console.log("b64 decoded", decoded)
+//     var u8a = stringToArray(decoded);
+//     //dumpU8(u8a)
+//     console.log("u8", u8a)
 
-      console.log("after toObject decoded MS4", object)
+//     try {
+//       const shifterState = pbType.decode(u8a);
+//       console.log("shifterState decoded MS4", shifterState)
 
-      return object
-    }
-    catch (ex) {
-      console.error("Decoding failed", ex)
-    }
-}
+//       var object = pbType.toObject(shifterState, {
+//         longs: undefined,
+//         enums: undefined,
+//         bytes: undefined,
+//       });
+
+//       console.log("after toObject decoded MS4", object)
+
+//       return object
+//     }
+//     catch (ex) {
+//       console.error("Decoding failed", ex)
+//     }
+// }
 
 
   // // const host = 'http://MS3000-7161.local'
@@ -180,14 +210,16 @@ function decodeBase64(text, pbType) {
   <div>
     <h1>MS4 Auto Interface</h1>
     <h2>JSON</h2>
-    <div>{{state.errorText}}</div>
-    <textarea v-model="state.protoText" />
-    <div>{{JSON.stringify(state.protoObj)}}</div>
     <button @click="onClickLoadFromShifter">Get State FROM Shifter</button>
-    <button @click="onClickLoadFromShifter">Upload TO Shifter</button>
+    <button @click="onClickUploadToShifter">Upload TO Shifter</button>
+    <div>{{state.errorText}}</div>
+    <textarea v-model="state.protoText" style="width: 70em; height: 40em; color: #FF8; background-color: #333;"/>
+    <div>{{JSON.stringify(state.protoObj)}}</div>
 
-    <div>
-      <AutoType v-if="state.rootType" :type="state.onClickLoadFromShifter" value="???" />
+
+    <div v-if="state.rootType != undefined">
+      <div>root not undefined...</div>
+      <AutoType v-if="state.rootType" :type="state.rootType" value="???" />
     </div>
   </div>
 </template>

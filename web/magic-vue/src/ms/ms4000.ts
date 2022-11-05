@@ -24,9 +24,9 @@ function stringToArray(bufferString) {
       array[i] = bufferString.charCodeAt(i);
     }
     return array
-  }
-  
-  function decodeBase64(text, pbType) {
+}
+
+export function decodeBase64(text, pbType) {
     var decoded = atob(text)
       console.log("b64 decoded", decoded)
       var u8a = stringToArray(decoded);
@@ -50,6 +50,33 @@ function stringToArray(bufferString) {
       catch (ex) {
         console.error("Decoding failed", ex)
       }
+  }
+
+
+  
+export function configUpload(testObj, rootType) {
+    console.log("configUpload", testObj)
+  
+    var check = rootType.verify(testObj);
+  
+    if (check) {
+      console.warn("buffer verify error, corrupt?",  check)
+      //alert("buffer verify error, corrupt? " + check)
+    }
+  
+    const bufferU8 = rootType.encode(testObj).finish()
+    const funkyStr = String.fromCharCode.apply(null, bufferU8)
+    const b64encoded = btoa(funkyStr);
+  
+    fetch(MS400BaseUrl + '/protobuf?myArg=' + b64encoded, { method: 'POST'})
+      .then(() => {
+        console.log("upload proto done")
+      })
+      .catch(error => {
+        console.error("upload proto FAILED")
+      });
+  
+    console.log(check, bufferU8)
   }
 
 // function getProto(): Promise<any> {
