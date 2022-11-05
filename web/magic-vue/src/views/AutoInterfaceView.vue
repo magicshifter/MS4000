@@ -60,7 +60,8 @@ const templateProtoText = `
 
 
 
-const state = reactive({ 
+const state = reactive({
+  autoUpdate: false,
   protoText: templateProtoText.trim(),
   protoObj: {},
   errorText: "OK",
@@ -107,6 +108,9 @@ watchEffect(()=> {
   try {
     state.protoObj = JSON.parse(state.protoText)
     state.errorText = "OK :)"
+
+    if (state.autoUpdate)
+      onClickUploadToShifter()
   }
   catch (ex) {
     state.errorText = "JSON parsing error"
@@ -209,7 +213,7 @@ function onClickUploadToShifter() {
 <template>
   <div>
     <h1>MS4 Auto Interface</h1>
-    <h2>JSON</h2>
+    <h2>JSON&nbsp;&nbsp;<label><input type="checkbox" v-model="state.autoUpdate"/> auto update</label></h2>
     <button @click="onClickLoadFromShifter">Get State FROM Shifter</button>
     <button @click="onClickUploadToShifter">Upload TO Shifter</button>
     <div>{{state.errorText}}</div>
