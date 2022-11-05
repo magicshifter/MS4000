@@ -1,3 +1,7 @@
+export const MS400BaseUrl = "http://192.168.4.1"
+
+
+
 
 function setBase64LED(data: Uint8Array) {
     var base64String = btoa(String.fromCharCode.apply(null, new Uint8Array(arrayBuffer)));
@@ -48,37 +52,37 @@ function stringToArray(bufferString) {
       }
   }
 
-function getProto(): Promise<any> {
-    const state = getState()
-    const const
+// function getProto(): Promise<any> {
+//     const state = getState()
+//     const const
 
-    fetch(host + '/protobuf')
-    .then(data => data.text())
-    .then(text => {
-        var decoded = atob(text)
-        console.log("b64 decoded", decoded)
-        var u8a = stringToArray(decoded);
-        //dumpU8(u8a)
-        console.log("u8", u8a)
+//     fetch(host + '/protobuf')
+//     .then(data => data.text())
+//     .then(text => {
+//         var decoded = atob(text)
+//         console.log("b64 decoded", decoded)
+//         var u8a = stringToArray(decoded);
+//         //dumpU8(u8a)
+//         console.log("u8", u8a)
 
-        try {
-        const shifterState = pb.MS3KG.decode(u8a);
+//         try {
+//         const shifterState = pb.MS3KG.decode(u8a);
 
-        var object = pb.MS3KG.toObject(shifterState, {
-            longs: undefined,
-            enums: undefined,
-            bytes: undefined,
-        });
+//         var object = pb.MS3KG.toObject(shifterState, {
+//             longs: undefined,
+//             enums: undefined,
+//             bytes: undefined,
+//         });
 
-        dispatch(configDownloadSuccess())
-        dispatch(configUpdate(object))
-        }
-        catch (ex) {
-        dispatch(configDownloadFail("shifterstate fetch decode error: " + ex))
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error)
-        dispatch(configDownloadFail(error))
-    });
-}
+//         dispatch(configDownloadSuccess())
+//         dispatch(configUpdate(object))
+//         }
+//         catch (ex) {
+//         dispatch(configDownloadFail("shifterstate fetch decode error: " + ex))
+//         }
+//     })
+//     .catch(error => {
+//         console.error('Error:', error)
+//         dispatch(configDownloadFail(error))
+//     });
+// }

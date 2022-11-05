@@ -25,7 +25,17 @@
 import {reactive, watchEffect, ref} from "vue"
 import AutoType from "@/components/AutoType.vue"
 
+
+
+
+const baseUrl = "http://192.168.4.1"
+
+
+
 const state = reactive({ 
+  protoText: "{}",
+  protoObj: {},
+  errorText: "OK",
 
 })
 
@@ -63,6 +73,35 @@ promise.then((root) => {
   }))
   
 })
+
+watchEffect(()=> {
+  try {
+    state.protoObj = JSON.parse(state.protoText)
+    state.errorText = "OK :)"
+  }
+  catch (ex) {
+    state.errorText = "JSON parsing error"
+  }
+})
+
+
+function onClickLoadFromShifter() {
+  let url = baseUrl + "/protobuf"
+
+  fetch(url).then(file => {
+    console.log("fetched", file)
+    file.text().then(text => {
+      console.log("text", text)
+
+      const protoObj = decodeBase64(text, state.rootType)
+      console.log("proto obj:", protoObj)
+
+      state.protoText = JSON.stringify(protoObj)
+    })
+  })
+
+  // requestAnimationFrame(onClickUpdateLeds)
+}
 
 
 function stringToArray(bufferString) {
@@ -140,8 +179,15 @@ function decodeBase64(text, pbType) {
 <template>
   <div>
     <h1>MS4 Auto Interface</h1>
+    <h2>JSON</h2>
+    <div>{{state.errorText}}</div>
+    <textarea v-model="state.protoText" />
+    <div>{{JSON.stringify(state.protoObj)}}</div>
+    <button @click="onClickLoadFromShifter">Get State FROM Shifter</button>
+    <button @click="onClickLoadFromShifter">Upload TO Shifter</button>
+
     <div>
-      <AutoType v-if="state.rootType" :type="state.rootType" value="???" />
+      <AutoType v-if="state.rootType" :type="state.onClickLoadFromShifter" value="???" />
     </div>
   </div>
 </template>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { MS400BaseUrl } from "@/ms/ms4000";
 import { bytesToBase64 } from "@/utils/base64";
 import { enumNumberMember, numberLiteralTypeAnnotation, type EnumNumberMember } from "@babel/types";
 import {reactive, watchEffect, ref} from "vue"
@@ -36,6 +37,7 @@ function createRGBA(r: number = 0, g: number = 0, b: number = 0, a: number = 255
 
 
 const state = reactive({ 
+  modeIdx: 0,
   // ledValues: new Array(LEDS * 4),
   ledValues: [{r:255, g:110, b:0, a: 23}],
   base64: "hello world!",
@@ -49,6 +51,11 @@ state.ledValues = lV
 
 watchEffect(()=> {
   state.base64 = bytesToBase64(rgbaArrayToPlainArray(state.ledValues))
+})
+
+watchEffect(()=> {
+  let url = MS400BaseUrl + "/mode?m=" + state.modeIdx
+  fetch(url)
 })
 
 let i = 0
@@ -69,6 +76,7 @@ function onClickUpdateLeds() {
 
 <template>
   <div>
+    <h1>Mode: <input type="number" v-model="state.modeIdx" style="width: 3em;"/></h1>
     <h1>Direct LEDS</h1>
     <template v-for="ledValue, idx in state.ledValues">
       <p>
