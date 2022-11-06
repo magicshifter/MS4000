@@ -9,9 +9,9 @@ const props = defineProps<{
     modelValue: any,
 }>()
 
-// const state = reactive({ 
-//   modes: []
-// })
+const state = reactive({ 
+  iter: []
+})
 
 const emit = defineEmits(['update:modelValue'])
 
@@ -51,17 +51,19 @@ function createUpdateFieldValue(f) {
     })
 }
 
-const iter = fields ? Object.keys(fields).map((name) => {
-    const vStr = JSON.stringify(props?.['modelValue']?.[name])
-    console.log("the iter", name, props?.['modelValue']?.[name], JSON.stringify(props?.['modelValue']?.[name]))
-    return {
-        name,
-        field: fields[name],
-        // value: vStr ? JSON.parse(vStr) : undefined, // props['modelValue']?.[name], 
-        value: props['modelValue']?.[name], 
-        handler: createUpdateFieldValue(name)
-    }
-}) : []
+watchEffect(() => {
+    state.iter = fields ? Object.keys(fields).map((name) => {
+        const vStr = JSON.stringify(props?.['modelValue']?.[name])
+        console.log("the iter", name, props?.['modelValue']?.[name], JSON.stringify(props?.['modelValue']?.[name]))
+        return {
+            name,
+            field: fields[name],
+            // value: vStr ? JSON.parse(vStr) : undefined, // props['modelValue']?.[name], 
+            value: props['modelValue']?.[name], 
+            handler: createUpdateFieldValue(name)
+        }
+    }) : []
+})
 
 
 let rendered = 1
@@ -73,7 +75,7 @@ let rendered = 1
             <h2>{{rendered++}} type: {{name}}</h2>
             <!-- <div>{{JSON.stringify(props?.['modelValue'])}}</div> -->
             <div>
-                <div v-for="iii in iter" class="field">
+                <div v-for="iii in state.iter" class="field">
                     <p>::{{iii.name}}::</p>
                     <AutoField :field="iii.field" :modelValue="iii.value" @update:modelValue="iii.handler"/>
                 </div>
