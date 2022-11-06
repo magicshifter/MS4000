@@ -130,6 +130,7 @@ function onClickLoadFromShifter() {
       console.log("proto obj:", protoObj)
 
       state.protoText = smartStringify(protoObj)
+      state.protoObj = protoObj
     })
   })
 }
@@ -208,6 +209,11 @@ function onClickUploadToShifter() {
   //     dispatch(configDownloadFail(error))
   //   });
 
+
+function onChangeAuto(x) {
+  console.log("AutoInterface.onChangeAuto")
+  state.protoText = smartStringify(x)
+}
 </script>
 
 <template>
@@ -223,7 +229,7 @@ function onClickUploadToShifter() {
 
     <div v-if="state.rootType != undefined">
       <div>root not undefined...</div>
-      <AutoType v-if="state.rootType" :type="state.rootType" value="???" />
+      <AutoType :type="state.rootType" :modelValue="state.protoObj" @update:modelValue="onChangeAuto"/>
     </div>
   </div>
 </template>

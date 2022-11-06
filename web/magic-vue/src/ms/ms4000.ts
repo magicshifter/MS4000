@@ -41,6 +41,7 @@ export function decodeBase64(text, pbType) {
           longs: undefined,
           enums: undefined,
           bytes: undefined,
+          defaults: true,
         });
   
         console.log("after toObject decoded MS4", object)

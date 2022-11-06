@@ -8,10 +8,12 @@ import {reactive, watchEffect, ref} from "vue"
 import AutoControll from "../components/AutoControll.vue"
 import AutoType from "./AutoType.vue"
 
+const emit = defineEmits(['update:modelValue'])
+
 const props = defineProps<{
     field: any,
-    value: any,
-    onChange: any,
+    "modelValue": any,
+    "update:modelValue": any, 
 }>()
 
 // const state = reactive({ 
@@ -49,16 +51,30 @@ if (!isEnum && !isType) {
     isNativeType = true
     console.log("not an enum not a type what is it??", name, field)
 }
+
+
+function onChangeValue(evt) {
+  const txt = evt.target.value;
+  console.log("got new value (str):", txt)
+  // props["update:modelValue"] = txt
+
+  emit('update:modelValue', txt)
+}
+
+
+function onTypeChanged(x) {
+  emit('update:modelValue', x)
+}
+
 </script>
 
 <template>
   <div>
     <h3>field: {{name}} {{isEnum ? " | isEnum" : ""}} {{isType ? " | isType" : ""}} | typeof({{type}}) | native?{{isNativeType}}</h3>
+    <div v-if="!typeLookup || isNativeType">{{name}}: <input type="text" :value="props?.modelValue" @change="onChangeValue"/></div>
     <div v-if="lookup != undefined" class="type">
         <div v-for="valueName in valueIndex">{{valueName}} : {{values[valueName]}}</div>
-        
-        <AutoType  v-if="typeLookup != undefined"  :type="typeLookup" />
-        
+        <AutoType  v-if="typeLookup != undefined"  :type="typeLookup" :modelValue="props?.modelValue?.[name]" @update:modelValue="onTypeChanged"/>
     </div>
   </div>
 </template>
