@@ -31,7 +31,21 @@ function createUpdateFieldValue(f) {
     console.log("creating the fn with: f=", f)
     return ((update) => {
         console.log("onUpdateFieldValue", f, update)
-        const newValue = {...props?.["modelValue"]}
+
+        // const newValue = {...props?.["modelValue"]}\
+
+        let newValue = {}
+        try {
+            newValue = JSON.parse(JSON.stringify(props["modelValue"]))
+            if (newValue === undefined || newValue === null) {
+                newValue = {}
+            }
+        }
+        catch (ex) {
+            console.warn("exception in cloning undefiend?")
+        }
+        
+
         newValue[f] = update
         emit("update:modelValue", newValue)
     })
@@ -50,13 +64,13 @@ const iter = fields ? Object.keys(fields).map((name) => {
 }) : []
 
 
-
+let rendered = 1
 </script>
 
 <template>
     <div>
         <div v-if="root" class="type">
-            <h2>type: {{name}}</h2>
+            <h2>{{rendered++}} type: {{name}}</h2>
             <!-- <div>{{JSON.stringify(props?.['modelValue'])}}</div> -->
             <div>
                 <div v-for="iii in iter" class="field">

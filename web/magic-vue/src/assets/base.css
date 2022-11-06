@@ -82,7 +82,7 @@ body {
 }
 
 .myTextareaVerySmall {
-  width: 10em; 
+  width: 22em; 
   height: 1.6em; 
   color: #FF8; 
   background-color: 
@@ -99,7 +99,7 @@ body {
 
 .myTextareaMedium {
   width: 60em; 
-  height: 10em; 
+  height: 15em; 
   color: #FF8; 
   background-color: 
   #333;

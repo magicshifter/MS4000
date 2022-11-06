@@ -83,8 +83,8 @@ const llll = props?.['modelValue'] ?
   <div>
     <h3>field: {{name}} {{isEnum ? " | isEnum" : ""}} {{isType ? " | isType" : ""}} | typeof({{type}}) | native?{{isNativeType}}</h3>
     <!-- <div>{{JSON.stringify(props['modelValue'])}}</div> -->
-    <div v-if="true || !typeLookup || isNativeType">{{name}}: 
-      <textarea @change="onChangeValue" :class="llll > 150 ? 'myTextareaMedium' : llll < 10 ? 'myTextareaVerySmall' : 'myTextareaSmall'">{{JSON.stringify(props?.['modelValue'])}}</textarea>
+    <div v-if="true || !typeLookup || isNativeType">
+      <textarea @change="onChangeValue" :class="llll > 150 ? 'myTextareaMedium' : llll < 20 ? 'myTextareaVerySmall' : 'myTextareaSmall'">{{JSON.stringify(props?.['modelValue'])}}</textarea>
     </div>
     <div v-if="lookup != undefined" class="type">
         <div v-for="valueName in valueIndex">{{valueName}} : {{values[valueName]}}</div>

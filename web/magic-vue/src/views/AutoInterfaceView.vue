@@ -110,6 +110,8 @@ watchEffect(()=> {
     state.protoObj = JSON.parse(state.protoText)
     state.errorText = "OK :)"
 
+    console.log("AutoIntefrace watching for TExt cvhange done new obj stored, autoUpdate?", state.autoUpdate)
+
     if (state.autoUpdate)
       onClickUploadToShifter()
   }
@@ -216,6 +218,8 @@ function onChangeAuto(x) {
   state.protoText = smartStringify(x)
   state.protoObj = x
 }
+
+let rendered = 1
 </script>
 
 <template>
@@ -231,6 +235,7 @@ function onChangeAuto(x) {
 
     <div v-if="state.rootType != undefined">
       <div>root not undefined...</div>
+      <div>{{rendered++}}</div>
       <AutoType :type="state.rootType" :modelValue="state.protoObj" @update:modelValue="onChangeAuto"/>
     </div>
   </div>
