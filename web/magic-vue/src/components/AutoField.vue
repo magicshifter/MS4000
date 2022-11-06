@@ -12,8 +12,7 @@ const emit = defineEmits(['update:modelValue'])
 
 const props = defineProps<{
     field: any,
-    "modelValue": any,
-    "update:modelValue": any, 
+    modelValue: any
 }>()
 
 // const state = reactive({ 
@@ -39,7 +38,7 @@ catch (ex) {
 
 const lookup = root.lookup(type) //field.type)
 
-console.log("AutoField", typeLookup == lookup, lookup)
+console.log("AutoField", props['modelValue'], typeLookup == lookup, lookup)
 const isEnum = lookup instanceof protobuf.Enum
 const isType = lookup instanceof protobuf.Type
 
@@ -55,7 +54,7 @@ if (!isEnum && !isType) {
 
 function onChangeValue(evt) {
   const txt = evt.target.value;
-  console.log("got new value (str):", txt)
+  console.log("got new field value (str):", txt)
   // props["update:modelValue"] = txt
 
   emit('update:modelValue', txt)
@@ -63,6 +62,7 @@ function onChangeValue(evt) {
 
 
 function onTypeChanged(x) {
+  console.log("got new type value (obj):", x)
   emit('update:modelValue', x)
 }
 
@@ -71,10 +71,11 @@ function onTypeChanged(x) {
 <template>
   <div>
     <h3>field: {{name}} {{isEnum ? " | isEnum" : ""}} {{isType ? " | isType" : ""}} | typeof({{type}}) | native?{{isNativeType}}</h3>
-    <div v-if="!typeLookup || isNativeType">{{name}}: <input type="text" :value="props?.modelValue" @change="onChangeValue"/></div>
+    <div>{{JSON.stringify(props['modelValue'])}}</div>
+    <div v-if="!typeLookup || isNativeType">{{name}}: <input type="text" :value="props?.['modelValue']" @change="onChangeValue"/></div>
     <div v-if="lookup != undefined" class="type">
         <div v-for="valueName in valueIndex">{{valueName}} : {{values[valueName]}}</div>
-        <AutoType  v-if="typeLookup != undefined"  :type="typeLookup" :modelValue="props?.modelValue?.[name]" @update:modelValue="onTypeChanged"/>
+        <AutoType  v-if="typeLookup != undefined"  :type="typeLookup" :modelValue="props?.['modelValue']?.[name]" @update:modelValue="onTypeChanged"/>
     </div>
   </div>
 </template>

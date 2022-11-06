@@ -63,11 +63,12 @@ const templateProtoText = `
 const state = reactive({
   autoUpdate: false,
   protoText: templateProtoText.trim(),
-  protoObj: {},
+  protoObj: JSON.parse(templateProtoText),
   errorText: "OK",
   undefined: undefined,
 
 })
+
 
 const theRoot = ref("")
 

@@ -6,7 +6,7 @@ import AutoField from "./AutoField.vue"
 
 const props = defineProps<{
     type: any,
-    "modelValue": any,
+    modelValue: any,
 }>()
 
 // const state = reactive({ 
@@ -15,7 +15,7 @@ const props = defineProps<{
 
 const emit = defineEmits(['update:modelValue'])
 
-console.log("AutoType :)", props, props?.modelValue)
+console.log("AutoType :)", props?.["modelValue"])
 
 const { type, value, onChange } = props
 const name = type?.name
@@ -31,18 +31,22 @@ function createUpdateFieldValue(f) {
     console.log("creating the fn with: f=", f)
     return ((update) => {
         console.log("onUpdateFieldValue", f, update)
-        const newValue = {...props.modelValue}
+        const newValue = {...props?.["modelValue"]}
         newValue[f] = update
         emit("update:modelValue", newValue)
     })
 }
 
-const iter = fields ? Object.keys(fields).map((name) => ({
-    name,
-    field: fields[name],
-    value: props?.modelValue?.[name], 
-    handler: createUpdateFieldValue(name)
-})) : []
+const iter = fields ? Object.keys(fields).map((name) => {
+    const vStr = JSON.stringify(props?.['modelValue']?.[name])
+    console.log("the iter", name, props?.['modelValue']?.[name], JSON.stringify(props?.['modelValue']?.[name]))
+    return {
+        name,
+        field: fields[name],
+        value: vStr ? JSON.parse(vStr) : undefined, // props['modelValue']?.[name], 
+        handler: createUpdateFieldValue(name)
+    }
+}) : []
 
 
 
@@ -50,16 +54,17 @@ const iter = fields ? Object.keys(fields).map((name) => ({
 
 <template>
     <div>
-    <div v-if="root" class="type">
-        <h2>type: {{name}}</h2>
-        <div>
-            <div v-for="iii in iter" class="field">
-                <p>::{{iii.name}}::</p>
-                <AutoField :field="iii.field" :modelValue="iii.value" @update:modelValue="iii.handler"/>
+        <div v-if="root" class="type">
+            <h2>type: {{name}}</h2>
+            <div>{{JSON.stringify(props?.['modelValue'])}}</div>
+            <div>
+                <div v-for="iii in iter" class="field">
+                    <p>::{{iii.name}}::</p>
+                    <AutoField :field="iii.field" :modelValue="iii.value" @update:modelValue="iii.handler"/>
+                </div>
             </div>
         </div>
-    </div>
-    <div v-if="!root">NO ROOT!!!!!!!!11</div>
+        <div v-if="!root">NO ROOT!!!!!!!!11</div>
     </div>
 </template>
 
