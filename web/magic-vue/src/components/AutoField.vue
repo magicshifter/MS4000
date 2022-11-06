@@ -19,7 +19,7 @@ const props = defineProps<{
 //   modes: []
 // })
 
-const {field, value} = props 
+const {field, modelValue} = props 
 const {type, root, name } = field
 
 
@@ -38,7 +38,7 @@ catch (ex) {
 
 const lookup = root.lookup(type) //field.type)
 
-console.log("AutoField", props['modelValue'], typeLookup == lookup, lookup)
+console.log("AutoField", props['modelValue'], typeLookup == lookup, lookup, name)
 const isEnum = lookup instanceof protobuf.Enum
 const isType = lookup instanceof protobuf.Type
 
@@ -57,7 +57,15 @@ function onChangeValue(evt) {
   console.log("got new field value (str):", txt)
   // props["update:modelValue"] = txt
 
-  emit('update:modelValue', txt)
+  try {
+    const obj = JSON.parse(txt)
+    console.log("got new field value (obj):", obj)
+    emit('update:modelValue', obj)
+  }
+  catch (ex) {
+      console.error("error parsing json in Field onChangeValue", ex)
+  }
+  
 }
 
 
@@ -66,16 +74,21 @@ function onTypeChanged(x) {
   emit('update:modelValue', x)
 }
 
+const llll = props?.['modelValue'] ? 
+  JSON.stringify(props?.['modelValue'])?.length : 0
+
 </script>
 
 <template>
   <div>
     <h3>field: {{name}} {{isEnum ? " | isEnum" : ""}} {{isType ? " | isType" : ""}} | typeof({{type}}) | native?{{isNativeType}}</h3>
-    <div>{{JSON.stringify(props['modelValue'])}}</div>
-    <div v-if="!typeLookup || isNativeType">{{name}}: <input type="text" :value="props?.['modelValue']" @change="onChangeValue"/></div>
+    <!-- <div>{{JSON.stringify(props['modelValue'])}}</div> -->
+    <div v-if="true || !typeLookup || isNativeType">{{name}}: 
+      <textarea @change="onChangeValue" :class="llll > 150 ? 'myTextareaMedium' : llll < 10 ? 'myTextareaVerySmall' : 'myTextareaSmall'">{{JSON.stringify(props?.['modelValue'])}}</textarea>
+    </div>
     <div v-if="lookup != undefined" class="type">
         <div v-for="valueName in valueIndex">{{valueName}} : {{values[valueName]}}</div>
-        <AutoType  v-if="typeLookup != undefined"  :type="typeLookup" :modelValue="props?.['modelValue']?.[name]" @update:modelValue="onTypeChanged"/>
+        <AutoType  v-if="typeLookup != undefined"  :type="typeLookup" :modelValue="props['modelValue']" @update:modelValue="onTypeChanged"/>
     </div>
   </div>
 </template>

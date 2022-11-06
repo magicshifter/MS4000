@@ -43,7 +43,8 @@ const iter = fields ? Object.keys(fields).map((name) => {
     return {
         name,
         field: fields[name],
-        value: vStr ? JSON.parse(vStr) : undefined, // props['modelValue']?.[name], 
+        // value: vStr ? JSON.parse(vStr) : undefined, // props['modelValue']?.[name], 
+        value: props['modelValue']?.[name], 
         handler: createUpdateFieldValue(name)
     }
 }) : []
@@ -56,7 +57,7 @@ const iter = fields ? Object.keys(fields).map((name) => {
     <div>
         <div v-if="root" class="type">
             <h2>type: {{name}}</h2>
-            <div>{{JSON.stringify(props?.['modelValue'])}}</div>
+            <!-- <div>{{JSON.stringify(props?.['modelValue'])}}</div> -->
             <div>
                 <div v-for="iii in iter" class="field">
                     <p>::{{iii.name}}::</p>

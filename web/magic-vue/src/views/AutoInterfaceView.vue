@@ -214,6 +214,7 @@ function onClickUploadToShifter() {
 function onChangeAuto(x) {
   console.log("AutoInterface.onChangeAuto")
   state.protoText = smartStringify(x)
+  state.protoObj = x
 }
 </script>
 
@@ -224,7 +225,7 @@ function onChangeAuto(x) {
     <button @click="onClickLoadFromShifter">Get State FROM Shifter</button>
     <button @click="onClickUploadToShifter">Upload TO Shifter</button>
     <div>{{state.errorText}}</div>
-    <textarea v-model="state.protoText" style="width: 70em; height: 40em; color: #FF8; background-color: #333;"/>
+    <textarea v-model="state.protoText" class="myTextarea" />
     <div>{{JSON.stringify(state.protoObj)}}</div>
 
 
