@@ -37,15 +37,21 @@ function createRGBA(r: number = 0, g: number = 0, b: number = 0, a: number = 255
 
 
 const state = reactive({ 
-  modeIdx: 0,
+  modeIdx: 4,
   // ledValues: new Array(LEDS * 4),
-  ledValues: [{r:255, g:110, b:0, a: 23}],
+  ledValues: [{r:0, g:0, b:0, a: 129}],
   base64: "hello world!",
 })
 
 const lV = []
+const brightness = 5;
+
 for (let i = 0; i < LEDS; i++) {
-  lV.push(createRGBA())
+  lV.push(createRGBA(
+    i%2==0 ? brightness : 0,
+    (i>>1)%2==0 ? brightness : 0,
+    (i>>2)%2==0 ? brightness : 0, 
+    129))
 }
 state.ledValues = lV
 
