@@ -1,0 +1,74 @@
+858  cd MS4000/
+  859  gs
+  860  gl
+  861  git pull
+  862  cd web/magic-vue/
+  863  code .
+  864  gs
+  865  gd
+  866  gc -a -v
+  867  git pull
+  868  git push
+  869  cd ..
+  870  git pull
+  871  git push
+  872  gs
+  873  cd firmware/
+  874  make flash
+  875  ls
+  876  cd ..
+  877  ls -hal
+  878  . .venv/bin/activate
+  879  make
+  880  ls
+  881  cd firmware/
+  882  ls
+  883  make
+  884  groups wizard 
+  885  make flash
+  886  ls
+  887  cd ..
+  888  ls
+  889  cd tools/
+  890  ls
+  891  more README.md 
+  892  ls tools
+  893  ls
+  894  gs
+  895  cd projects/ec/git/evocell-app/
+  896  cd public/res/
+  897  gs
+  898  git checkout master
+  899  git pull
+  900  gs
+  901  cd ..
+  902  gs
+  903  git pull
+  904  . .venv/bin/activate
+  905  make proto
+  906  cd firmware/
+  907  make proto
+  908  export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
+  909  make proto
+  910  cd ../tools/
+  911  ls
+  912  cd nanopb/
+  913  ls
+  914  cd generator/
+  915  ls
+  916  ./protoc
+  917  cd ../../../
+  918  ls
+  919  vi 
+  920  vi README.md 
+  921  cd firmware/
+  922  make
+  923  cd ../tools/esptool-ck/
+  924  make
+  925  cd -
+  926  make
+  927  cd ../tools/factoryFlashing/
+  928  ls
+  929  make
+  930  history
+  
