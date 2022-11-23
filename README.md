@@ -52,7 +52,7 @@ PlatformIO allows us to very easily manage project dependencies and complete ful
 	http://platformio.org
 
 	* MacOS:
-		`brew instal platformio` 
+		`brew install platformio` 
 
 	* Linux: Set up venv, install python 3.7 (or so..), then:
 		`pip install platformio`
