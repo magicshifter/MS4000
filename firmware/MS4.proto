@@ -112,6 +112,8 @@ message MS4 {
         optional Sequi sequi = 11;
         optional Updater updater = 12;
 
+        optional VibrationSensorMQTT vibration = 13;
+
         message Shake {
             optional string image = 1;
             optional int32 colorIndex = 2;
@@ -173,6 +175,22 @@ message MS4 {
             optional int32 sensitivity = 2 [ default = 2 ];
             optional RGB color = 3;
         }
+
+        message VibrationSensorMQTT {
+            enum Mode {
+                SIDE = 0;
+                CENTER = 1;
+            }
+
+            optional Mode mode = 1 [ default = SIDE ];
+            optional int32 sensitivity = 2 [ default = 2 ];
+            optional RGB color = 3;
+
+            optional int32 thresholdLow = 2 [ default = 100 ];
+            optional int32 thresholdMedium = 2 [ default = 200 ];
+            optional int32 thresholdHigh = 2 [ default = 500 ];
+        }
+
 
         message Countdown {
 
