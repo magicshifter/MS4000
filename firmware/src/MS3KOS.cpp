@@ -58,7 +58,6 @@ MagicShifterWebServer msWebServer;
 // Onboard GUI modes, per configuration
 #include "Modes/Modes.h"
 
-
 // Detect system-faults for factory testing and otherwise
 // A low-level system fault can either be:
 //  a) a low-power emergency
