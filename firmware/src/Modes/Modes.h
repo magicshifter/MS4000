@@ -50,6 +50,8 @@ MagicRemoteMode msMagicRemote;
 MagicBeatMode msMagicBeat;
 MagicUpdateMode msMagicUpdate;
 MagicBikeMode msMagicBike;
+MagicMeasureMQTTModes msMagicMeasureMQTT;
+
 //MagicConwayMode msMagicConway;
 //MagicCountdownMode msMagicCountdown;
 
