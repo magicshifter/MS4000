@@ -33,6 +33,7 @@ MIDISequence8Mode msMIDISequencer;
 #include "MagicUpdate.h"
 #include "MagicConway.h"
 #include "MagicBike.h"
+#include "MagicMeasureMQTT.h"
 
 #include "PowerEmergency.h"
 
@@ -50,7 +51,7 @@ MagicRemoteMode msMagicRemote;
 MagicBeatMode msMagicBeat;
 MagicUpdateMode msMagicUpdate;
 MagicBikeMode msMagicBike;
-MagicMeasureMQTTModes msMagicMeasureMQTT;
+MagicMeasureMQTTMode msMagicMeasureMQTT;
 
 //MagicConwayMode msMagicConway;
 //MagicCountdownMode msMagicCountdown;
