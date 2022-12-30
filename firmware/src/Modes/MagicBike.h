@@ -53,12 +53,12 @@ public:
 		}
 #endif
 
-		bikeUDP.begin(8008);
+		bikeUDP.begin(8888);
 
 		if (_bike.role == MS4_App_Bike_Role_FRONT_LIGHT) {
-			msSystem.slog("leftmode<<");
+			msSystem.slog("[FRONT]");
 		} else {
-			msSystem.slog("rightmode>>");
+			msSystem.slog("[REAR]");
 		}
 
 #ifdef BIKE_MODE_USE_MQTT
@@ -105,11 +105,9 @@ public:
 		int packetSize = bikeUDP.parsePacket();
 		
 		if (packetSize) {
-    		// Serial.printf("Received packet of size %d from %s:%d\n    (to %s:%d, free heap = %d B)\n",
-            //       packetSize,
-            //       bikeUDP.remoteI().toString().c_str(), bikeUDP.remotePort(),
-            //       bikeUDP.destinationIP().toString().c_str(), bikeUDP.localPort(),
-            //       ESP.getFreeHeap());
+            msSystem.slogln( "UDP rec'd: " + String(packetSize) + " from:" + bikeUDP.remoteIP().toString() + " port: " + String(bikeUDP.remotePort()) );
+            msSystem.slogln( "  [..] to:" + bikeUDP.destinationIP().toString() + " port: " + String(bikeUDP.localPort()) );
+            msSystem.slogln( " FreeHeap: " + String(ESP.getFreeHeap()));
 
 			// read the packet into packetBufffer
 			int n = bikeUDP.read(packetBuffer, UDP_TX_PACKET_MAX_SIZE);
