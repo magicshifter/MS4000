@@ -10,7 +10,7 @@ private:
 
 public:
 	MagicMeasureMQTTMode() {
-		modeName = "Beat";
+		modeName = "MQTTer";
 
 		colorIndex = 1;
 
