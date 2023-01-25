@@ -322,7 +322,7 @@ extern "C" {
 #endif
 
 /* Initializer values for message structs */
-#define RGB_init_default                         {255, 121, 0}
+#define RGB_init_default                         {255, 5, 5}
 #define MIDI_OCTAVE_init_default                 {5}
 #define MIDI_INTERVALS_init_default              {0}
 #define MIDI_STEP_init_default                   {MIDI_INTERVALS_init_default, MIDI_OCTAVE_init_default, 0}
@@ -337,7 +337,7 @@ extern "C" {
 #define MS4_App_Magnet_init_default              {false, MS4_App_Magnet_Mode_BARS}
 #define MS4_App_System_init_default              {false, MS4_App_System_Mode_VERSION}
 #define MS4_App_Remote_init_default              {0}
-#define MS4_App_Beat_init_default                {false, MS4_App_Beat_Mode_SIDE, false, 2, false, RGB_init_default}
+#define MS4_App_Beat_init_default                {false, MS4_App_Beat_Mode_CENTER, false, 2, false, RGB_init_default}
 #define MS4_App_Countdown_init_default           {false, MS4_App_Countdown_Mode_DOWN_1M}
 #define MS4_App_Arpi_init_default                {false, MS4_App_Arpi_Mode_ARP8}
 #define MS4_App_Bike_init_default                {false, _MS4_App_Bike_Role_MIN, {{NULL}, NULL}, {{NULL}, NULL}, false, _MS4_App_Bike_BlinkMode_MIN, false, _MS4_App_Bike_TapMode_MIN}

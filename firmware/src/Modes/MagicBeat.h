@@ -12,7 +12,7 @@ public:
 	MagicBeatMode() {
 		modeName = "Beat";
 
-		colorIndex = 1;
+		colorIndex = 2;
 
 		msGlobals.pbuf.has_apps = 1;
         msGlobals.pbuf.apps.has_current = 1;   
@@ -20,9 +20,12 @@ public:
 
 		// _beat = &msGlobals.pbuf.apps.beat;
 	
-		_beat.color.B = 255;
-		_beat.sensitivity = 1;
-		_beat.mode = MS4_App_Beat_Mode_CENTER;
+		_beat.color.R = 10;
+		_beat.color.G = 255;
+		_beat.color.B = 10;
+
+		_beat.sensitivity = 2;
+		_beat.mode = MS4_App_Beat_Mode_SIDE;
 
 		_beat.has_color = 1;
         _beat.has_mode = 1;
@@ -31,7 +34,18 @@ public:
 
 	virtual void start() {
 
+		// hack: wizards work colleague
+		_beat.color.R = 10;
+		_beat.color.G = 255;
+		_beat.color.B = 10;
 
+		_beat.sensitivity = 2;
+		_beat.mode = MS4_App_Beat_Mode_SIDE;
+
+
+		if (msSystem.msButtons.msBtnBHit) {
+					_beat.sensitivity = 1;
+		}
 	}
 
 	virtual void stop(void) {

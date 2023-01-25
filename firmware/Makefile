@@ -1,6 +1,7 @@
 SHELL := /bin/bash
 
 MS4_FLASH_BAUD=921600
+MS4_FLASH_BAUD=57600
 
 #linux
 MS4_PORT=/dev/ttyUSB0

@@ -119,7 +119,7 @@ void setup()
 	msSystem.slogln("wifi: hostname is:" + WiFi.hostname());
 	msSystem.slogln("wifi: OTA hostname is:" + ArduinoOTA.getHostname());
 
-	// msGlobals.ui.currentMode = 3;
+	msGlobals.ui.currentMode = 5;
 
 
 	// if MIDI has been configured, enable the additional MIDI mode(s)
