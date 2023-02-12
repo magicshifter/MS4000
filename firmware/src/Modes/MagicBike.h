@@ -14,6 +14,8 @@
 
 #include <WiFiUdp.h>
 
+#define BIKE_MODE_USE_MQTT 1
+
 class MagicBikeMode : public MagicShifterBaseMode {
 
 private:
@@ -44,16 +46,28 @@ public:
 	virtual void start() {
 
 #ifdef BIKE_MODE_USE_MQTT
+		String mqttName = msSystem.Settings.getUniqueSystemName();
+
 		// TODO: replace with broker IP
-		bikeMQTT.begin("0.0.0.0", bikeNet);
-		msSystem.slog("mqtt connecting..");
-		while (!bikeMQTT.connect("bike", "public", "public")) {
+		bikeMQTT.begin("91.92.136.115", bikeNet);
+		msSystem.slog("mqtt connecting as ");
+		msSystem.slog(mqttName);
+		
+		while (!bikeMQTT.connect(mqttName.c_str(), "public", "public")) {
 			msSystem.slog(".");
 			delay(500);
 		}
 #endif
 
-		bikeUDP.begin(8888);
+		msSystem.slog("bike mode activate");
+
+
+#ifdef BIKE_MODE_USE_MQTT
+		bikeMQTT.onMessage(messageReceived);
+		bikeMQTT.subscribe("bike");
+#endif
+
+		// bikeUDP.begin(1883);
 
 		if (_bike.role == MS4_App_Bike_Role_FRONT_LIGHT) {
 			msSystem.slog("[FRONT]");
@@ -61,17 +75,12 @@ public:
 			msSystem.slog("[REAR]");
 		}
 
-#ifdef BIKE_MODE_USE_MQTT
-		bikeMQTT.onMessage(messageReceived);
-		bikeMQTT.subscribe("/bike");
-#endif
-
 	}
 
 	virtual void stop(void) {
 
 #ifdef BIKE_MODE_USE_MQTT
-		bikeMQTT.unsubscribe("/bike");
+		bikeMQTT.unsubscribe("bike");
 		bikeMQTT.disconnect();
 #endif
 	}
@@ -82,7 +91,7 @@ public:
 		bikeUDP.endPacket();
 
 #ifdef BIKE_MODE_USE_MQTT
-			bikeMQTT.publish("/bike", "left");
+			bikeMQTT.publish("bike", "left");
 #endif
 	}
 
@@ -92,7 +101,7 @@ public:
 		bikeUDP.endPacket();
 
 #ifdef BIKE_MODE_USE_MQTT
-			bikeMQTT.publish("/bike", "right");
+			bikeMQTT.publish("bike", "right");
 #endif
 	}
 
