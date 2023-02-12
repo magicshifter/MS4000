@@ -1,3 +1,12 @@
+
+#include <WiFiClient.h>
+#include <MQTT.h>
+
+#include <WiFiUdp.h>
+
+#define BEAT_MODE_USE_MQTT 1
+
+
 class MagicBeatMode : public MagicShifterBaseMode {
 
 private:
@@ -7,6 +16,10 @@ private:
 
 	MS4_App_Beat &_beat = msGlobals.pbuf.apps.beat;
 
+#ifdef BEAT_MODE_USE_MQTT
+	WiFiClient	beatNet;
+	MQTTClient	beatMQTT;
+#endif
 
 public:
 	MagicBeatMode() {
@@ -32,6 +45,14 @@ public:
         _beat.has_sensitivity = 1;
 	}
 
+
+
+#ifdef BEAT_MODE_USE_MQTT
+	static void mqttMessageReceived(String &topic, String &payload) {
+		msSystem.slog("incoming: " + topic + " - " + payload);
+	}
+#endif
+	
 	virtual void start() {
 
 		// hack: wizards work colleague
@@ -46,9 +67,35 @@ public:
 		if (msSystem.msButtons.msBtnBHit) {
 					_beat.sensitivity = 1;
 		}
+
+
+#ifdef BEAT_MODE_USE_MQTT
+		String mqttName = msSystem.Settings.getUniqueSystemName();
+
+		// TODO: replace with broker IP
+	beatMQTT.begin("91.92.136.115", beatNet);
+		msSystem.slog(mqttName);
+		
+		while (!beatMQTT.connect(mqttName.c_str(), "public", "public")) {
+			msSystem.slog(".");
+			delay(500);
+		}
+
+		beatMQTT.onMessage(mqttMessageReceived);
+		beatMQTT.subscribe("beat");
+
+#endif
+
 	}
 
+
 	virtual void stop(void) {
+
+
+#ifdef BEAT_MODE_USE_MQTT
+		beatMQTT.unsubscribe("beat");
+		beatMQTT.disconnect();
+#endif
 	}
 
 	const int axis = 2;
@@ -158,6 +205,12 @@ public:
 			_beat.color.B = (colorIndex & 4) ? 255 : 0;
 			msSystem.msButtons.msBtnPwrHit = false;
 		}
+
+
+#ifdef BEAT_MODE_USE_MQTT
+		String beatMQTTMsg = " it ";
+		beatMQTT.publish("beat", beatMQTTMsg);
+#endif
 
 		return true;
 	}
