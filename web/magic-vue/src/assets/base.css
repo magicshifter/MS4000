@@ -72,3 +72,35 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.myTextarea {
+  width: 70em; 
+  height: 35em; 
+  color: #FF8; 
+  background-color: 
+  #333;
+}
+
+.myTextareaVerySmall {
+  width: 22em; 
+  height: 1.6em; 
+  color: #FF8; 
+  background-color: 
+  #333;
+}
+
+.myTextareaSmall {
+  width: 60em; 
+  height: 5em; 
+  color: #FF8; 
+  background-color: 
+  #333;
+}
+
+.myTextareaMedium {
+  width: 60em; 
+  height: 15em; 
+  color: #FF8; 
+  background-color: 
+  #333;
+}

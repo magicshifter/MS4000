@@ -117,6 +117,7 @@ class MagicShifterSystem {
 		const String apSysLogConfigPath = "settings/syslog.bin";
 		const String preferredAPConfigPath = "settings/preferredap.bin";
 		const String uiSettingsConfigPath = "settings/ui.bin";
+		const String calibrationConfigPath = "settings/calibration.bin";
 
 		String getUniqueSystemName() 
 		{
@@ -139,142 +140,142 @@ class MagicShifterSystem {
 					config->timeoutLowPower =  10 * 60 * 1000; // 10 minutes
 					config->defaultBrightness = 2;
 				}
-			return result;
-		}
-
-		bool setUIConfig(struct UIConfig *config) {
-			return saveData(uiSettingsConfigPath, config, sizeof(*config));
-		}
-
-		String getAPNameOrUnique() {
-			String retName;
-			bool gotAPConfig = msSystem.Settings.getAPConfig(&apInfo);
-
-			if (gotAPConfig) {
-				retName = String(apInfo.ssid);
-			}
-			else {
-				retName = msSystem.Settings.getUniqueSystemName();
+				return result;
 			}
 
-			return retName;
-
-		}
-
-		bool getServerConfig(struct ServerConfig *config) {
-
-			String path = apServerConfigPath;
-			if (LittleFS.exists((char *) path.c_str())) {
-				File file = LittleFS.open((char *) path.c_str(), "r");
-				file.read((uint8_t *) config, sizeof(*config));
-				file.close();
-				return true;
-			} else {
-				msSystem.slog("webserver: no server config file? ");
-				msSystem.slogln((char *) path.c_str());
+			bool setUIConfig(struct UIConfig *config) {
+				return saveData(uiSettingsConfigPath, config, sizeof(*config));
 			}
 
-			return false;
-		}
+			String getAPNameOrUnique() {
+				String retName;
+				bool gotAPConfig = msSystem.Settings.getAPConfig(&apInfo);
 
-		void setServerConfig(struct ServerConfig *config) {
+				if (gotAPConfig) {
+					retName = String(apInfo.ssid);
+				}
+				else {
+					retName = msSystem.Settings.getUniqueSystemName();
+				}
 
-			String path = apServerConfigPath;
-			File file = LittleFS.open((char *) path.c_str(), "w");
-			file.write((uint8_t *) config, sizeof(*config));
+				return retName;
 
-			file.close();
-
-		}
-
-		bool getSyslogConfig(struct ServerConfig *config) {
-
-			String path = apSysLogConfigPath;
-			if (LittleFS.exists((char *) path.c_str())) {
-				File file = LittleFS.open((char *) path.c_str(), "r");
-				file.read((uint8_t *) config, sizeof(*config));
-				file.close();
-				return true;
-			} else {
-				msSystem.slog("webserver: no syslog config file? ");
-				msSystem.slogln((char *) path.c_str());
 			}
 
-			return false;
-		}
+			bool getServerConfig(struct ServerConfig *config) {
 
-		void setSyslogConfig(struct ServerConfig *config) {
+				String path = apServerConfigPath;
+				if (LittleFS.exists((char *) path.c_str())) {
+					File file = LittleFS.open((char *) path.c_str(), "r");
+					file.read((uint8_t *) config, sizeof(*config));
+					file.close();
+					return true;
+				} else {
+					msSystem.slog("webserver: no server config file? ");
+					msSystem.slogln((char *) path.c_str());
+				}
 
-			String path = apSysLogConfigPath;
-			File file = LittleFS.open((char *) path.c_str(), "w");
-			file.write((uint8_t *) config, sizeof(*config));
+				return false;
+			}
 
-			file.close();
+			void setServerConfig(struct ServerConfig *config) {
 
-		}
+				String path = apServerConfigPath;
+				File file = LittleFS.open((char *) path.c_str(), "w");
+				file.write((uint8_t *) config, sizeof(*config));
 
-		bool getAPConfig(struct APAuth *config) {
-
-			String path = apConfigPath;
-
-			if (LittleFS.exists((char *) path.c_str())) {
-				File file = LittleFS.open((char *) path.c_str(), "r");
-				file.read((uint8_t *) config, sizeof(*config));
 				file.close();
 
-				msSystem.slogln("webserver: AP name is: " + String(config->ssid));
-
-				return true;
-
-			} else {
-				msSystem.slogln("webserver: AP config missing: " + path);
 			}
+
+			bool getSyslogConfig(struct ServerConfig *config) {
+
+				String path = apSysLogConfigPath;
+				if (LittleFS.exists((char *) path.c_str())) {
+					File file = LittleFS.open((char *) path.c_str(), "r");
+					file.read((uint8_t *) config, sizeof(*config));
+					file.close();
+					return true;
+				} else {
+					msSystem.slog("webserver: no syslog config file? ");
+					msSystem.slogln((char *) path.c_str());
+				}
+
+				return false;
+			}
+
+			void setSyslogConfig(struct ServerConfig *config) {
+
+				String path = apSysLogConfigPath;
+				File file = LittleFS.open((char *) path.c_str(), "w");
+				file.write((uint8_t *) config, sizeof(*config));
+
+				file.close();
+
+			}
+
+			bool getAPConfig(struct APAuth *config) {
+
+				String path = apConfigPath;
+
+				if (LittleFS.exists((char *) path.c_str())) {
+					File file = LittleFS.open((char *) path.c_str(), "r");
+					file.read((uint8_t *) config, sizeof(*config));
+					file.close();
+
+					msSystem.slogln("webserver: AP name is: " + String(config->ssid));
+
+					return true;
+
+				} else {
+					msSystem.slogln("webserver: AP config missing: " + path);
+				}
 
 			// don't have a config file, so we return a default
-			l_safeStrncpy(config->ssid, getUniqueSystemName().c_str(),
-				sizeof(config->ssid));
-			l_safeStrncpy(config->password, "", sizeof(config->password));
+				l_safeStrncpy(config->ssid, getUniqueSystemName().c_str(),
+					sizeof(config->ssid));
+				l_safeStrncpy(config->password, "", sizeof(config->password));
 
-msSystem.slogln("webserver: not configured, using unique name: " + String(config->ssid));
+				msSystem.slogln("webserver: not configured, using unique name: " + String(config->ssid));
 
-			return false;
-		}
-
-		void setAPConfig(struct APAuth *config) {
-
-			String path = apConfigPath;
-			File file = LittleFS.open((char *) path.c_str(), "w");
-			file.write((uint8_t *) config, sizeof(*config));
-			file.close();
-
-			msSystem.slogln("webserver: saved:");
-			msSystem.slogln(config->ssid);
-
-		}
-
-		bool getPreferredAP(struct APAuth *config) {
-
-			String path = preferredAPConfigPath;
-			if (LittleFS.exists((char *) path.c_str())) {
-				File file = LittleFS.open((char *) path.c_str(), "r");
-				file.read((uint8_t *) config, sizeof(*config));
-				file.close();
-				return true;
+				return false;
 			}
-			l_safeStrncpy(config->ssid, "", sizeof(config->ssid));
-			l_safeStrncpy(config->password, "", sizeof(config->password));
-			return false;
 
-		}
+			void setAPConfig(struct APAuth *config) {
 
-		void setPreferredAP(struct APAuth *config) {
+				String path = apConfigPath;
+				File file = LittleFS.open((char *) path.c_str(), "w");
+				file.write((uint8_t *) config, sizeof(*config));
+				file.close();
 
-			String path = preferredAPConfigPath;
-			File file = LittleFS.open((char *) path.c_str(), "w");
-			file.write((uint8_t *) config, sizeof(*config));
-			file.close();
+				msSystem.slogln("webserver: saved:");
+				msSystem.slogln(config->ssid);
 
-		}
+			}
+
+			bool getPreferredAP(struct APAuth *config) {
+
+				String path = preferredAPConfigPath;
+				if (LittleFS.exists((char *) path.c_str())) {
+					File file = LittleFS.open((char *) path.c_str(), "r");
+					file.read((uint8_t *) config, sizeof(*config));
+					file.close();
+					return true;
+				}
+				l_safeStrncpy(config->ssid, "", sizeof(config->ssid));
+				l_safeStrncpy(config->password, "", sizeof(config->password));
+				return false;
+
+			}
+
+			void setPreferredAP(struct APAuth *config) {
+
+				String path = preferredAPConfigPath;
+				File file = LittleFS.open((char *) path.c_str(), "w");
+				file.write((uint8_t *) config, sizeof(*config));
+				file.close();
+
+			}
 
 		//
 		// delete an AP Auth structure from the list
@@ -282,104 +283,104 @@ msSystem.slogln("webserver: not configured, using unique name: " + String(config
 		// otherwise ignore it 
 		// and save the list again
 		//
-		void deleteAP(char *ssid) {
-			String path = apListConfigPath;
+			void deleteAP(char *ssid) {
+				String path = apListConfigPath;
 
-			typedef std::map<String, String> AuthItems;
-			typedef std::map<String, String>::iterator AuthItems_it;
-			AuthItems authItems;
+				typedef std::map<String, String> AuthItems;
+				typedef std::map<String, String>::iterator AuthItems_it;
+				AuthItems authItems;
 
-			File inFile;
-			APAuth inAPAuth;
+				File inFile;
+				APAuth inAPAuth;
 
 			// open the existing AP settings file if we can, and construct the map
-			if (LittleFS.exists((char *)path.c_str()))  {
-				inFile = LittleFS.open((char *) path.c_str(), "r");
-			}
-			if (inFile) {
-				msSystem.slog("webserver: opened AP config file:");
-				msSystem.slogln(path);
+				if (LittleFS.exists((char *)path.c_str()))  {
+					inFile = LittleFS.open((char *) path.c_str(), "r");
+				}
+				if (inFile) {
+					msSystem.slog("webserver: opened AP config file:");
+					msSystem.slogln(path);
 
 				// create a list of AP entries already in the file
-				while (inFile.read((uint8_t *) &inAPAuth, sizeof (APAuth)) == sizeof(APAuth)) {
+					while (inFile.read((uint8_t *) &inAPAuth, sizeof (APAuth)) == sizeof(APAuth)) {
 					// exclude the one we want to delete
-					if (strncmp(inAPAuth.ssid, ssid, MAX_AP_LEN) == 0)
-						continue;
-					else
-						authItems[inAPAuth.ssid] = inAPAuth.password;
+						if (strncmp(inAPAuth.ssid, ssid, MAX_AP_LEN) == 0)
+							continue;
+						else
+							authItems[inAPAuth.ssid] = inAPAuth.password;
+					}
+
+					inFile.close();
+
+				} else {
+					msSystem.slog("webserver: couldn't open AP inFile:");
+					msSystem.slogln(path);
 				}
-
-				inFile.close();
-
-			} else {
-				msSystem.slog("webserver: couldn't open AP inFile:");
-				msSystem.slogln(path);
-			}
 
 			// dump the map back to the file
-			File outFile = LittleFS.open((char *) path.c_str(), "w+");
-			if (outFile) {
-				AuthItems_it it;
-				for(it = authItems.begin(); it != authItems.end(); it++)
-				{
-					APAuth t_Auth;
-					l_safeStrncpy(t_Auth.ssid, it->first.c_str(), MAX_AP_LEN);
-					l_safeStrncpy(t_Auth.password, it->second.c_str(), MAX_AP_LEN);
-					outFile.write((uint8_t *)&t_Auth, sizeof(APAuth));
+				File outFile = LittleFS.open((char *) path.c_str(), "w+");
+				if (outFile) {
+					AuthItems_it it;
+					for(it = authItems.begin(); it != authItems.end(); it++)
+					{
+						APAuth t_Auth;
+						l_safeStrncpy(t_Auth.ssid, it->first.c_str(), MAX_AP_LEN);
+						l_safeStrncpy(t_Auth.password, it->second.c_str(), MAX_AP_LEN);
+						outFile.write((uint8_t *)&t_Auth, sizeof(APAuth));
+					}
+
+					outFile.close();
+					msSystem.slog("webserver: saved AP configuration");
+					msSystem.slogln(path);
+				} else {
+					msSystem.slog("webserver: couldn't save AP outFile:");
+					msSystem.slogln(path);
 				}
 
-				outFile.close();
-				msSystem.slog("webserver: saved AP configuration");
-				msSystem.slogln(path);
-			} else {
-				msSystem.slog("webserver: couldn't save AP outFile:");
-				msSystem.slogln(path);
 			}
-
-		}
 
 		//
 		// add an AP Auth structure to the list
 		// if its there already, update the password
 		// if its not there, add it to the list
 		//
-		void addAP(struct APAuth *apInfo) {
-			String path = apListConfigPath;
+			void addAP(struct APAuth *apInfo) {
+				String path = apListConfigPath;
 
-			typedef std::map<String, String> AuthItems;
-			typedef std::map<String, String>::iterator AuthItems_it;
-			AuthItems authItems;
+				typedef std::map<String, String> AuthItems;
+				typedef std::map<String, String>::iterator AuthItems_it;
+				AuthItems authItems;
 
-			File inFile;
-			APAuth inAPAuth;
+				File inFile;
+				APAuth inAPAuth;
 
 			// open the existing AP settings file if we can, and construct the map
-			if (LittleFS.exists((char *)path.c_str()))  {
-				inFile = LittleFS.open((char *) path.c_str(), "r");
-			}
-			if (inFile) {
-				msSystem.slog("webserver: opened AP config file:");
-				msSystem.slogln(path);
+				if (LittleFS.exists((char *)path.c_str()))  {
+					inFile = LittleFS.open((char *) path.c_str(), "r");
+				}
+				if (inFile) {
+					msSystem.slog("webserver: opened AP config file:");
+					msSystem.slogln(path);
 
 				// create a list of AP entries already in the file
-				while (inFile.read((uint8_t *) &inAPAuth, sizeof (APAuth)) == sizeof(APAuth)) {
-					authItems[inAPAuth.ssid] = inAPAuth.password;
+					while (inFile.read((uint8_t *) &inAPAuth, sizeof (APAuth)) == sizeof(APAuth)) {
+						authItems[inAPAuth.ssid] = inAPAuth.password;
+					}
+
+					inFile.close();
+
+				} else {
+					msSystem.slog("webserver: couldn't open AP inFile:");
+					msSystem.slogln(path);
 				}
-
-				inFile.close();
-
-			} else {
-				msSystem.slog("webserver: couldn't open AP inFile:");
-				msSystem.slogln(path);
-			}
 
 			// check if there is an entry in the map for the incoming apInfo
 			// (map could also be empty)
-			auto existingAP = authItems.find(apInfo->ssid);
+				auto existingAP = authItems.find(apInfo->ssid);
 
-			if (existingAP != authItems.end()) {
+				if (existingAP != authItems.end()) {
 		    	// we found it, so set the new password
-				existingAP->second = apInfo->password;
+					existingAP->second = apInfo->password;
 		    } else { 	// .. otherwise, add one and set the password
 		    	authItems[apInfo->ssid] = apInfo->password;
 		    }
@@ -430,19 +431,19 @@ msSystem.slogln("webserver: not configured, using unique name: " + String(config
 					if (!msSystem.msEEPROMs.
 						memcmpByte((byte *) apInfo, 0, requiredBytes))
 						return true;
-					} else {
-						return false;
-					}
-				} while (true);
+				} else {
+					return false;
+				}
+			} while (true);
 
-			} else {
-				return false;
-			}
-				///hack
+		} else {
 			return false;
 		}
-		
-	};
+				///hack
+		return false;
+	}
+
+};
 
 #define WL_MAC_ADDR_LENGTH 6
 
@@ -566,7 +567,7 @@ public:
 		File calibFile;
 		uint16_t calib = 0;
 
-		calibFile = LittleFS.open(CALIBRATION_FILENAME, "r");
+		calibFile = LittleFS.open(Settings.calibrationConfigPath, "r");
 
 		if (calibFile) {
 			calibFile.read((unsigned byte *)&calib, sizeof (int));
@@ -580,7 +581,7 @@ public:
 	{
 		File calibFile;
 
-		calibFile = LittleFS.open(CALIBRATION_FILENAME, "w");
+		calibFile = LittleFS.open(Settings.calibrationConfigPath, "w");
 
 		if (calibFile) {
 			calibFile.write((unsigned byte *)&calib_value, sizeof (int));
@@ -625,62 +626,62 @@ public:
 		if (newMode < msGlobals.ggModeList.size() && 
 			(newMode != msGlobals.ui.currentMode)) {
 			msGlobals.ggModeList[msGlobals.ui.currentMode]->stop();
-			msGlobals.ui.currentMode = newMode;
-			Settings.setUIConfig(&msGlobals.ui);
-			msGlobals.ggModeList[newMode]->start();
+		msGlobals.ui.currentMode = newMode;
+		Settings.setUIConfig(&msGlobals.ui);
+		msGlobals.ggModeList[newMode]->start();
 
-		}
+	}
+}
+
+void feedbackAnimation(int mode) {
+	int r, g, b = 0x00;
+
+	if (mode == msGlobals.feedbackType::OK) {
+		r = 0x00;
+		g = 0xff;
+		b = 0x00;
+	} else if (mode == msGlobals.feedbackType::NOT_OK) {
+		r = 0xff;
+		g = 0x00;
+		b = 0x00;
+	} else {
+		r = 0xff;
+		g = 0xff;
+		b = 0xff;
 	}
 
-	void feedbackAnimation(int mode) {
-		int r, g, b = 0x00;
-
-		if (mode == msGlobals.feedbackType::OK) {
-			r = 0x00;
-			g = 0xff;
-			b = 0x00;
-		} else if (mode == msGlobals.feedbackType::NOT_OK) {
-			r = 0xff;
-			g = 0x00;
-			b = 0x00;
-		} else {
-			r = 0xff;
-			g = 0xff;
-			b = 0xff;
-		}
-
-		for (int i = 0; i <= 3; i++) {
-			msLEDs.fillLEDs(r, g, b, msGlobals.ggBrightness);
-			msLEDs.updateLEDs();
-			delay(35);
-			msLEDs.fastClear();
-			delay(35);
-		}
-
-		msLEDs.setLED(msGlobals.ui.currentMode, 128, 128, 128, msGlobals.ggBrightness);
+	for (int i = 0; i <= 3; i++) {
+		msLEDs.fillLEDs(r, g, b, msGlobals.ggBrightness);
+		msLEDs.updateLEDs();
 		delay(35);
 		msLEDs.fastClear();
-
+		delay(35);
 	}
+
+	msLEDs.setLED(msGlobals.ui.currentMode, 128, 128, 128, msGlobals.ggBrightness);
+	delay(35);
+	msLEDs.fastClear();
+
+}
 
 		// for fail-modes ..
-	void infinite_swipe() {
-		while (1) {
+void infinite_swipe() {
+	while (1) {
 				// swipe colors
-			for (byte idx = 0; idx < MAX_LEDS; idx++) {
-				msLEDs.setLED(idx, (idx & 1) ? 255 : 0,
-					(idx & 2) ? 255 : 0, (idx & 4) ? 255 : 0,
-					msGlobals.ggBrightness);
-				msLEDs.updateLEDs();
-				delay(30);
-			}
-			for (byte idx = 0; idx < MAX_LEDS; idx++) {
-				msLEDs.setLED(idx, 0, 0, 0, 1);
-				msLEDs.updateLEDs();
-				delay(30);
-			}
+		for (byte idx = 0; idx < MAX_LEDS; idx++) {
+			msLEDs.setLED(idx, (idx & 1) ? 255 : 0,
+				(idx & 2) ? 255 : 0, (idx & 4) ? 255 : 0,
+				msGlobals.ggBrightness);
+			msLEDs.updateLEDs();
+			delay(30);
+		}
+		for (byte idx = 0; idx < MAX_LEDS; idx++) {
+			msLEDs.setLED(idx, 0, 0, 0, 1);
+			msLEDs.updateLEDs();
+			delay(30);
 		}
 	}
+}
 
 #define BUTTON_LED_A (MAX_LEDS - 1)
 #define BUTTON_LED_PWR (MAX_LEDS / 2)
@@ -732,9 +733,9 @@ void displayButtons() {
 #define BRIGHTNESS_CONTROL_TIME (850 * 1000)
 
 uint8_t BrightnessLevels[16] = { 1, 2, 3, 4,
-	5, 6, 7, 8,
-	10, 12, 14, 16,
-	18, 22, 26, 31
+5, 6, 7, 8,
+10, 12, 14, 16,
+18, 22, 26, 31
 };
 
 #define BRIGHTNESS_UI_LEVEL 0xFF
@@ -998,9 +999,9 @@ void showBatteryStatus(bool shouldFadeIn) {
 		slog("LittleFS:");
 
 		if (!LittleFS.begin()) {    
-		    slog("LittleFS mount failed");
-		    slog("Formatting LittleFS filesystem");
-		    if (LittleFS.format()) {
+			slog("LittleFS mount failed");
+			slog("Formatting LittleFS filesystem");
+			if (LittleFS.format()) {
 				slog("LittleFS format worked.");
 			} else {
 				slog("LittleFS format did not work.");
@@ -1008,8 +1009,8 @@ void showBatteryStatus(bool shouldFadeIn) {
 			if (!LittleFS.begin()){
 				slog ("Failed after format");
 			}
-		    slog("Restart to try again");
-		  }
+			slog("Restart to try again");
+		}
 
 		TEST_LittleFS_bug();
 
@@ -1205,6 +1206,10 @@ void showBatteryStatus(bool shouldFadeIn) {
 	void fileDumpPath(String path) {
 		String output = "path:" + path + "\n";
 
+
+		//String formatResult = " format: " + LittleFS.format();
+		//slogln(formatResult);
+
 		Dir dir = LittleFS.openDir((char *) path.c_str());
 
 		slogln("system: fileDump:");
@@ -1217,7 +1222,7 @@ void showBatteryStatus(bool shouldFadeIn) {
 
 			String name = dir.fileName();
 
-			output += name  + ", ";
+			output += name  + " (" + String(dir.fileSize()) + ") ";
 		}
 
 		slogln(output);

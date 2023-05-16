@@ -37,6 +37,14 @@ This is a mono-repo.. This repository contains the Magicshifter OS, built with p
 	* you may need to give yourself access to the callout group, where USERNAME is of course your own user name:
 		`sudo adduser USERNAME dialout`
 
+	* Please note, depending on your needs, you may need to do:
+
+		`export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python make proto # may be necessary`
+
+	* Note: the firmware uses protocol buffers to communicate between firmware and web instances.  To buid proto:
+
+		`make proto`
+
 ## You will need PlatformIO:
 
 PlatformIO allows us to very easily manage project dependencies and complete fully cross-platform builds for multiple system types, which should - theoretically - be automatically set up when you first run a make on the newly cloned repository.
@@ -44,7 +52,7 @@ PlatformIO allows us to very easily manage project dependencies and complete ful
 	http://platformio.org
 
 	* MacOS:
-		`brew instal platformio` 
+		`brew install platformio` 
 
 	* Linux: Set up venv, install python 3.7 (or so..), then:
 		`pip install platformio`

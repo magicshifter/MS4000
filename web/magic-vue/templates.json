@@ -1,0 +1,21 @@
+{
+    "apps": {
+        "current": 0,
+        "shake": {
+            "colorIndex": 1,
+            "bounce": 3
+        },
+        "light": {
+            "mode": 2
+        },
+        "beat": {
+            "mode": 1,
+            "sensitivity": 1,
+            "color": {
+                "R": 255,
+                "G": 121,
+                "B": 0
+            }
+        }
+    }
+}

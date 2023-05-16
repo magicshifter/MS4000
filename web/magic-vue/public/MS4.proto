@@ -64,10 +64,19 @@ message MIDI_SEQUENCE {
 // MS3000 Global object
 message MS4 {
 
-    message SysPref {
-        message AP_INFO {
-            optional string networkName = 1;
-            optional string password = 2;
+    message Config {
+        
+        message UI {
+            optional string uiSettings = 1;
+            optional string calibration = 2;
+        }
+
+        message wifiAP {
+            optional string ssid = 1 [ default = "MS4000-wifi"];
+            optional string password = 2 [ default = "MS4000.access"];
+            optional string preferred = 3 [ default = "MS4000.factory"];
+            optional string server = 4;
+            optional string apList = 5;
         }
     }
 
@@ -86,7 +95,7 @@ message MS4 {
             _Countdown= 6;
             _Arpi = 7;
             _Sequi = 8;
-			_Bike = 9;
+            _Bike = 9;
         }
 
         optional T current = 1;
@@ -102,6 +111,8 @@ message MS4 {
         optional Bike bike = 10;
         optional Sequi sequi = 11;
         optional Updater updater = 12;
+
+        optional VibrationSensorMQTT vibration = 13;
 
         message Shake {
             optional string image = 1;
@@ -165,6 +176,22 @@ message MS4 {
             optional RGB color = 3;
         }
 
+        message VibrationSensorMQTT {
+            enum Mode {
+                SIDE = 0;
+                CENTER = 1;
+            }
+
+            optional Mode mode = 1 [ default = SIDE ];
+            optional int32 sensitivity = 2 [ default = 2 ];
+            optional RGB color = 3;
+
+            optional int32 thresholdLow = 2 [ default = 100 ];
+            optional int32 thresholdMedium = 2 [ default = 200 ];
+            optional int32 thresholdHigh = 2 [ default = 500 ];
+        }
+
+
         message Countdown {
 
             enum Mode {
@@ -198,36 +225,36 @@ message MS4 {
 
         }
 
-		message Bike {
-	
-			enum Role {
-				FRONT_LIGHT = 0;
-				BACK_LIGHT = 1;
-			}
+        message Bike {
+    
+            enum Role {
+                FRONT_LIGHT = 0;
+                BACK_LIGHT = 1;
+            }
 
-			enum BlinkMode { 
-				NONE_ZERO = 0;
-				RED_WHITE = 1;
-				RED_SYNC = 2;
-				TURN_LEFT = 3;
-				TURN_RIGHT = 4;
-			}
+            enum BlinkMode { 
+                NONE_ZERO = 0;
+                RED_WHITE = 1;
+                RED_SYNC = 2;
+                TURN_LEFT = 3;
+                TURN_RIGHT = 4;
+            }
 
-			enum TapMode {
-				BUTTONS = 0;
-				ONE_TWO = 1;
-				LEFT_RIGHT = 2;
-			}
+            enum TapMode {
+                BUTTONS = 0;
+                ONE_TWO = 1;
+                LEFT_RIGHT = 2;
+            }
 
-			optional Role role = 1;
+            optional Role role = 1;
 
             optional string front_wifiname = 2;
-			optional string back_wifiname = 3;
+            optional string back_wifiname = 3;
 
-			optional BlinkMode blink_mode = 4;
-			optional TapMode tap_mode = 5;
-			
-    	}
+            optional BlinkMode blink_mode = 4;
+            optional TapMode tap_mode = 5;
+            
+        }
 
         message Sequi {
             optional MIDI_SEQUENCE sequence = 1;

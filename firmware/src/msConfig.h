@@ -35,7 +35,7 @@
 // 16298245 // 'p2' proto
 //  1210204 //"in-production" Chip
 
-#define AP_NAME_OVERRIDE "MS3000"
+#define AP_NAME_OVERRIDE "MS4000"
 
 // HW_ID is passed one of these constants from Makefile -DHW_ID=.. 
 
@@ -76,8 +76,6 @@
 
 // !J! we want to configure this
 #undef CONFIG_PWR_FORCE 
-
-#define CALIBRATION_FILENAME "settings/calibration.bin"
 
 // 192.168.4.1 is the IP it always has in softAP mode
 #define SCAN_FIRST_MODE 1

@@ -100,14 +100,22 @@ typedef struct _MS4_App_Remote {
     char dummy_field;
 } MS4_App_Remote;
 
-typedef struct _MS4_SysPref {
+typedef struct _MS4_Config {
     char dummy_field;
-} MS4_SysPref;
+} MS4_Config;
 
-typedef struct _MS4_SysPref_AP_INFO {
-    pb_callback_t networkName;
+typedef struct _MS4_Config_UI {
+    pb_callback_t uiSettings;
+    pb_callback_t calibration;
+} MS4_Config_UI;
+
+typedef struct _MS4_Config_wifiAP {
+    pb_callback_t ssid;
     pb_callback_t password;
-} MS4_SysPref_AP_INFO;
+    pb_callback_t preferred;
+    pb_callback_t server;
+    pb_callback_t apList;
+} MS4_Config_wifiAP;
 
 typedef struct _MIDI_INTERVALS {
     int32_t v;
@@ -285,6 +293,7 @@ typedef struct _MS4 {
 
 
 
+
 #define MS4_App_current_ENUMTYPE MS4_App_T
 
 
@@ -313,21 +322,22 @@ extern "C" {
 #endif
 
 /* Initializer values for message structs */
-#define RGB_init_default                         {255, 121, 0}
+#define RGB_init_default                         {255, 5, 5}
 #define MIDI_OCTAVE_init_default                 {5}
 #define MIDI_INTERVALS_init_default              {0}
 #define MIDI_STEP_init_default                   {MIDI_INTERVALS_init_default, MIDI_OCTAVE_init_default, 0}
 #define MIDI_SEQUENCE_init_default               {0, {MIDI_STEP_init_default, MIDI_STEP_init_default, MIDI_STEP_init_default, MIDI_STEP_init_default, MIDI_STEP_init_default, MIDI_STEP_init_default, MIDI_STEP_init_default, MIDI_STEP_init_default}}
 #define MS4_init_default                         {false, MS4_App_init_default}
-#define MS4_SysPref_init_default                 {0}
-#define MS4_SysPref_AP_INFO_init_default         {{{NULL}, NULL}, {{NULL}, NULL}}
+#define MS4_Config_init_default                  {0}
+#define MS4_Config_UI_init_default               {{{NULL}, NULL}, {{NULL}, NULL}}
+#define MS4_Config_wifiAP_init_default           {{{NULL}, NULL}, {{NULL}, NULL}, {{NULL}, NULL}, {{NULL}, NULL}, {{NULL}, NULL}}
 #define MS4_App_init_default                     {false, _MS4_App_T_MIN, false, MS4_App_Shake_init_default, false, MS4_App_Light_init_default, false, MS4_App_Magnet_init_default, false, MS4_App_System_init_default, false, MS4_App_Remote_init_default, false, MS4_App_Beat_init_default, false, MS4_App_Countdown_init_default, false, MS4_App_Arpi_init_default, false, MS4_App_Bike_init_default, false, MS4_App_Sequi_init_default, false, MS4_App_Updater_init_default}
 #define MS4_App_Shake_init_default               {{{NULL}, NULL}, false, 0, false, 0}
 #define MS4_App_Light_init_default               {false, MS4_App_Light_Mode_RAINBOW, false, RGB_init_default, false, 0, false, 0}
 #define MS4_App_Magnet_init_default              {false, MS4_App_Magnet_Mode_BARS}
 #define MS4_App_System_init_default              {false, MS4_App_System_Mode_VERSION}
 #define MS4_App_Remote_init_default              {0}
-#define MS4_App_Beat_init_default                {false, MS4_App_Beat_Mode_SIDE, false, 2, false, RGB_init_default}
+#define MS4_App_Beat_init_default                {false, MS4_App_Beat_Mode_CENTER, false, 2, false, RGB_init_default}
 #define MS4_App_Countdown_init_default           {false, MS4_App_Countdown_Mode_DOWN_1M}
 #define MS4_App_Arpi_init_default                {false, MS4_App_Arpi_Mode_ARP8}
 #define MS4_App_Bike_init_default                {false, _MS4_App_Bike_Role_MIN, {{NULL}, NULL}, {{NULL}, NULL}, false, _MS4_App_Bike_BlinkMode_MIN, false, _MS4_App_Bike_TapMode_MIN}
@@ -339,8 +349,9 @@ extern "C" {
 #define MIDI_STEP_init_zero                      {MIDI_INTERVALS_init_zero, MIDI_OCTAVE_init_zero, 0}
 #define MIDI_SEQUENCE_init_zero                  {0, {MIDI_STEP_init_zero, MIDI_STEP_init_zero, MIDI_STEP_init_zero, MIDI_STEP_init_zero, MIDI_STEP_init_zero, MIDI_STEP_init_zero, MIDI_STEP_init_zero, MIDI_STEP_init_zero}}
 #define MS4_init_zero                            {false, MS4_App_init_zero}
-#define MS4_SysPref_init_zero                    {0}
-#define MS4_SysPref_AP_INFO_init_zero            {{{NULL}, NULL}, {{NULL}, NULL}}
+#define MS4_Config_init_zero                     {0}
+#define MS4_Config_UI_init_zero                  {{{NULL}, NULL}, {{NULL}, NULL}}
+#define MS4_Config_wifiAP_init_zero              {{{NULL}, NULL}, {{NULL}, NULL}, {{NULL}, NULL}, {{NULL}, NULL}, {{NULL}, NULL}}
 #define MS4_App_init_zero                        {false, _MS4_App_T_MIN, false, MS4_App_Shake_init_zero, false, MS4_App_Light_init_zero, false, MS4_App_Magnet_init_zero, false, MS4_App_System_init_zero, false, MS4_App_Remote_init_zero, false, MS4_App_Beat_init_zero, false, MS4_App_Countdown_init_zero, false, MS4_App_Arpi_init_zero, false, MS4_App_Bike_init_zero, false, MS4_App_Sequi_init_zero, false, MS4_App_Updater_init_zero}
 #define MS4_App_Shake_init_zero                  {{{NULL}, NULL}, false, 0, false, 0}
 #define MS4_App_Light_init_zero                  {false, _MS4_App_Light_Mode_MIN, false, RGB_init_zero, false, 0, false, 0}
@@ -355,8 +366,13 @@ extern "C" {
 #define MS4_App_Updater_init_zero                {false, 0}
 
 /* Field tags (for use in manual encoding/decoding) */
-#define MS4_SysPref_AP_INFO_networkName_tag      1
-#define MS4_SysPref_AP_INFO_password_tag         2
+#define MS4_Config_UI_uiSettings_tag             1
+#define MS4_Config_UI_calibration_tag            2
+#define MS4_Config_wifiAP_ssid_tag               1
+#define MS4_Config_wifiAP_password_tag           2
+#define MS4_Config_wifiAP_preferred_tag          3
+#define MS4_Config_wifiAP_server_tag             4
+#define MS4_Config_wifiAP_apList_tag             5
 #define MIDI_INTERVALS_v_tag                     1
 #define MIDI_OCTAVE_o_tag                        1
 #define MS4_App_Arpi_mode_tag                    1
@@ -440,16 +456,25 @@ X(a, STATIC,   OPTIONAL, MESSAGE,  apps,              1)
 #define MS4_DEFAULT NULL
 #define MS4_apps_MSGTYPE MS4_App
 
-#define MS4_SysPref_FIELDLIST(X, a) \
+#define MS4_Config_FIELDLIST(X, a) \
 
-#define MS4_SysPref_CALLBACK NULL
-#define MS4_SysPref_DEFAULT NULL
+#define MS4_Config_CALLBACK NULL
+#define MS4_Config_DEFAULT NULL
 
-#define MS4_SysPref_AP_INFO_FIELDLIST(X, a) \
-X(a, CALLBACK, OPTIONAL, STRING,   networkName,       1) \
-X(a, CALLBACK, OPTIONAL, STRING,   password,          2)
-#define MS4_SysPref_AP_INFO_CALLBACK pb_default_field_callback
-#define MS4_SysPref_AP_INFO_DEFAULT NULL
+#define MS4_Config_UI_FIELDLIST(X, a) \
+X(a, CALLBACK, OPTIONAL, STRING,   uiSettings,        1) \
+X(a, CALLBACK, OPTIONAL, STRING,   calibration,       2)
+#define MS4_Config_UI_CALLBACK pb_default_field_callback
+#define MS4_Config_UI_DEFAULT NULL
+
+#define MS4_Config_wifiAP_FIELDLIST(X, a) \
+X(a, CALLBACK, OPTIONAL, STRING,   ssid,              1) \
+X(a, CALLBACK, OPTIONAL, STRING,   password,          2) \
+X(a, CALLBACK, OPTIONAL, STRING,   preferred,         3) \
+X(a, CALLBACK, OPTIONAL, STRING,   server,            4) \
+X(a, CALLBACK, OPTIONAL, STRING,   apList,            5)
+#define MS4_Config_wifiAP_CALLBACK pb_default_field_callback
+#define MS4_Config_wifiAP_DEFAULT NULL
 
 #define MS4_App_FIELDLIST(X, a) \
 X(a, STATIC,   OPTIONAL, UENUM,    current,           1) \
@@ -553,8 +578,9 @@ extern const pb_msgdesc_t MIDI_INTERVALS_msg;
 extern const pb_msgdesc_t MIDI_STEP_msg;
 extern const pb_msgdesc_t MIDI_SEQUENCE_msg;
 extern const pb_msgdesc_t MS4_msg;
-extern const pb_msgdesc_t MS4_SysPref_msg;
-extern const pb_msgdesc_t MS4_SysPref_AP_INFO_msg;
+extern const pb_msgdesc_t MS4_Config_msg;
+extern const pb_msgdesc_t MS4_Config_UI_msg;
+extern const pb_msgdesc_t MS4_Config_wifiAP_msg;
 extern const pb_msgdesc_t MS4_App_msg;
 extern const pb_msgdesc_t MS4_App_Shake_msg;
 extern const pb_msgdesc_t MS4_App_Light_msg;
@@ -575,8 +601,9 @@ extern const pb_msgdesc_t MS4_App_Updater_msg;
 #define MIDI_STEP_fields &MIDI_STEP_msg
 #define MIDI_SEQUENCE_fields &MIDI_SEQUENCE_msg
 #define MS4_fields &MS4_msg
-#define MS4_SysPref_fields &MS4_SysPref_msg
-#define MS4_SysPref_AP_INFO_fields &MS4_SysPref_AP_INFO_msg
+#define MS4_Config_fields &MS4_Config_msg
+#define MS4_Config_UI_fields &MS4_Config_UI_msg
+#define MS4_Config_wifiAP_fields &MS4_Config_wifiAP_msg
 #define MS4_App_fields &MS4_App_msg
 #define MS4_App_Shake_fields &MS4_App_Shake_msg
 #define MS4_App_Light_fields &MS4_App_Light_msg
@@ -592,7 +619,8 @@ extern const pb_msgdesc_t MS4_App_Updater_msg;
 
 /* Maximum encoded size of messages (where known) */
 /* MS4_size depends on runtime parameters */
-/* MS4_SysPref_AP_INFO_size depends on runtime parameters */
+/* MS4_Config_UI_size depends on runtime parameters */
+/* MS4_Config_wifiAP_size depends on runtime parameters */
 /* MS4_App_size depends on runtime parameters */
 /* MS4_App_Shake_size depends on runtime parameters */
 /* MS4_App_Bike_size depends on runtime parameters */
@@ -609,7 +637,7 @@ extern const pb_msgdesc_t MS4_App_Updater_msg;
 #define MS4_App_Sequi_size                       315
 #define MS4_App_System_size                      2
 #define MS4_App_Updater_size                     11
-#define MS4_SysPref_size                         0
+#define MS4_Config_size                          0
 #define RGB_size                                 33
 
 #ifdef __cplusplus

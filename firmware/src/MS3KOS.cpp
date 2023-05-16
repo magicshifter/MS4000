@@ -58,7 +58,6 @@ MagicShifterWebServer msWebServer;
 // Onboard GUI modes, per configuration
 #include "Modes/Modes.h"
 
-
 // Detect system-faults for factory testing and otherwise
 // A low-level system fault can either be:
 //  a) a low-power emergency
@@ -120,7 +119,7 @@ void setup()
 	msSystem.slogln("wifi: hostname is:" + WiFi.hostname());
 	msSystem.slogln("wifi: OTA hostname is:" + ArduinoOTA.getHostname());
 
-	// msGlobals.ui.currentMode = 3;
+	msGlobals.ui.currentMode = 5;
 
 
 	// if MIDI has been configured, enable the additional MIDI mode(s)

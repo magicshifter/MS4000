@@ -1,6 +1,7 @@
 SHELL := /bin/bash
 
 MS4_FLASH_BAUD=921600
+MS4_FLASH_BAUD=57600
 
 #linux
 MS4_PORT=/dev/ttyUSB0
@@ -35,19 +36,19 @@ proto:  MS4.proto
 	@echo "NANOPB_DIR = $(NANOPB_DIR)"
 	@echo "CFLAGS = $(CFLAGS)"
 	@cp -rfv MS4.proto ../MS4.proto
-	@mkdir -p ./ms3000.proto.out
-	$(PROTOC) $(PROTOC_OPTS) --proto_path .. ../MS4.proto  -o ../MS4.pb --js_out=./ms3000.proto.out --nanopb_out=-v:.
+	@mkdir -p ./ms4000.proto.out
+	$(PROTOC) $(PROTOC_OPTS) --proto_path .. ../MS4.proto  -o ../MS4.pb --nanopb_out=-v:.
 	python ../tools/nanopb/generator/nanopb_generator.py ../MS4.pb
 	cp MS4.pb.? src/
 
 build:
 	platformio run --upload-port ${MS4_PORT}
 
-flash:	.pio/build/ms3000/firmware.bin
-	pio run && ../tools/esptool-ck/esptool -vv -cd ck -cb ${MS4_FLASH_BAUD} -cp ${MS4_PORT} -cf .pio/build/ms3000/firmware.bin
+flash:	.pio/build/ms4000/firmware.bin
+	pio run && ../tools/esptool-ck/esptool -vv -cd ck -cb ${MS4_FLASH_BAUD} -cp ${MS4_PORT} -cf .pio/build/ms4000/firmware.bin
 
 uploadfs:
-	(pio run -t uploadfs -v || ../tools/esptool-ck/esptool -vv -cd ck -cb 921600 -cp /dev/ttyUSB0 -ca 200000 -cf .pio/build/ms3000/littlefs.bin)
+	(pio run -t uploadfs -v || ../tools/esptool-ck/esptool -vv -cd ck -cb 921600 -cp /dev/ttyUSB0 -ca 200000 -cf .pio/build/ms4000/littlefs.bin)
 burn:
 	platformio run --target upload --upload-port ${MS4_PORT}
 
@@ -58,9 +59,9 @@ ota.mode:
 	@echo "set ota mode"
 	curl http://proto-jv.local/mode?m=7
 
-ota: .pioenvs/ms3000/firmware.bin
+ota: .pioenvs/ms4000/firmware.bin
 	@echo "ota:"
-	python ${ESPOTA} -i proto-jv.local -p 8266 -f .pioenvs/ms3000/firmware.bin -d -r
+	python ${ESPOTA} -i proto-jv.local -p 8266 -f .pioenvs/ms4000/firmware.bin -d -r
 
 reset-device:
 	-@echo "^T^R" | pio device monitor --quiet -b 921600 --dtr 0 --rts 1 -p ${MS4_PORT} 

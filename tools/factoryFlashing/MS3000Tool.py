@@ -680,11 +680,11 @@ def initMS3000bitmaps():
     end = time.time()
     print("time elapsed: ", end - start)
 
-def initMS4000quickfix():
+def initMS4000webDist():
     start = time.time()
     delay = 5;
     ser = openPort(5)
-    BUILD_PATH = "/tmp/quickFix/"
+    BUILD_PATH = "../../web/magic-vue/dist/"
     result = os.walk(BUILD_PATH)
     print("walking:", BUILD_PATH)
     for dp, dr, filenames in result:
@@ -884,9 +884,9 @@ if __name__ == '__main__':
                 device = sys.argv[2]
                 initMS3000web4k()
 
-        if (len(sys.argv) >= 2 and sys.argv[1] == "quickfix"):
+        if (len(sys.argv) >= 2 and sys.argv[1] == "webDist"):
                 device = sys.argv[2]
-                initMS4000quickfix()
+                initMS4000webDist()
 
         if (len(sys.argv) >= 2 and sys.argv[1] == "web"):
                 device = sys.argv[2]

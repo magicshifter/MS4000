@@ -1,0 +1,882 @@
+============================================== [SUCCESS] Took 0.61 seconds ==============================================
+# rm -rf .venv_firmware
+#rm -rf src/MS4.pb.c src/MS4.pb.h
+'../tools/nanopb/pb_common.c' -> 'lib/nanopb/pb_common.c'
+'../tools/nanopb/pb_decode.c' -> 'lib/nanopb/pb_decode.c'
+'../tools/nanopb/pb_encode.c' -> 'lib/nanopb/pb_encode.c'
+'../tools/nanopb/pb_common.h' -> 'lib/nanopb/pb_common.h'
+'../tools/nanopb/pb_decode.h' -> 'lib/nanopb/pb_decode.h'
+'../tools/nanopb/pb_encode.h' -> 'lib/nanopb/pb_encode.h'
+'../tools/nanopb/pb.h' -> 'lib/nanopb/pb.h'
+-rw-r--r-- 1 wizard wizard 12141 Sep 18 20:18 lib/nanopb/pb_common.c
+-rw-r--r-- 1 wizard wizard  1677 Sep 18 20:18 lib/nanopb/pb_common.h
+-rw-r--r-- 1 wizard wizard 53498 Sep 18 20:18 lib/nanopb/pb_decode.c
+-rw-r--r-- 1 wizard wizard  7554 Sep 18 20:18 lib/nanopb/pb_decode.h
+-rw-r--r-- 1 wizard wizard 30339 Sep 18 20:18 lib/nanopb/pb_encode.c
+-rw-r--r-- 1 wizard wizard  6958 Sep 18 20:18 lib/nanopb/pb_encode.h
+-rw-r--r-- 1 wizard wizard 43703 Sep 18 20:18 lib/nanopb/pb.h
+-rw-r--r-- 1 wizard wizard 12141 Sep 18 20:18 ../tools/nanopb/pb_common.c
+-rw-r--r-- 1 wizard wizard  1677 Sep 18 20:18 ../tools/nanopb/pb_common.h
+-rw-r--r-- 1 wizard wizard 53498 Sep 18 20:18 ../tools/nanopb/pb_decode.c
+-rw-r--r-- 1 wizard wizard  7554 Sep 18 20:18 ../tools/nanopb/pb_decode.h
+-rw-r--r-- 1 wizard wizard 30339 Sep 18 20:18 ../tools/nanopb/pb_encode.c
+-rw-r--r-- 1 wizard wizard  6958 Sep 18 20:18 ../tools/nanopb/pb_encode.h
+-rw-r--r-- 1 wizard wizard 43703 Sep 18 20:18 ../tools/nanopb/pb.h
+platformio run --upload-port `pio device list --json-output | python -c 'exec("""\nimport json,sys\n\nobj=json.load(sys.stdin)\nfor y in obj:\n if "10C4:EA60" in y["hwid"].upper():\n  print (y["port"])\n""") ' | head -1`
+Processing ms3000 (platform: espressif8266; framework: arduino; board: esp12e)
+--------------------------------------------------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif8266/esp12e.html
+PLATFORM: Espressif 8266 (4.0.1) > Espressif ESP8266 ESP-12E
+HARDWARE: ESP8266 80MHz, 80KB RAM, 4MB Flash
+PACKAGES: 
+ - framework-arduinoespressif8266 @ 3.30002.0 (3.0.2) 
+ - tool-esptool @ 1.413.0 (4.13) 
+ - tool-esptoolpy @ 1.30000.201119 (3.0.0) 
+ - toolchain-xtensa @ 2.100300.210717 (10.3.0)
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ chain, Compatibility ~ soft
+Found 47 compatible libraries
+Scanning dependencies...
+Dependency Graph
+|-- AppleMIDI @ 2.2.0
+|   |-- MIDI Library @ 5.0.2
+|-- ArduinoJson @ 6.19.4
+|-- OSC @ 0.0.0-alpha+sha.41b44981e3
+|-- aJson @ 0.0.0+sha.2737b20
+|-- jsmn @ 0.0.0-alpha+sha.053d3cd292
+|-- WiFiManager @ 0.15.0
+|   |-- DNSServer @ 1.1.1
+|   |   |-- ESP8266WiFi @ 1.0
+|   |-- ESP8266WebServer @ 1.0
+|   |   |-- ESP8266WiFi @ 1.0
+|   |-- ESP8266WiFi @ 1.0
+|-- MIDI Library @ 5.0.2
+|-- LittleFS @ 0.1.0
+|-- miby
+|-- ArduinoOTA @ 1.0
+|   |-- ESP8266WiFi @ 1.0
+|   |-- ESP8266mDNS @ 1.2
+|   |   |-- ESP8266WiFi @ 1.0
+|-- EEPROM @ 1.0
+|-- ESP8266WebServer @ 1.0
+|   |-- ESP8266WiFi @ 1.0
+|-- ESP8266WiFi @ 1.0
+|-- ESP8266mDNS @ 1.2
+|   |-- ESP8266WiFi @ 1.0
+|-- SPI @ 1.0
+|-- Wire @ 1.0
+|-- nanopb
+Building in release mode
+Compiling .pio/build/ms3000/src/MS3KOS.cpp.o
+Compiling .pio/build/ms3000/src/MS4.pb.c.o
+Compiling .pio/build/ms3000/src/serialMIDI.c.o
+Generating LD script .pio/build/ms3000/ld/local.eagle.app.v6.common.ld
+Compiling .pio/build/ms3000/lib17c/MIDI Library/MIDI.cpp.o
+Compiling .pio/build/ms3000/lib196/AppleMIDI/AppleMIDI.cpp.o
+Compiling .pio/build/ms3000/lib6dd/OSC/OSCBoards.cpp.o
+Compiling .pio/build/ms3000/lib6dd/OSC/OSCBundle.cpp.o
+Compiling .pio/build/ms3000/lib6dd/OSC/OSCData.cpp.o
+Compiling .pio/build/ms3000/lib6dd/OSC/OSCMatch.c.o
+Compiling .pio/build/ms3000/lib6dd/OSC/OSCMessage.cpp.o
+In file included from src/msSystem.h:33,
+                 from src/MS3KOS.cpp:47:
+src/msSysLog.h:107:2: warning: #warning "SERIAL OUTPUT HAS BEEN ENABLED" [-Wcpp]
+  107 | #warning "SERIAL OUTPUT HAS BEEN ENABLED"
+      |  ^~~~~~~
+In file included from src/MS3KOS.cpp:47:
+src/msSystem.h:992:2: warning: #warning "SERIAL MIDI is disabled - syslog will use serial logging" [-Wcpp]
+  992 | #warning "SERIAL MIDI is disabled - syslog will use serial logging"
+      |  ^~~~~~~
+In file included from src/MS3KOS.cpp:55:
+src/WebServer/WebServer.h:30:2: warning: #warning "mDNS is turned on..." [-Wcpp]
+   30 | #warning "mDNS is turned on..."
+      |  ^~~~~~~
+Compiling .pio/build/ms3000/lib6dd/OSC/OSCTiming.cpp.o
+Archiving .pio/build/ms3000/lib196/libAppleMIDI.a
+Indexing .pio/build/ms3000/lib196/libAppleMIDI.a
+Compiling .pio/build/ms3000/lib6dd/OSC/SLIPEncodedSerial.cpp.o
+Compiling .pio/build/ms3000/lib6dd/OSC/SLIPEncodedUSBSerial.cpp.o
+Compiling .pio/build/ms3000/lib10f/aJson/aJSON.cpp.o
+Archiving .pio/build/ms3000/lib17c/libMIDI Library.a
+Indexing .pio/build/ms3000/lib17c/libMIDI Library.a
+Compiling .pio/build/ms3000/lib10f/aJson/utility/stringbuffer.c.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/BearSSLHelpers.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/CertStoreBearSSL.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/ESP8266WiFi.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/ESP8266WiFiAP.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/ESP8266WiFiGeneric.cpp.o
+.pio/libdeps/ms3000/aJson/aJSON.cpp: In member function 'int aJsonStream::printArray(aJsonObject*)':
+.pio/libdeps/ms3000/aJson/aJSON.cpp:779:24: warning: comparison of integer expressions of different signedness: 'size_t' {aka 'unsigned int'} and 'int' [-Wsign-compare]
+  779 |   if (this->print('[') == EOF)
+      |                        ^
+.pio/libdeps/ms3000/aJson/aJSON.cpp:792:32: warning: comparison of integer expressions of different signedness: 'size_t' {aka 'unsigned int'} and 'int' [-Wsign-compare]
+  792 |           if (this->print(',') == EOF)
+      |                                ^
+.pio/libdeps/ms3000/aJson/aJSON.cpp:798:24: warning: comparison of integer expressions of different signedness: 'size_t' {aka 'unsigned int'} and 'int' [-Wsign-compare]
+  798 |   if (this->print(']') == EOF)
+      |                        ^
+.pio/libdeps/ms3000/aJson/aJSON.cpp: In member function 'int aJsonStream::printObject(aJsonObject*)':
+.pio/libdeps/ms3000/aJson/aJSON.cpp:890:24: warning: comparison of integer expressions of different signedness: 'size_t' {aka 'unsigned int'} and 'int' [-Wsign-compare]
+  890 |   if (this->print('{') == EOF)
+      |                        ^
+.pio/libdeps/ms3000/aJson/aJSON.cpp:900:28: warning: comparison of integer expressions of different signedness: 'size_t' {aka 'unsigned int'} and 'int' [-Wsign-compare]
+  900 |       if (this->print(':') == EOF)
+      |                            ^
+.pio/libdeps/ms3000/aJson/aJSON.cpp:911:32: warning: comparison of integer expressions of different signedness: 'size_t' {aka 'unsigned int'} and 'int' [-Wsign-compare]
+  911 |           if (this->print(',') == EOF)
+      |                                ^
+.pio/libdeps/ms3000/aJson/aJSON.cpp:917:24: warning: comparison of integer expressions of different signedness: 'size_t' {aka 'unsigned int'} and 'int' [-Wsign-compare]
+  917 |   if (this->print('}') == EOF)
+      |                        ^
+Archiving .pio/build/ms3000/lib6dd/libOSC.a
+Indexing .pio/build/ms3000/lib6dd/libOSC.a
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/ESP8266WiFiGratuitous.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/ESP8266WiFiMulti.cpp.o
+Archiving .pio/build/ms3000/lib10f/libaJson.a
+Indexing .pio/build/ms3000/lib10f/libaJson.a
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/ESP8266WiFiSTA-WPS.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/ESP8266WiFiSTA.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/ESP8266WiFiScan.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/WiFiClient.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/WiFiClientSecureBearSSL.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/WiFiServer.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/WiFiServerSecureBearSSL.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/WiFiUdp.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/enable_wifi_at_boot_time.cpp.o
+Compiling .pio/build/ms3000/lib01c/DNSServer/DNSServer.cpp.o
+Compiling .pio/build/ms3000/lib527/ESP8266WebServer/detail/mimetable.cpp.o
+Archiving .pio/build/ms3000/lib527/libESP8266WebServer.a
+Indexing .pio/build/ms3000/lib527/libESP8266WebServer.a
+Compiling .pio/build/ms3000/lib3e7/WiFiManager/WiFiManager.cpp.o
+Compiling .pio/build/ms3000/lib356/LittleFS/LittleFS.cpp.o
+Compiling .pio/build/ms3000/lib356/LittleFS/lfs.c.o
+Archiving .pio/build/ms3000/lib01c/libDNSServer.a
+Indexing .pio/build/ms3000/lib01c/libDNSServer.a
+Compiling .pio/build/ms3000/lib356/LittleFS/lfs_util.c.o
+Compiling .pio/build/ms3000/lib6c4/miby/miby.cpp.o
+Compiling .pio/build/ms3000/lib331/ESP8266mDNS/ESP8266mDNS.cpp.o
+Compiling .pio/build/ms3000/lib331/ESP8266mDNS/LEAmDNS.cpp.o
+Archiving .pio/build/ms3000/lib6c4/libmiby.a
+Indexing .pio/build/ms3000/lib6c4/libmiby.a
+Compiling .pio/build/ms3000/lib331/ESP8266mDNS/LEAmDNS_Control.cpp.o
+Archiving .pio/build/ms3000/lib782/libESP8266WiFi.a
+Indexing .pio/build/ms3000/lib782/libESP8266WiFi.a
+Compiling .pio/build/ms3000/lib331/ESP8266mDNS/LEAmDNS_Helpers.cpp.o
+Compiling .pio/build/ms3000/lib331/ESP8266mDNS/LEAmDNS_Structs.cpp.o
+Compiling .pio/build/ms3000/lib331/ESP8266mDNS/LEAmDNS_Transfer.cpp.o
+Archiving .pio/build/ms3000/lib356/libLittleFS.a
+Indexing .pio/build/ms3000/lib356/libLittleFS.a
+Compiling .pio/build/ms3000/lib4f2/ArduinoOTA/ArduinoOTA.cpp.o
+Compiling .pio/build/ms3000/lib366/EEPROM/EEPROM.cpp.o
+Compiling .pio/build/ms3000/libe8c/SPI/SPI.cpp.o
+Compiling .pio/build/ms3000/lib357/Wire/Wire.cpp.o
+Archiving .pio/build/ms3000/lib3e7/libWiFiManager.a
+Indexing .pio/build/ms3000/lib3e7/libWiFiManager.a
+Compiling .pio/build/ms3000/lib355/nanopb/pb_common.c.o
+Compiling .pio/build/ms3000/lib355/nanopb/pb_decode.c.o
+Compiling .pio/build/ms3000/lib355/nanopb/pb_encode.c.o
+Archiving .pio/build/ms3000/lib366/libEEPROM.a
+Indexing .pio/build/ms3000/lib366/libEEPROM.a
+Archiving .pio/build/ms3000/libFrameworkArduinoVariant.a
+Indexing .pio/build/ms3000/libFrameworkArduinoVariant.a
+Compiling .pio/build/ms3000/FrameworkArduino/Crypto.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/Esp-frag.cpp.o
+Archiving .pio/build/ms3000/lib355/libnanopb.a
+Indexing .pio/build/ms3000/lib355/libnanopb.a
+Compiling .pio/build/ms3000/FrameworkArduino/Esp-version.cpp.o
+Archiving .pio/build/ms3000/libe8c/libSPI.a
+Indexing .pio/build/ms3000/libe8c/libSPI.a
+Compiling .pio/build/ms3000/FrameworkArduino/Esp.cpp.o
+Archiving .pio/build/ms3000/lib357/libWire.a
+Indexing .pio/build/ms3000/lib357/libWire.a
+Compiling .pio/build/ms3000/FrameworkArduino/FS.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/FSnoop.cpp.o
+Archiving .pio/build/ms3000/lib331/libESP8266mDNS.a
+Indexing .pio/build/ms3000/lib331/libESP8266mDNS.a
+Compiling .pio/build/ms3000/FrameworkArduino/FunctionalInterrupt.cpp.o
+Archiving .pio/build/ms3000/lib4f2/libArduinoOTA.a
+Indexing .pio/build/ms3000/lib4f2/libArduinoOTA.a
+Compiling .pio/build/ms3000/FrameworkArduino/HardwareSerial.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/IPAddress.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/LwipDhcpServer-NonOS.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/LwipDhcpServer.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/LwipIntf.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/LwipIntfCB.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/MD5Builder.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/Print.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/Schedule.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/StackThunk.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/Stream.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/StreamSend.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/Tone.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/TypeConversion.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/Updater.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/WMath.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/WString.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/abi.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/aes_unwrap.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/base64.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/cbuf.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/cont.S.o
+Compiling .pio/build/ms3000/FrameworkArduino/cont_util.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_app_entry_noextra4k.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_eboot_command.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_features.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_flash_quirks.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_flash_utils.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_i2s.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_main.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_non32xfer.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_noniso.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_phy.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_postmortem.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_si2c.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_sigma_delta.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_spi_utils.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_timer.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_vm.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_waveform_phase.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_waveform_pwm.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_wiring.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_wiring_analog.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_wiring_digital.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_wiring_pulse.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_wiring_pwm.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_wiring_shift.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/crc32.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/debug.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/exc-c-wrapper-handler.S.o
+Compiling .pio/build/ms3000/FrameworkArduino/exc-sethandler.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/flash_hal.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/gdb_hooks.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/heap.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/hwdt_app_entry.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/libb64/cdecode.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/libb64/cencode.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/libc_replacements.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/mmu_iram.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/reboot_uart_dwnld.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/spiffs/spiffs_cache.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/spiffs/spiffs_check.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/spiffs/spiffs_gc.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/spiffs/spiffs_hydrogen.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/spiffs/spiffs_nucleus.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/spiffs_api.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/sqrt32.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/stdlib_noniso.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/time.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/uart.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/umm_malloc/umm_info.c.o
+Compiling .pio/build/ms3000/FrameworkArduino/umm_malloc/umm_integrity.c.o
+Compiling .pio/build/ms3000/FrameworkArduino/umm_malloc/umm_local.c.o
+Compiling .pio/build/ms3000/FrameworkArduino/umm_malloc/umm_malloc.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/umm_malloc/umm_poison.c.o
+Archiving .pio/build/ms3000/libFrameworkArduino.a
+Indexing .pio/build/ms3000/libFrameworkArduino.a
+Linking .pio/build/ms3000/firmware.elf
+Retrieving maximum program size .pio/build/ms3000/firmware.elf
+Checking size .pio/build/ms3000/firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [======    ]  58.7% (used 48100 bytes from 81920 bytes)
+Flash: [====      ]  41.6% (used 434853 bytes from 1044464 bytes)
+Building .pio/build/ms3000/firmware.bin
+Creating BIN file ".pio/build/ms3000/firmware.bin" using "/home/wizard/.platformio/packages/framework-arduinoespressif8266/bootloaders/eboot/eboot.elf" and ".pio/build/ms3000/firmware.elf"
+============================================== [SUCCESS] Took 32.04 seconds ==============================================
+pio run && ../tools/esptool-ck/esptool -vv -cd ck -cb 921600 -cp `pio device list --json-output | python -c 'exec("""\nimport json,sys\n\nobj=json.load(sys.stdin)\nfor y in obj:\n if "10C4:EA60" in y["hwid"].upper():\n  print (y["port"])\n""") ' | head -1` -cf .pio/build/ms3000/firmware.bin
+Processing ms3000 (platform: espressif8266; framework: arduino; board: esp12e)
+--------------------------------------------------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif8266/esp12e.html
+PLATFORM: Espressif 8266 (4.0.1) > Espressif ESP8266 ESP-12E
+HARDWARE: ESP8266 80MHz, 80KB RAM, 4MB Flash
+PACKAGES: 
+ - framework-arduinoespressif8266 @ 3.30002.0 (3.0.2) 
+ - tool-esptool @ 1.413.0 (4.13) 
+ - tool-esptoolpy @ 1.30000.201119 (3.0.0) 
+ - toolchain-xtensa @ 2.100300.210717 (10.3.0)
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ chain, Compatibility ~ soft
+Found 47 compatible libraries
+Scanning dependencies...
+Dependency Graph
+|-- AppleMIDI @ 2.2.0
+|   |-- MIDI Library @ 5.0.2
+|-- ArduinoJson @ 6.19.4
+|-- OSC @ 0.0.0-alpha+sha.41b44981e3
+|-- aJson @ 0.0.0+sha.2737b20
+|-- jsmn @ 0.0.0-alpha+sha.053d3cd292
+|-- WiFiManager @ 0.15.0
+|   |-- DNSServer @ 1.1.1
+|   |   |-- ESP8266WiFi @ 1.0
+|   |-- ESP8266WebServer @ 1.0
+|   |   |-- ESP8266WiFi @ 1.0
+|   |-- ESP8266WiFi @ 1.0
+|-- MIDI Library @ 5.0.2
+|-- LittleFS @ 0.1.0
+|-- miby
+|-- ArduinoOTA @ 1.0
+|   |-- ESP8266WiFi @ 1.0
+|   |-- ESP8266mDNS @ 1.2
+|   |   |-- ESP8266WiFi @ 1.0
+|-- EEPROM @ 1.0
+|-- ESP8266WebServer @ 1.0
+|   |-- ESP8266WiFi @ 1.0
+|-- ESP8266WiFi @ 1.0
+|-- ESP8266mDNS @ 1.2
+|   |-- ESP8266WiFi @ 1.0
+|-- SPI @ 1.0
+|-- Wire @ 1.0
+|-- nanopb
+Building in release mode
+Retrieving maximum program size .pio/build/ms3000/firmware.elf
+Checking size .pio/build/ms3000/firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [======    ]  58.7% (used 48100 bytes from 81920 bytes)
+Flash: [====      ]  41.6% (used 434853 bytes from 1044464 bytes)
+============================================== [SUCCESS] Took 2.72 seconds ==============================================
+/bin/bash: line 1: ../tools/esptool-ck/esptool: No such file or directory
+make: *** [Makefile:46: flash] Error 127
+(.venv) wizard@wizard-HPoenix:~/projects/ms/git/MS4000/firmware$ cd ../tools/esptool-ck/
+(.venv) wizard@wizard-HPoenix:~/projects/ms/git/MS4000/tools/esptool-ck$ make
+cc -std=gnu99 -Os -Wall   -Iinfohelper -Ielf -Ibinimage -Iargparse -Iserialport -Iespcomm  -DVERSION=\"cbf68df\"   -c -o argparse/argparse.o argparse/argparse.c
+cc -std=gnu99 -Os -Wall   -Iinfohelper -Ielf -Ibinimage -Iargparse -Iserialport -Iespcomm  -DVERSION=\"cbf68df\"   -c -o argparse/argparse_binimagecmd.o argparse/argparse_binimagecmd.c
+cc -std=gnu99 -Os -Wall   -Iinfohelper -Ielf -Ibinimage -Iargparse -Iserialport -Iespcomm  -DVERSION=\"cbf68df\"   -c -o argparse/argparse_commcmd.o argparse/argparse_commcmd.c
+cc -std=gnu99 -Os -Wall   -Iinfohelper -Ielf -Ibinimage -Iargparse -Iserialport -Iespcomm  -DVERSION=\"cbf68df\"   -c -o argparse/argparse_elfcmd.o argparse/argparse_elfcmd.c
+cc -std=gnu99 -Os -Wall   -Iinfohelper -Ielf -Ibinimage -Iargparse -Iserialport -Iespcomm  -DVERSION=\"cbf68df\"   -c -o binimage/esptool_binimage.o binimage/esptool_binimage.c
+cc -std=gnu99 -Os -Wall   -Iinfohelper -Ielf -Ibinimage -Iargparse -Iserialport -Iespcomm  -DVERSION=\"cbf68df\"   -c -o elf/esptool_elf.o elf/esptool_elf.c
+cc -std=gnu99 -Os -Wall   -Iinfohelper -Ielf -Ibinimage -Iargparse -Iserialport -Iespcomm  -DVERSION=\"cbf68df\"   -c -o elf/esptool_elf_object.o elf/esptool_elf_object.c
+cc -std=gnu99 -Os -Wall   -Iinfohelper -Ielf -Ibinimage -Iargparse -Iserialport -Iespcomm  -DVERSION=\"cbf68df\"   -c -o espcomm/delay.o espcomm/delay.c
+cc -std=gnu99 -Os -Wall   -Iinfohelper -Ielf -Ibinimage -Iargparse -Iserialport -Iespcomm  -DVERSION=\"cbf68df\"   -c -o espcomm/espcomm.o espcomm/espcomm.c
+cc -std=gnu99 -Os -Wall   -Iinfohelper -Ielf -Ibinimage -Iargparse -Iserialport -Iespcomm  -DVERSION=\"cbf68df\"   -c -o espcomm/espcomm_boards.o espcomm/espcomm_boards.c
+cc -std=gnu99 -Os -Wall   -Iinfohelper -Ielf -Ibinimage -Iargparse -Iserialport -Iespcomm  -DVERSION=\"cbf68df\"   -c -o infohelper/infohelper.o infohelper/infohelper.c
+cc -std=gnu99 -Os -Wall   -Iinfohelper -Ielf -Ibinimage -Iargparse -Iserialport -Iespcomm  -DVERSION=\"cbf68df\"   -c -o serialport/serialport.o serialport/serialport.c
+cc -std=gnu99 -Os -Wall   -Iinfohelper -Ielf -Ibinimage -Iargparse -Iserialport -Iespcomm  -DVERSION=\"cbf68df\"   -c -o main.o main.c
+cc argparse/argparse.o argparse/argparse_binimagecmd.o argparse/argparse_commcmd.o argparse/argparse_elfcmd.o binimage/esptool_binimage.o elf/esptool_elf.o elf/esptool_elf_object.o espcomm/delay.o espcomm/espcomm.o espcomm/espcomm_boards.o infohelper/infohelper.o serialport/serialport.o main.o -o esptool  
+strip esptool 2>/dev/null \
+|| -strip esptool
+(.venv) wizard@wizard-HPoenix:~/projects/ms/git/MS4000/tools/esptool-ck$ cd -
+/home/wizard/projects/ms/git/MS4000/firmware
+(.venv) wizard@wizard-HPoenix:~/projects/ms/git/MS4000/firmware$ make
+# !J! Todo: BUILD_PRODUCT_DIR
+# rm -rf .pioenvs
+pio run -t clean
+Processing ms3000 (platform: espressif8266; framework: arduino; board: esp12e)
+--------------------------------------------------------------------------------------------------------------------------
+Removing .pio/build/ms3000
+Done cleaning
+============================================== [SUCCESS] Took 0.47 seconds ==============================================
+# rm -rf .venv_firmware
+#rm -rf src/MS4.pb.c src/MS4.pb.h
+'../tools/nanopb/pb_common.c' -> 'lib/nanopb/pb_common.c'
+'../tools/nanopb/pb_decode.c' -> 'lib/nanopb/pb_decode.c'
+'../tools/nanopb/pb_encode.c' -> 'lib/nanopb/pb_encode.c'
+'../tools/nanopb/pb_common.h' -> 'lib/nanopb/pb_common.h'
+'../tools/nanopb/pb_decode.h' -> 'lib/nanopb/pb_decode.h'
+'../tools/nanopb/pb_encode.h' -> 'lib/nanopb/pb_encode.h'
+'../tools/nanopb/pb.h' -> 'lib/nanopb/pb.h'
+-rw-r--r-- 1 wizard wizard 12141 Sep 18 20:18 lib/nanopb/pb_common.c
+-rw-r--r-- 1 wizard wizard  1677 Sep 18 20:18 lib/nanopb/pb_common.h
+-rw-r--r-- 1 wizard wizard 53498 Sep 18 20:18 lib/nanopb/pb_decode.c
+-rw-r--r-- 1 wizard wizard  7554 Sep 18 20:18 lib/nanopb/pb_decode.h
+-rw-r--r-- 1 wizard wizard 30339 Sep 18 20:18 lib/nanopb/pb_encode.c
+-rw-r--r-- 1 wizard wizard  6958 Sep 18 20:18 lib/nanopb/pb_encode.h
+-rw-r--r-- 1 wizard wizard 43703 Sep 18 20:18 lib/nanopb/pb.h
+-rw-r--r-- 1 wizard wizard 12141 Sep 18 20:18 ../tools/nanopb/pb_common.c
+-rw-r--r-- 1 wizard wizard  1677 Sep 18 20:18 ../tools/nanopb/pb_common.h
+-rw-r--r-- 1 wizard wizard 53498 Sep 18 20:18 ../tools/nanopb/pb_decode.c
+-rw-r--r-- 1 wizard wizard  7554 Sep 18 20:18 ../tools/nanopb/pb_decode.h
+-rw-r--r-- 1 wizard wizard 30339 Sep 18 20:18 ../tools/nanopb/pb_encode.c
+-rw-r--r-- 1 wizard wizard  6958 Sep 18 20:18 ../tools/nanopb/pb_encode.h
+-rw-r--r-- 1 wizard wizard 43703 Sep 18 20:18 ../tools/nanopb/pb.h
+platformio run --upload-port `pio device list --json-output | python -c 'exec("""\nimport json,sys\n\nobj=json.load(sys.stdin)\nfor y in obj:\n if "10C4:EA60" in y["hwid"].upper():\n  print (y["port"])\n""") ' | head -1`
+Processing ms3000 (platform: espressif8266; framework: arduino; board: esp12e)
+--------------------------------------------------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif8266/esp12e.html
+PLATFORM: Espressif 8266 (4.0.1) > Espressif ESP8266 ESP-12E
+HARDWARE: ESP8266 80MHz, 80KB RAM, 4MB Flash
+PACKAGES: 
+ - framework-arduinoespressif8266 @ 3.30002.0 (3.0.2) 
+ - tool-esptool @ 1.413.0 (4.13) 
+ - tool-esptoolpy @ 1.30000.201119 (3.0.0) 
+ - toolchain-xtensa @ 2.100300.210717 (10.3.0)
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ chain, Compatibility ~ soft
+Found 47 compatible libraries
+Scanning dependencies...
+Dependency Graph
+|-- AppleMIDI @ 2.2.0
+|   |-- MIDI Library @ 5.0.2
+|-- ArduinoJson @ 6.19.4
+|-- OSC @ 0.0.0-alpha+sha.41b44981e3
+|-- aJson @ 0.0.0+sha.2737b20
+|-- jsmn @ 0.0.0-alpha+sha.053d3cd292
+|-- WiFiManager @ 0.15.0
+|   |-- DNSServer @ 1.1.1
+|   |   |-- ESP8266WiFi @ 1.0
+|   |-- ESP8266WebServer @ 1.0
+|   |   |-- ESP8266WiFi @ 1.0
+|   |-- ESP8266WiFi @ 1.0
+|-- MIDI Library @ 5.0.2
+|-- LittleFS @ 0.1.0
+|-- miby
+|-- ArduinoOTA @ 1.0
+|   |-- ESP8266WiFi @ 1.0
+|   |-- ESP8266mDNS @ 1.2
+|   |   |-- ESP8266WiFi @ 1.0
+|-- EEPROM @ 1.0
+|-- ESP8266WebServer @ 1.0
+|   |-- ESP8266WiFi @ 1.0
+|-- ESP8266WiFi @ 1.0
+|-- ESP8266mDNS @ 1.2
+|   |-- ESP8266WiFi @ 1.0
+|-- SPI @ 1.0
+|-- Wire @ 1.0
+|-- nanopb
+Building in release mode
+Compiling .pio/build/ms3000/src/MS3KOS.cpp.o
+Compiling .pio/build/ms3000/src/MS4.pb.c.o
+Compiling .pio/build/ms3000/src/serialMIDI.c.o
+Generating LD script .pio/build/ms3000/ld/local.eagle.app.v6.common.ld
+Compiling .pio/build/ms3000/lib17c/MIDI Library/MIDI.cpp.o
+Compiling .pio/build/ms3000/lib196/AppleMIDI/AppleMIDI.cpp.o
+Compiling .pio/build/ms3000/lib6dd/OSC/OSCBoards.cpp.o
+Compiling .pio/build/ms3000/lib6dd/OSC/OSCBundle.cpp.o
+Compiling .pio/build/ms3000/lib6dd/OSC/OSCData.cpp.o
+Compiling .pio/build/ms3000/lib6dd/OSC/OSCMatch.c.o
+Compiling .pio/build/ms3000/lib6dd/OSC/OSCMessage.cpp.o
+In file included from src/msSystem.h:33,
+                 from src/MS3KOS.cpp:47:
+src/msSysLog.h:107:2: warning: #warning "SERIAL OUTPUT HAS BEEN ENABLED" [-Wcpp]
+  107 | #warning "SERIAL OUTPUT HAS BEEN ENABLED"
+      |  ^~~~~~~
+In file included from src/MS3KOS.cpp:47:
+src/msSystem.h:992:2: warning: #warning "SERIAL MIDI is disabled - syslog will use serial logging" [-Wcpp]
+  992 | #warning "SERIAL MIDI is disabled - syslog will use serial logging"
+      |  ^~~~~~~
+In file included from src/MS3KOS.cpp:55:
+src/WebServer/WebServer.h:30:2: warning: #warning "mDNS is turned on..." [-Wcpp]
+   30 | #warning "mDNS is turned on..."
+      |  ^~~~~~~
+Compiling .pio/build/ms3000/lib6dd/OSC/OSCTiming.cpp.o
+Compiling .pio/build/ms3000/lib6dd/OSC/SLIPEncodedSerial.cpp.o
+Archiving .pio/build/ms3000/lib17c/libMIDI Library.a
+Indexing .pio/build/ms3000/lib17c/libMIDI Library.a
+Compiling .pio/build/ms3000/lib6dd/OSC/SLIPEncodedUSBSerial.cpp.o
+Archiving .pio/build/ms3000/lib196/libAppleMIDI.a
+Indexing .pio/build/ms3000/lib196/libAppleMIDI.a
+Compiling .pio/build/ms3000/lib10f/aJson/aJSON.cpp.o
+Compiling .pio/build/ms3000/lib10f/aJson/utility/stringbuffer.c.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/BearSSLHelpers.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/CertStoreBearSSL.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/ESP8266WiFi.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/ESP8266WiFiAP.cpp.o
+.pio/libdeps/ms3000/aJson/aJSON.cpp: In member function 'int aJsonStream::printArray(aJsonObject*)':
+.pio/libdeps/ms3000/aJson/aJSON.cpp:779:24: warning: comparison of integer expressions of different signedness: 'size_t' {aka 'unsigned int'} and 'int' [-Wsign-compare]
+  779 |   if (this->print('[') == EOF)
+      |                        ^
+.pio/libdeps/ms3000/aJson/aJSON.cpp:792:32: warning: comparison of integer expressions of different signedness: 'size_t' {aka 'unsigned int'} and 'int' [-Wsign-compare]
+  792 |           if (this->print(',') == EOF)
+      |                                ^
+.pio/libdeps/ms3000/aJson/aJSON.cpp:798:24: warning: comparison of integer expressions of different signedness: 'size_t' {aka 'unsigned int'} and 'int' [-Wsign-compare]
+  798 |   if (this->print(']') == EOF)
+      |                        ^
+.pio/libdeps/ms3000/aJson/aJSON.cpp: In member function 'int aJsonStream::printObject(aJsonObject*)':
+.pio/libdeps/ms3000/aJson/aJSON.cpp:890:24: warning: comparison of integer expressions of different signedness: 'size_t' {aka 'unsigned int'} and 'int' [-Wsign-compare]
+  890 |   if (this->print('{') == EOF)
+      |                        ^
+.pio/libdeps/ms3000/aJson/aJSON.cpp:900:28: warning: comparison of integer expressions of different signedness: 'size_t' {aka 'unsigned int'} and 'int' [-Wsign-compare]
+  900 |       if (this->print(':') == EOF)
+      |                            ^
+.pio/libdeps/ms3000/aJson/aJSON.cpp:911:32: warning: comparison of integer expressions of different signedness: 'size_t' {aka 'unsigned int'} and 'int' [-Wsign-compare]
+  911 |           if (this->print(',') == EOF)
+      |                                ^
+.pio/libdeps/ms3000/aJson/aJSON.cpp:917:24: warning: comparison of integer expressions of different signedness: 'size_t' {aka 'unsigned int'} and 'int' [-Wsign-compare]
+  917 |   if (this->print('}') == EOF)
+      |                        ^
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/ESP8266WiFiGeneric.cpp.o
+Archiving .pio/build/ms3000/lib6dd/libOSC.a
+Indexing .pio/build/ms3000/lib6dd/libOSC.a
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/ESP8266WiFiGratuitous.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/ESP8266WiFiMulti.cpp.o
+Archiving .pio/build/ms3000/lib10f/libaJson.a
+Indexing .pio/build/ms3000/lib10f/libaJson.a
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/ESP8266WiFiSTA-WPS.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/ESP8266WiFiSTA.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/ESP8266WiFiScan.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/WiFiClient.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/WiFiClientSecureBearSSL.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/WiFiServer.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/WiFiServerSecureBearSSL.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/WiFiUdp.cpp.o
+Compiling .pio/build/ms3000/lib782/ESP8266WiFi/enable_wifi_at_boot_time.cpp.o
+Compiling .pio/build/ms3000/lib01c/DNSServer/DNSServer.cpp.o
+Compiling .pio/build/ms3000/lib527/ESP8266WebServer/detail/mimetable.cpp.o
+Archiving .pio/build/ms3000/lib527/libESP8266WebServer.a
+Indexing .pio/build/ms3000/lib527/libESP8266WebServer.a
+Compiling .pio/build/ms3000/lib3e7/WiFiManager/WiFiManager.cpp.o
+Compiling .pio/build/ms3000/lib356/LittleFS/LittleFS.cpp.o
+Compiling .pio/build/ms3000/lib356/LittleFS/lfs.c.o
+Compiling .pio/build/ms3000/lib356/LittleFS/lfs_util.c.o
+Archiving .pio/build/ms3000/lib01c/libDNSServer.a
+Indexing .pio/build/ms3000/lib01c/libDNSServer.a
+Compiling .pio/build/ms3000/lib6c4/miby/miby.cpp.o
+Compiling .pio/build/ms3000/lib331/ESP8266mDNS/ESP8266mDNS.cpp.o
+Compiling .pio/build/ms3000/lib331/ESP8266mDNS/LEAmDNS.cpp.o
+Archiving .pio/build/ms3000/lib6c4/libmiby.a
+Indexing .pio/build/ms3000/lib6c4/libmiby.a
+Compiling .pio/build/ms3000/lib331/ESP8266mDNS/LEAmDNS_Control.cpp.o
+Archiving .pio/build/ms3000/lib782/libESP8266WiFi.a
+Indexing .pio/build/ms3000/lib782/libESP8266WiFi.a
+Compiling .pio/build/ms3000/lib331/ESP8266mDNS/LEAmDNS_Helpers.cpp.o
+Compiling .pio/build/ms3000/lib331/ESP8266mDNS/LEAmDNS_Structs.cpp.o
+Compiling .pio/build/ms3000/lib331/ESP8266mDNS/LEAmDNS_Transfer.cpp.o
+Archiving .pio/build/ms3000/lib356/libLittleFS.a
+Indexing .pio/build/ms3000/lib356/libLittleFS.a
+Compiling .pio/build/ms3000/lib4f2/ArduinoOTA/ArduinoOTA.cpp.o
+Compiling .pio/build/ms3000/lib366/EEPROM/EEPROM.cpp.o
+Compiling .pio/build/ms3000/libe8c/SPI/SPI.cpp.o
+Compiling .pio/build/ms3000/lib357/Wire/Wire.cpp.o
+Archiving .pio/build/ms3000/lib3e7/libWiFiManager.a
+Indexing .pio/build/ms3000/lib3e7/libWiFiManager.a
+Compiling .pio/build/ms3000/lib355/nanopb/pb_common.c.o
+Compiling .pio/build/ms3000/lib355/nanopb/pb_decode.c.o
+Archiving .pio/build/ms3000/lib366/libEEPROM.a
+Indexing .pio/build/ms3000/lib366/libEEPROM.a
+Compiling .pio/build/ms3000/lib355/nanopb/pb_encode.c.o
+Archiving .pio/build/ms3000/libFrameworkArduinoVariant.a
+Indexing .pio/build/ms3000/libFrameworkArduinoVariant.a
+Compiling .pio/build/ms3000/FrameworkArduino/Crypto.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/Esp-frag.cpp.o
+Archiving .pio/build/ms3000/lib355/libnanopb.a
+Indexing .pio/build/ms3000/lib355/libnanopb.a
+Compiling .pio/build/ms3000/FrameworkArduino/Esp-version.cpp.o
+Archiving .pio/build/ms3000/lib357/libWire.a
+Indexing .pio/build/ms3000/lib357/libWire.a
+Compiling .pio/build/ms3000/FrameworkArduino/Esp.cpp.o
+Archiving .pio/build/ms3000/libe8c/libSPI.a
+Indexing .pio/build/ms3000/libe8c/libSPI.a
+Compiling .pio/build/ms3000/FrameworkArduino/FS.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/FSnoop.cpp.o
+Archiving .pio/build/ms3000/lib331/libESP8266mDNS.a
+Indexing .pio/build/ms3000/lib331/libESP8266mDNS.a
+Compiling .pio/build/ms3000/FrameworkArduino/FunctionalInterrupt.cpp.o
+Archiving .pio/build/ms3000/lib4f2/libArduinoOTA.a
+Indexing .pio/build/ms3000/lib4f2/libArduinoOTA.a
+Compiling .pio/build/ms3000/FrameworkArduino/HardwareSerial.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/IPAddress.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/LwipDhcpServer-NonOS.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/LwipDhcpServer.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/LwipIntf.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/LwipIntfCB.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/MD5Builder.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/Print.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/Schedule.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/StackThunk.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/Stream.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/StreamSend.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/Tone.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/TypeConversion.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/Updater.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/WMath.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/WString.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/abi.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/aes_unwrap.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/base64.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/cbuf.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/cont.S.o
+Compiling .pio/build/ms3000/FrameworkArduino/cont_util.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_app_entry_noextra4k.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_eboot_command.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_features.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_flash_quirks.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_flash_utils.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_i2s.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_main.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_non32xfer.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_noniso.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_phy.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_postmortem.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_si2c.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_sigma_delta.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_spi_utils.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_timer.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_vm.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_waveform_phase.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_waveform_pwm.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_wiring.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_wiring_analog.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_wiring_digital.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_wiring_pulse.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_wiring_pwm.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/core_esp8266_wiring_shift.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/crc32.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/debug.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/exc-c-wrapper-handler.S.o
+Compiling .pio/build/ms3000/FrameworkArduino/exc-sethandler.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/flash_hal.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/gdb_hooks.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/heap.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/hwdt_app_entry.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/libb64/cdecode.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/libb64/cencode.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/libc_replacements.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/mmu_iram.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/reboot_uart_dwnld.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/spiffs/spiffs_cache.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/spiffs/spiffs_check.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/spiffs/spiffs_gc.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/spiffs/spiffs_hydrogen.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/spiffs/spiffs_nucleus.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/spiffs_api.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/sqrt32.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/stdlib_noniso.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/time.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/uart.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/umm_malloc/umm_info.c.o
+Compiling .pio/build/ms3000/FrameworkArduino/umm_malloc/umm_integrity.c.o
+Compiling .pio/build/ms3000/FrameworkArduino/umm_malloc/umm_local.c.o
+Compiling .pio/build/ms3000/FrameworkArduino/umm_malloc/umm_malloc.cpp.o
+Compiling .pio/build/ms3000/FrameworkArduino/umm_malloc/umm_poison.c.o
+Archiving .pio/build/ms3000/libFrameworkArduino.a
+Indexing .pio/build/ms3000/libFrameworkArduino.a
+Linking .pio/build/ms3000/firmware.elf
+Retrieving maximum program size .pio/build/ms3000/firmware.elf
+Checking size .pio/build/ms3000/firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [======    ]  58.7% (used 48100 bytes from 81920 bytes)
+Flash: [====      ]  41.6% (used 434853 bytes from 1044464 bytes)
+Building .pio/build/ms3000/firmware.bin
+Creating BIN file ".pio/build/ms3000/firmware.bin" using "/home/wizard/.platformio/packages/framework-arduinoespressif8266/bootloaders/eboot/eboot.elf" and ".pio/build/ms3000/firmware.elf"
+============================================== [SUCCESS] Took 32.17 seconds ==============================================
+pio run && ../tools/esptool-ck/esptool -vv -cd ck -cb 921600 -cp `pio device list --json-output | python -c 'exec("""\nimport json,sys\n\nobj=json.load(sys.stdin)\nfor y in obj:\n if "10C4:EA60" in y["hwid"].upper():\n  print (y["port"])\n""") ' | head -1` -cf .pio/build/ms3000/firmware.bin
+Processing ms3000 (platform: espressif8266; framework: arduino; board: esp12e)
+--------------------------------------------------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif8266/esp12e.html
+PLATFORM: Espressif 8266 (4.0.1) > Espressif ESP8266 ESP-12E
+HARDWARE: ESP8266 80MHz, 80KB RAM, 4MB Flash
+PACKAGES: 
+ - framework-arduinoespressif8266 @ 3.30002.0 (3.0.2) 
+ - tool-esptool @ 1.413.0 (4.13) 
+ - tool-esptoolpy @ 1.30000.201119 (3.0.0) 
+ - toolchain-xtensa @ 2.100300.210717 (10.3.0)
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ chain, Compatibility ~ soft
+Found 47 compatible libraries
+Scanning dependencies...
+Dependency Graph
+|-- AppleMIDI @ 2.2.0
+|   |-- MIDI Library @ 5.0.2
+|-- ArduinoJson @ 6.19.4
+|-- OSC @ 0.0.0-alpha+sha.41b44981e3
+|-- aJson @ 0.0.0+sha.2737b20
+|-- jsmn @ 0.0.0-alpha+sha.053d3cd292
+|-- WiFiManager @ 0.15.0
+|   |-- DNSServer @ 1.1.1
+|   |   |-- ESP8266WiFi @ 1.0
+|   |-- ESP8266WebServer @ 1.0
+|   |   |-- ESP8266WiFi @ 1.0
+|   |-- ESP8266WiFi @ 1.0
+|-- MIDI Library @ 5.0.2
+|-- LittleFS @ 0.1.0
+|-- miby
+|-- ArduinoOTA @ 1.0
+|   |-- ESP8266WiFi @ 1.0
+|   |-- ESP8266mDNS @ 1.2
+|   |   |-- ESP8266WiFi @ 1.0
+|-- EEPROM @ 1.0
+|-- ESP8266WebServer @ 1.0
+|   |-- ESP8266WiFi @ 1.0
+|-- ESP8266WiFi @ 1.0
+|-- ESP8266mDNS @ 1.2
+|   |-- ESP8266WiFi @ 1.0
+|-- SPI @ 1.0
+|-- Wire @ 1.0
+|-- nanopb
+Building in release mode
+Retrieving maximum program size .pio/build/ms3000/firmware.elf
+Checking size .pio/build/ms3000/firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [======    ]  58.7% (used 48100 bytes from 81920 bytes)
+Flash: [====      ]  41.6% (used 434853 bytes from 1044464 bytes)
+============================================== [SUCCESS] Took 2.69 seconds ==============================================
+esptool vcbf68df - (c) 2014 Ch. Klippel <ck@atelier-klippel.de>
+        setting board to ck
+        setting baudrate from 115200 to 921600
+        setting port from /dev/ttyUSB0 to /dev/ttyUSB0
+        espcomm_upload_file
+        espcomm_upload_mem
+opening port /dev/ttyUSB0 at 921600
+        tcgetattr
+        tcsetattr
+        serial open
+opening bootloader
+resetting board
+trying to connect
+        espcomm_send_command: sending command header
+        espcomm_send_command: sending command payload
+trying to connect
+        espcomm_send_command: sending command header
+        espcomm_send_command: sending command payload
+        espcomm_send_command: receiving 2 bytes of data
+        espcomm_send_command: receiving 2 bytes of data
+        espcomm_send_command: receiving 2 bytes of data
+        espcomm_send_command: receiving 2 bytes of data
+        espcomm_send_command: receiving 2 bytes of data
+        espcomm_send_command: receiving 2 bytes of data
+        espcomm_send_command: receiving 2 bytes of data
+        espcomm_send_command: receiving 2 bytes of data
+Uploading 439008 bytes from .pio/build/ms3000/firmware.bin to flash at 0x00000000
+        erasing flash
+        size: 06b2e0 address: 000000
+        first_sector_index: 0
+        total_sector_count: 108
+        head_sector_count: 16
+        adjusted_sector_count: 92
+        erase_size: 05c000
+        espcomm_send_command: sending command header
+        espcomm_send_command: sending command payload
+        setting timeout 15000
+        setting timeout 1000
+        espcomm_send_command: receiving 2 bytes of data
+        writing flash
+................................................................................ [ 18% ]
+................................................................................ [ 37% ]
+................................................................................ [ 55% ]
+................................................................................ [ 74% ]
+................................................................................ [ 93% ]
+.............................                                                    [ 100% ]
+starting app without reboot
+        espcomm_send_command: sending command header
+        espcomm_send_command: sending command payload
+        espcomm_send_command: receiving 2 bytes of data
+closing bootloader
+pio device monitor -b 921600 --dtr 0 --rts 0 -p `pio device list --json-output | python -c 'exec("""\nimport json,sys\n\nobj=json.load(sys.stdin)\nfor y in obj:\n if "10C4:EA60" in y["hwid"].upper():\n  print (y["port"])\n""") ' | head -1`
+--- forcing DTR inactive
+--- forcing RTS inactive
+--- Terminal on /dev/ttyUSB0 | 921600 8-N-1
+--- Available filters and text transformations: colorize, debug, default, direct, esp8266_exception_decoder, hexlify, log2file, nocontrol, printable, send_on_enter, time
+--- More details at https://bit.ly/pio-monitor-filters
+--- Quit: Ctrl+C | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H
+MS3K:System config:
+MS3K:Vcc: 65535
+MS3K:Free heap: 30936
+MS3K:Chip ID: 1189753
+MS3K:SDK version: 2.2.2-dev(38a443e)
+MS3K:Boot version: 31
+MS3K:Boot mode: 1
+MS3K:CPU freq.: 80
+MS3K:Flash chip ID: 1640e0
+MS3K:Flash real size: 4194304
+MS3K:Flash real size (method b): 4194304
+MS3K:flash configured size: 4194304
+MS3K:flash speed: 40000000
+MS3K:flash mode: 2
+MS3K:Sketch size: 439008
+MS3K:Free sketch space: 1654784
+MS3K:uploadfile: heart.magicBitmap
+MS3K:lfsInfo.blockSize =8192
+MS3K:lfsInfo.pageSize =256
+MS3K:lfsInfo.maxOpenFiles =5
+MS3K:lfsInfo.maxPathLength =32
+MS3K:lfsInfo.totalBytes =2072576
+MS3K:lfsInfo.usedBytes = 16384
+MS3K:Reset info: External System
+MS3K:currentMode: 0
+MS3K:timeoutHighPower: 0
+MS3K:timeoutLowPower: 600000
+MS3K:defaultBrightness: 2
+MS3K:wifi: no preferred configuration found.
+MS3K:wifi: none of the configured networks found.
+MS3K:wifi: fallback to standalone access point.
+MS3K:webserver: AP config missing: settings/ap.bin
+MS3K:webserver: not configured, using unique name: MS3000-2779
+MS3K:wifi: configuring access point: MS3000-2779
+MS3K:wifi: password: 
+MS3K:wifi: accesspoints: MS3000-2779
+MS3K:wifi: IP address: (IP unset)
+MS3K:wifi: soft AP IP: 192.168.4.1
+MS3K:webserver: AP config missing: settings/ap.bin
+MS3K:webserver: not configured, using unique name: MS3000-2779
+MS3K:mDNS - using uniqueSystemName
+MS3K:HTTP msSystem.msESPServer started
+MS3K:webserver: no syslog config file? 
+MS3K:settings/syslog.bin
+MS3K:webserver: AP config missing: settings/ap.bin
+MS3K:webserver: not configured, using unique name: MS3000-2779
+MS3K:webserver: AP config missing: settings/ap.bin
+MS3K:webserver: not configured, using unique name: MS3000-2779
+MS3K:wifi: hostname is:MS3000-2779
+MS3K:wifi: OTA hostname is:MS3000-2779
+MS3K:system: fileDump:
+MS3K:path:/
+XXXXX, 4
+end
+
+MS3K:Image load File:heart.magicBitmap
+(.venv) wizard@wizard-HPoenix:~/projects/ms/git/MS4000/firmware$ 
+(.venv) wizard@wizard-HPoenix:~/projects/ms/git/MS4000/firmware$ 
+(.venv) wizard@wizard-HPoenix:~/projects/ms/git/MS4000/firmware$ cd ../tools/factoryFlashing/
+(.venv) wizard@wizard-HPoenix:~/projects/ms/git/MS4000/tools/factoryFlashing$ ls
+arsFirmware_2.0.0.bin       MS3000_Firmware_1.3.0.bin                       MS3000Tool_NewWeb.py       settings_ap.bin
+arsFirmware_GOLD_2.0.0.bin  MS3000_Firmware_1.9.0.bin                       MS3000Tool.py              writeFirmware.sh
+buildSettingsAP.sh          MS3000_Firmware_1.9.1.bin                       MS4000_Firmware_4.0.0.bin
+genBuildList.sh             MS3000_Firmware_2.0.0-development-littlefs.bin  readFirmware.sh
+Makefile                    MS3000_init.sh                                  settings_ap2.bin
+(.venv) wizard@wizard-HPoenix:~/projects/ms/git/MS4000/tools/factoryFlashing$ make
+./MS3000Tool.py bitmaps /dev/ttyUSB0
+uploading  ../../assets/magicBitmaps/heart.magicBitmap  ->  heart.magicBitmap
+[48, 0, 0, 0, 0, 0, 3, 64, 104, 101, 97, 114, 116, 46, 109, 97, 103, 105, 99, 66, 105, 116, 109, 97, 112, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+832
+uploading  ../../assets/magicBitmaps/smilie.magicBitmap  ->  smilie.magicBitmap
+[48, 0, 0, 0, 0, 0, 3, 16, 115, 109, 105, 108, 105, 101, 46, 109, 97, 103, 105, 99, 66, 105, 116, 109, 97, 112, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+784
+uploading  ../../assets/magicBitmaps/star.magicBitmap  ->  star.magicBitmap
+[48, 0, 0, 0, 0, 0, 3, 16, 115, 116, 97, 114, 46, 109, 97, 103, 105, 99, 66, 105, 116, 109, 97, 112, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+784
+uploading  ../../assets/magicBitmaps/oneup.magicBitmap  ->  oneup.magicBitmap
+[48, 0, 0, 0, 0, 0, 3, 16, 111, 110, 101, 117, 112, 46, 109, 97, 103, 105, 99, 66, 105, 116, 109, 97, 112, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+784
+uploading  ../../assets/magicBitmaps/mario.magicBitmap  ->  mario.magicBitmap
+[48, 0, 0, 0, 0, 0, 2, 80, 109, 97, 114, 105, 111, 46, 109, 97, 103, 105, 99, 66, 105, 116, 109, 97, 112, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+592
+uploading  ../../assets/magicBitmaps/mario.magicBitmap  ->  mario.magicBitmap
+[48, 0, 0, 0, 0, 0, 2, 80, 109, 97, 114, 105, 111, 46, 109, 97, 103, 105, 99, 66, 105, 116, 109, 97, 112, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+592
+uploading  ../../assets/magicBitmaps/blueGhost.magicBitmap  ->  blueGhost.magicBitmap
+[48, 0, 0, 0, 0, 0, 3, 16, 98, 108, 117, 101, 71, 104, 111, 115, 116, 46, 109, 97, 103, 105, 99, 66, 105, 116, 109, 97, 112, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+784
+uploading  ../../assets/magicBitmaps/redGhost.magicBitmap  ->  redGhost.magicBitmap
+[48, 0, 0, 0, 0, 0, 3, 16, 114, 101, 100, 71, 104, 111, 115, 116, 46, 109, 97, 103, 105, 99, 66, 105, 116, 109, 97, 112, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+784
+uploading  ../../assets/magicBitmaps/BubbleBobble.magicBitmap  ->  BubbleBobble.magicBitmap
+[48, 0, 0, 0, 0, 0, 3, 16, 66, 117, 98, 98, 108, 101, 66, 111, 98, 98, 108, 101, 46, 109, 97, 103, 105, 99, 66, 105, 116, 109, 97, 112, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+784
+uploading  ../../assets/magicBitmaps/invader.magicBitmap  ->  invader.magicBitmap
+[48, 0, 0, 0, 0, 0, 4, 48, 105, 110, 118, 97, 100, 101, 114, 46, 109, 97, 103, 105, 99, 66, 105, 116, 109, 97, 112, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+1072
+uploading  ../../assets/magicBitmaps/giraffe.magicBitmap  ->  giraffe.magicBitmap
+[48, 0, 0, 0, 0, 0, 5, 176, 103, 105, 114, 97, 102, 102, 101, 46, 109, 97, 103, 105, 99, 66, 105, 116, 109, 97, 112, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+1456
+uploading  ../../assets/magicBitmaps/cursor.magicBitmap  ->  cursor.magicBitmap
+[48, 0, 0, 0, 0, 0, 1, 240, 99, 117, 114, 115, 111, 114, 46, 109, 97, 103, 105, 99, 66, 105, 116, 109, 97, 112, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+496
+uploading  ../../assets/magicBitmaps/nyancat.magicBitmap  ->  nyancat.magicBitmap
+[48, 0, 0, 0, 0, 0, 8, 176, 110, 121, 97, 110, 99, 97, 116, 46, 109, 97, 103, 105, 99, 66, 105, 116, 109, 97, 112, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+2224
+uploading  ../../assets/fonts/font10x16.magicFont  ->  font10x16.magicFont
+[48, 0, 0, 0, 0, 0, 7, 144, 102, 111, 110, 116, 49, 48, 120, 49, 54, 46, 109, 97, 103, 105, 99, 70, 111, 110, 116, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+1936
+uploading  ../../assets/fonts/font4x5.magicFont  ->  font4x5.magicFont
+[48, 0, 0, 0, 0, 0, 1, 48, 102, 111, 110, 116, 52, 120, 53, 46, 109, 97, 103, 105, 99, 70, 111, 110, 116, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+304
+uploading  ../../assets/fonts/font6x8.magicFont  ->  font6x8.magicFont
+[48, 0, 0, 0, 0, 0, 2, 80, 102, 111, 110, 116, 54, 120, 56, 46, 109, 97, 103, 105, 99, 70, 111, 110, 116, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+592
+uploading  ../../assets/fonts/font7x12.magicFont  ->  font7x12.magicFont
+[48, 0, 0, 0, 0, 0, 4, 0, 102, 111, 110, 116, 55, 120, 49, 50, 46, 109, 97, 103, 105, 99, 70, 111, 110, 116, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+1024
+time elapsed:  117.69575595855713
+(.venv) wizard@wizard-HPoenix:~/projects/ms/git/MS4000/tools/factoryFlashing$ 

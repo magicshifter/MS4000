@@ -46,3 +46,10 @@ tools/esptool-ck/esptool
 
 # web build product
 web/app/build
+
+# compiled python products
+**/**.pyc
+**/**__pycache__**
+
+#nanopb build
+tools/nanopb/build/**
