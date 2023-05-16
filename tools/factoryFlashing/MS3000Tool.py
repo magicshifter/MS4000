@@ -682,7 +682,7 @@ def initMS3000bitmaps():
 
 def initMS4000quickfix():
     start = time.time()
-    delay = 2;
+    delay = 5;
     ser = openPort(5)
     BUILD_PATH = "/tmp/quickFix/"
     result = os.walk(BUILD_PATH)
@@ -697,14 +697,14 @@ def initMS4000quickfix():
                             issueUploadMS3000(ser, src, dest)
                             sleep(delay)
                     else: print("skipping .map file", f)
-
+    ser.close()
     end = time.time()
     print("time elapsed: ", end - start)
  
 
 def initMS3000web4k():
     start = time.time()
-    delay = 2;
+    delay = 5;
     ser = openPort(5)
     BUILD_PATH = "../../web/magic-vue/dist/"
     result = os.walk(BUILD_PATH)
@@ -719,7 +719,7 @@ def initMS3000web4k():
                             issueUploadMS3000(ser, src, dest)
                             sleep(delay)
                     else: print("skipping .map file", f)
-
+    ser.close()
     end = time.time()
     print("time elapsed: ", end - start)
 

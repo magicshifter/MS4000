@@ -1202,13 +1202,8 @@ void showBatteryStatus(bool shouldFadeIn) {
 		}
 	}
 
-	void fileDump() {
-		String path = "/";
+	void fileDumpPath(String path) {
 		String output = "path:" + path + "\n";
-
-				
-		//String formatResult = " format: " + LittleFS.format();
-		//slogln(formatResult);
 
 		Dir dir = LittleFS.openDir((char *) path.c_str());
 
@@ -1216,19 +1211,25 @@ void showBatteryStatus(bool shouldFadeIn) {
 
 		while (true) {
 			if (!dir.next()) {
-				output += "\nend\n";
+				output += "\n\n";
 				break;
 			}
 
 			String name = dir.fileName();
 
-			output += name  + ", " + String(dir.fileSize());
+			output += name  + ", ";
 		}
 
 		slogln(output);
 
 	}
 
+   	void fileDump()
+	{
+		fileDumpPath("/assets");
+		fileDumpPath("/");
+	}
+ 
 
 };
 

@@ -50,6 +50,7 @@ static bool streamFile(String path)
 		File file = LittleFS.open((char *) path.c_str(), "r");
 		msSystem.msESPServer.streamFile(file, contentType);
 		file.close();
+		msSystem.slogln("sent file" + path);
 		return true;
 	} else {
 		msSystem.slogln("streamFile fail:" + path);
@@ -74,6 +75,7 @@ void handleNotFound()
 
 	// if we don't have a route for the request, but do have a file, serve the file
 	if (LittleFS.exists(fName + 1) || LittleFS.exists(gzFName.c_str())) {
+		msSystem.slog("streamfile: " + String(fName + 1));
 		streamFile(String(fName + 1));
 	} else if (msSystem.msESPServer.uri() != "/upload") {
 		String message = "MS Command Not Found\n\n";
