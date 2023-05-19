@@ -15,39 +15,32 @@ extern "C" {
 #include <errno.h>
 #include <time.h>
 #include <math.h>				/* for HUGE_VAL */
-#include <json/json.h>
-#include <json/jsonparse.h>
-#include <json/jsontree.h>
 }
 
 #include <vector>
 #include <map> 
 
-#include <FS.h>
-#include <LittleFS.h>
-
 struct {
 	int bootTime;
-	char *hostName = "msxos";
+	const char *hostName = "msxos";
 } msGlobals;
 
 void setup()
 {
-	// record our bootup time from the beginning
-	msGlobals.bootTime = millis();
+	msGlobals.bootTime = 0;
 
-	WiFi.hostname(msGlobals.hostName);
-	ArduinoOTA.setHostname(msGlobals.hostName);
+	//WiFi.hostname(msGlobals.hostName);
+	//ArduinoOTA.setHostname(msGlobals.hostName);
 
-	Serial.println("wifi: hostname is:" + WiFi.hostname());
-	Serial.println("wifi: OTA hostname is:" + ArduinoOTA.getHostname());
+	Serial.println("wifi: configured hostname is:" + msGlobals.hostName);
+	//Serial.println("wifi: OTA hostname is:" + ArduinoOTA.getHostname());
 
-	AppleMIDI.begin(msGlobals.hostName);
+	//AppleMIDI.begin(msGlobals.hostName);
 
 	Serial.println("MIDI(rtp) session started, identity: " + String(AppleMIDI.getSessionName()) );
 }
 
 void loop()
 {
-		AppleMIDI.run();
+		//AppleMIDI.run();
 }
