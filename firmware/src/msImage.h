@@ -7,9 +7,10 @@
 
 class MagicShifterImageAbstr {
 public:
-  virtual int getWidth();
-  virtual void getFrameData(int frameIdx, byte *frameDest);
-  virtual void close();
+  virtual ~MagicShifterImageAbstr() {}
+  virtual int getWidth() { return 0; }
+  virtual void getFrameData(int frameIdx, byte *frameDest) {}
+  virtual void close() {}
 };
 
 void PlotBitmapColumn1Bit(const MSBitmap *bitmap, uint16_t absColumn,
